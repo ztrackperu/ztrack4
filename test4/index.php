@@ -47,6 +47,7 @@ if($tipo_usuario ==1){
   $datosUsuario = $api->UsuarioEmpresa($usuario);
   $empresa_general = $datosUsuario['empresa_id'] ;
 }
+echo " ala empresa es : ".$empresa_general ;
 function EstadoDispositivo($ultima_conexion){
   $captura30min = date('Y-m-d H:i:s',mktime(date('H'),date('i')-30,date('s'),date('n'),date('j'),date('Y')));
   $captura1dia= date('Y-m-d H:i:s',mktime(date('H'),date('i'),date('s'),date('n'),date('j')-1,date('Y')));

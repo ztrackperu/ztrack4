@@ -782,7 +782,8 @@ document.addEventListener('DOMContentLoaded', function () {
       axios.post('../../ztrack2/controllers/empresasController.php?option=bajarExcelM', frmData)
         .then(function (response) {
           const info = response.data;
-          var divece = info.data.nombre_contenedor;
+          //var divece = info.data.nombre_contenedor;
+var divece = "DATA";
           var today = moment().format("DD-MM-YYYY_HH-mm-ss");
           TableToExcel.convert(document.getElementById("table_reffer2"), {
             name: divece+'_'+today+`.xlsx`,

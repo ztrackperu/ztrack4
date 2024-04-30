@@ -44,19 +44,19 @@
           <th>Alarm</th>
           <th>Opr mode</th>
           <th>Device data (BLQRB)</th>
-          <th>T set (°C)</th>29 
-          <th>T sup 1 (°C)</th>
-          <th>T sup 2 (°C)</th>
-          <th>T rtn 1 (°C)</th>
+          <th>T set </th>29 
+          <th>T sup 1 </th>
+          <th>T sup 2 </th>
+          <th>T rtn 1 </th>
           <th>Ethylene Set</th>33
-          <th>T amb (°C)</th>
+          <th>T amb </th>
           <th>Humidity set</th>35
           <th>RH read (%)</th>
           <th>CO2 set</th>37
           <th>CO2 read</th>
           <th>O2 set</th>
           <th>O2 read</th>
-          <th>T evap wall (°C)</th>
+          <th>T evap wall </th>
           <th>P suc</th>
           <th>T suc (°C)</th>
           <th>P dis</th>
@@ -72,9 +72,9 @@
           <th>Hot gas valve</th>
           <th>Open econ</th>
           <th>Comp freq</th>
-          <th>USDA 1 (°C)</th>
-          <th>USDA 2 (°C)</th>
-          <th>USDA 3 (°C)</th>
+          <th>USDA 1 </th>
+          <th>USDA 2 </th>
+          <th>USDA 3 </th>
           <th>vent to</th>
           <th>USDA 4 (°C)</th>
           <th>Atm mode</th>
@@ -124,6 +124,26 @@
 
     
 <?php
+function fara($celcius){
+ $fara =  ($celcius*9)/5 +32;
+return $fara;
+}
+
+function maldato($dato){
+	//if(floatval($dato) ==24.7 ||floatval($dato) == -25.7 ||floatval($dato)=-38.5){
+	//	return "NA";
+	//}else{
+		//return $dato ;
+	//} 
+        if($dato ==24.7 ||$dato == -25.7 ||$dato==-38.5 ||$dato==0){
+	$dato= "NA";
+	}
+	else{
+
+	}
+	return $dato;
+}
+
 foreach($M as $refer){
     $estadoColor = EstadoDispositivo($refer['ultima_fecha']);
     $on_off = $refer['power_state'];
@@ -133,6 +153,38 @@ foreach($M as $refer){
     }else{
       $co2_rect =$refer['set_point_co2'];
     }
+
+
+
+$temp_supply_I = $refer['temp_supply_1'];
+$temp_supply_II = $refer['temp_supply_2'];
+$set_point_I = $refer['set_point'];
+$return_air_I = $refer['return_air'];
+$ambient_air_I = $refer['ambient_air'];
+$cargo_1_temp_I = $refer['cargo_1_temp'];
+$cargo_2_temp_I = $refer['cargo_2_temp'];
+$cargo_3_temp_I = $refer['cargo_3_temp'];
+$cargo_4_temp_I = $refer['cargo_4_temp'];
+
+
+if($empresa_general==42 || $empresa_general==43 || $empresa_general==22){
+
+
+$temp_supply_I = fara($refer['temp_supply_1']);
+$temp_supply_II = fara($refer['temp_supply_2']);
+$set_point_I = fara($refer['set_point']);
+$return_air_I = fara($refer['return_air']);
+$ambient_air_I = fara($refer['ambient_air']);
+$cargo_1_temp_I = fara($refer['cargo_1_temp']);
+$cargo_2_temp_I = fara($refer['cargo_2_temp']);
+$cargo_3_temp_I = fara($refer['cargo_3_temp']);
+$cargo_4_temp_I = fara($refer['cargo_4_temp']);
+
+
+
+}
+
+
 ?>
 <tr  >
 <td></td>
@@ -157,7 +209,7 @@ foreach($M as $refer){
     <?php } ?>
     <td><?= $refer['NA'] ?></td>
     <td><?= $refer['NA']?></td>
-    <td><strong>Ripener</strong></td>
+    <td><strong><?= $ripener ?> </strong></td>
     <?php
     if($refer['nombre_contenedor']=="PRUEBA12345" ){
       $refer['nombre_contenedor']="ZGRU5114694";
@@ -214,12 +266,12 @@ foreach($M as $refer){
     <td>Chiller</td>
     <?php } ?>
     <td><?= $refer['ultima_fecha'] ?></td>
-    <td><?= $refer['set_point'] ?></td>
-    <td><?= $refer['temp_supply_1'] ?></td>
+    <td><?= round($set_point_I) ?> </td>
+    <td><?= $temp_supply_I ?> </td>
     <td><?= $refer['temp_supply_2'] ?></td>
-    <td><?= $refer['return_air'] ?></td>
+    <td><?= $return_air_I ?> </td>
     <td><?= $refer['sp_ethyleno'] ?></td>
-    <td><?= $refer['ambient_air'] ?></td>
+    <td><?= $ambient_air_I ?> </td>
     <td><?= $refer['humidity_set_point'] ?></td>
     <td><?= $refer['relative_humidity'] ?></td>
     <td><?= $co2_rect ?></td>
@@ -242,18 +294,11 @@ foreach($M as $refer){
     <td>-NA-</td>
     <td>-NA-</td>
     <td>-NA-</td>
-    <td><?= $refer['cargo_1_temp'] ?></td>
-    <td><?= $refer['cargo_2_temp'] ?></td>
-    <td><?= $refer['cargo_3_temp'] ?></td>
+    <td><?=  $refer['cargo_1_temp'] ?></td>
+    <td><?=  maldato($refer['cargo_2_temp']) ?></td>
+    <td><?=  maldato($refer['cargo_3_temp']) ?></td>
     <td>OOR</td>
-    <td><?php 
-    //if ($refer['cargo_4_temp']<-30){echo "NA";}else{echo $refer['cargo_4_temp'];} 
-    if($refer['cargo_4_temp']<-30){
-      echo "NA";
-    }else{
-      echo $refer['cargo_4_temp'];
-    }
-    //$refer['cargo_4_temp'] ?></td>
+    <td><?= maldato($refer['cargo_4_temp']) ?></td>
     <td>-NA-</td>
     <td>-NA-</td>
     <td>-NA-</td>

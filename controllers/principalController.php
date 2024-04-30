@@ -6,14 +6,26 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 error_reporting(E_ALL);
+
+
+function faren($celcius){
+
+
+$conver = ($celcius*9)/5 +32;
+return $conver ;
+
+}
+
 ini_set('memory_limit', '-1'); 
 require_once '../models/principal.php';
 
-require '../../ztotal/vendor/autoload.php';
+require '../../../test/ztotal/vendor/autoload.php';
 //use Exception;
 use MongoDB\Client;
 use MongoDB\Driver\ServerApi;
 use MongoDB\BSON\UTCDateTime ;
+
+
 
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
 $principal = new PrincipalModel();
@@ -33,8 +45,37 @@ switch ($option) {
             $parte2 =  substr($idf, strpos($idf,',')+strlen(','));
             $fechaaInicio = substr($idf, 0, strpos($idf, ','));
             $fechaFin = substr($parte2, 0, strpos($parte2, ';'));
-            $telemetria = substr($parte2, strpos($parte2,';')+strlen(';'));
-            /*
+            $telemetria1 = substr($parte2, strpos($parte2,';')+strlen(';'));
+            $telemetria = substr($telemetria1,0,strpos($telemetria1,"|"));
+            $GMT = substr($telemetria1,strpos($telemetria1,'|')+strlen('|'));
+//echo $GMT;
+
+$signoGMT =  substr($GMT,0,1);          
+$horaGTM =  substr($GMT,1,2);
+$minutoGTM = substr($GMT ,3,2);
+
+//echo  "el signo : ".$signoGMT." LA HORA ES : ".$horaGTM." Los minutos son : " . $minutoGTM;
+
+//echo $horaGTM+1;
+// evaluar zona horaria 
+$horaG = $horaGTM+0;
+
+//echo "VA". var_dump($horaG);
+
+if($minutoGTM=="30"){
+//RESOLVER PROBLEMA DE DESCONTRA MINUTOS
+
+//$horaG = $horaG+0.5;
+$horaG = $horaG;
+}
+	
+if($signoGMT=="-"){
+ $horaG = $horaG*(-1);
+}
+
+//echo "la condicion es :  " .$horaG;
+  
+          /*
             $data1 = $principal->listaMaduradorFecha($telemetria , $fechaaInicio ,$fechaFin);
             if(empty($data1)){$data['tramaMadurador'] = $principal->listaMaduradorAprox();
             }else{ $data['tramaMadurador'] =$data1; }  
@@ -55,7 +96,7 @@ switch ($option) {
     } catch (Exception $e) {
         printf($e->getMessage());
     }
-          //$coleccion = $client->selectDatabase('ztrack')->madurador2 ;
+          //$coleccion = $client->selectDatabase('ztrack')->madurador ;
     
          //$data['bacan'] = $client->ztrack->madurador2->find(['telemetria_id' => 33]);
          /*
@@ -67,10 +108,25 @@ switch ($option) {
          $fechaaInicio1 =$fechaaInicio.":00";
          $fechaFin1 =$fechaFin.":00";
          //problemas con fecha 5 horas menos debe ser UTC-5
-         $puntoA = strtotime($fechaaInicio);
-         $puntoA1 = strtotime("-5 hours",$puntoA)*1000;
+$nivelMundial = -5-5-($horaG);
+ //$nivelMundial = -13;
+        $puntoA = strtotime($fechaaInicio);
+         $puntoA1 = strtotime($nivelMundial." hours",$puntoA)*1000;
          $puntoB = strtotime($fechaFin)  ;
-         $puntoB1 = strtotime("-5 hours" ,$puntoB)*1000  ;
+         $puntoB1 = strtotime($nivelMundial." hours" ,$puntoB)*1000;
+
+//nivelador GTM 
+//$nivelMundial = -5-($horaG);
+
+
+
+         //$puntoA2 = strtotime($fech);
+         //$puntoA1 = strtotime($nivelMundial." hours",$puntoA2)*1000;
+         //$puntoB2 = strtotime($fechaFin)  ;
+         //$puntoB1 = strtotime($nivelMundial." hours" ,$puntoB2)*1000  ;
+
+
+
          // se selcciona los campos y las fechas 
          $cursor  = $client->ztrack_ja->madurador->find(array('$and' =>array( ['created_at'=>array('$gte'=>new MongoDB\BSON\UTCDateTime($puntoA1),'$lte'=>new MongoDB\BSON\UTCDateTime($puntoB1)),'telemetria_id'=>intval($telemetria)] )),
          array('projection' => array('_id' => 0,'trama'=> 1, 'created_at' => 1,'stateProcess' => 1,'set_point' => 1,'temp_supply_1' => 1,'return_air' => 1,'evaporation_coil' => 1,'ambient_air' => 1,'relative_humidity' => 1,'controlling_mode' => 1,'sp_ethyleno' => 1,
@@ -112,16 +168,14 @@ switch ($option) {
             $fechaD = date('d-m-Y H:i:s', $fechaJa);
     
             $puntoA = strtotime($fechaD);
-            $puntoA1 = strtotime("+5 hours",$puntoA);
+$baseHoraGTM = +5 +5+($horaG);
+            $puntoA1 = strtotime($baseHoraGTM." hours",$puntoA);
             $fechaD1 = date('d-m-Y H:i:s', $puntoA1);
            // array_push($total,$fechaD);
            array_push($total['fecha'],$fechaD1);
             //array_push($total['tramaMadurador'],$document);  
-            
-            array_push($total['setPoint'],$document['set_point']);
-            array_push($total['returnAir'],$document['return_air']);
-            array_push($total['tempSupply'],$document['temp_supply_1']);
-            array_push($total['ambienteAir'],$document['ambient_air']);
+
+
 
             if($document['relative_humidity']<=100.00){
                 array_push($total['relativeHumidity'],$document['relative_humidity']);
@@ -129,24 +183,53 @@ switch ($option) {
             }else{
                 array_push($total['relativeHumidity'],null);
 
+          }
+
+ array_push($total['objetivo'],2.00);
+
+
+
+if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
+            array_push($total['setPoint'],round(faren($document['set_point'])));
+            array_push($total['returnAir'],round(faren($document['return_air']),1));
+            array_push($total['tempSupply'],round(faren($document['temp_supply_1']),1));
+            array_push($total['ambienteAir'],round(faren($document['ambient_air']),1));
+            if($document['evaporation_coil']>=50.00){
+                array_push($total['evaporationCoil'],null);
+            }else{
+                array_push($total['evaporationCoil'],round(faren($document['evaporation_coil']),1));
+            }
+            if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
+                array_push($total['cargo_1_temp'],null);
+            }else{
+                array_push($total['cargo_1_temp'],round(faren($document['cargo_1_temp']),1));
             }
 
-
-
-
-            //array_push($total['relativeHumidity'],$document['relative_humidity']);
-            array_push($total['objetivo'],2.00);
-
+            if($document['cargo_2_temp']>=40.00){
+                array_push($total['cargo_2_temp'],null);
+            }else{
+                array_push($total['cargo_2_temp'],round(faren($document['cargo_2_temp'])));
+            }
+            if($document['cargo_3_temp']>=40.00){
+                array_push($total['cargo_3_temp'],null);
+            }else{
+                array_push($total['cargo_3_temp'],round(faren($document['cargo_3_temp'])));
+            }
+            if($document['cargo_4_temp']>=40.00){
+                array_push($total['cargo_4_temp'],null);
+            }else{
+                array_push($total['cargo_4_temp'],faren($document['cargo_4_temp']));
+            }
+}else{
+            array_push($total['setPoint'],$document['set_point']);
+            array_push($total['returnAir'],$document['return_air']);
+            array_push($total['tempSupply'],$document['temp_supply_1']);
+            array_push($total['ambienteAir'],$document['ambient_air']);
             if($document['evaporation_coil']>=50.00){
                 array_push($total['evaporationCoil'],null);
             }else{
                 array_push($total['evaporationCoil'],$document['evaporation_coil']);
             }
-
-            //array_push($total['evaporationCoil'],$document['evaporation_coil']);
-
-          
-
             if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
                 array_push($total['cargo_1_temp'],null);
             }else{
@@ -168,9 +251,9 @@ switch ($option) {
             }else{
                 array_push($total['cargo_4_temp'],$document['cargo_4_temp']);
             }
+}            
 
 
-            
 
             if($document['co2_reading']==25.4 || $document['co2_reading']==25.5 ){
                 array_push($total['co2'],null);
@@ -192,7 +275,16 @@ switch ($option) {
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 ){
                 array_push($total['inyeccionEtileno'],100); 
-                array_push($total['D_ethylene'],$document['ethylene']);  
+if($document['ethylene']>230){
+               array_push($total['D_ethylene'],null);
+
+}else{
+                array_push($total['D_ethylene'],$document['ethylene']);
+
+}
+
+
+               // array_push($total['D_ethylene'],$document['ethylene']);  
             }else{
                 array_push($total['inyeccionEtileno'],0);
                 //if($document['stateProcess']==-1.00){
@@ -224,7 +316,16 @@ switch ($option) {
                 
                 
                 else{
-                    array_push($total['D_ethylene'],$document['ethylene']);
+                   
+if($document['ethylene']>230){
+               array_push($total['D_ethylene'],null);
+
+}else{
+                array_push($total['D_ethylene'],$document['ethylene']);
+
+}
+
+// array_push($total['D_ethylene'],$document['ethylene']);
                 }
                 /*
                 if($document['ethylene']>=80.00){
@@ -717,11 +818,29 @@ else{
 
     case 'consultaFechaMadurador2':
 
+/*
         $idf = $_GET['id'];
         $parte2 =  substr($idf, strpos($idf,',')+strlen(','));
         $fechaaInicio = substr($idf,0, strpos($idf, ','));
         $fechaFin = substr($parte2,0, strpos($parte2, ';'));
-        $telemetria = substr($parte2, strpos($parte2,';')+strlen(';'));          
+        $telemetria = substr($parte2, strpos($parte2,';')+strlen(';'));
+
+*/
+
+
+            $idf = $_GET['id'];
+            $parte2 =  substr($idf, strpos($idf,',')+strlen(','));
+            $fechaaInicio = substr($idf, 0, strpos($idf, ','));
+            $fechaFin = substr($parte2, 0, strpos($parte2, ';'));
+            $telemetria1 = substr($parte2, strpos($parte2,';')+strlen(';'));
+            $telemetria = substr($telemetria1,0,strpos($telemetria1,"|"));
+            $GMT = substr($telemetria1,strpos($telemetria1,'|')+strlen('|'));
+//echo $GMT;
+
+$signoGMT =  substr($GMT,0,1);
+$horaGTM =  substr($GMT,1,2);
+$minutoGTM = substr($GMT ,3,2);
+          
         $uri = 'mongodb://localhost:27017';
 
         $apiVersion = new ServerApi(ServerApi::V1);
@@ -1119,6 +1238,7 @@ else{
         }
         array_push($total['diferencia_fecha'],$segundos);
 
+	//echo var_dump($array_optimo);
         foreach ($array_optimo as $document) {
             $cont++;
             if($cont%1==0)
@@ -1136,11 +1256,6 @@ else{
            array_push($total1['fecha'],$fechaD1);
             //array_push($total['tramaMadurador'],$document);  
             
-            array_push($total1['setPoint'],$document['set_point']);
-            array_push($total1['returnAir'],$document['return_air']);
-            array_push($total1['tempSupply'],$document['temp_supply_1']);
-            array_push($total1['ambienteAir'],$document['ambient_air']);
-
             if($document['relative_humidity']<=100.00){
                 array_push($total1['relativeHumidity'],$document['relative_humidity']);
 
@@ -1148,21 +1263,52 @@ else{
                 array_push($total1['relativeHumidity'],null);
 
             }
+		array_push($total1['objetivo'],2.00);
 
 
-            //array_push($total['relativeHumidity'],$document['relative_humidity']);
-            array_push($total1['objetivo'],2.00);
+if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
 
+
+            array_push($total1['setPoint'],round(faren($document['set_point'])));
+            array_push($total1['returnAir'],round(faren($document['return_air']),1));
+            array_push($total1['tempSupply'],round(faren($document['temp_supply_1']),1));
+            array_push($total1['ambienteAir'],round(faren($document['ambient_air']),1));
+            if($document['evaporation_coil']>=50.00){
+                array_push($total1['evaporationCoil'],null);
+            }else{
+                array_push($total1['evaporationCoil'],round(faren($document['evaporation_coil']),1));
+            }
+            if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
+                array_push($total1['cargo_1_temp'],null);
+            }else{
+                array_push($total1['cargo_1_temp'],round(faren($document['cargo_1_temp']),1));
+            }
+
+            if($document['cargo_2_temp']>=40.00){
+                array_push($total1['cargo_2_temp'],null);
+            }else{
+                array_push($total1['cargo_2_temp'],round(faren($document['cargo_2_temp'])));
+            }
+            if($document['cargo_3_temp']>=40.00){
+                array_push($total1['cargo_3_temp'],null);
+            }else{
+                array_push($total1['cargo_3_temp'],round(faren($document['cargo_3_temp'])));
+            }
+            if($document['cargo_4_temp']>=40.00){
+                array_push($total1['cargo_4_temp'],null);
+            }else{
+                array_push($total1['cargo_4_temp'],faren($document['cargo_4_temp']));
+            }
+}else{
+            array_push($total1['setPoint'],$document['set_point']);
+            array_push($total1['returnAir'],$document['return_air']);
+            array_push($total1['tempSupply'],$document['temp_supply_1']);
+            array_push($total1['ambienteAir'],$document['ambient_air']);
             if($document['evaporation_coil']>=50.00){
                 array_push($total1['evaporationCoil'],null);
             }else{
                 array_push($total1['evaporationCoil'],$document['evaporation_coil']);
             }
-
-            //array_push($total['evaporationCoil'],$document['evaporation_coil']);
-
-          
-
             if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
                 array_push($total1['cargo_1_temp'],null);
             }else{
@@ -1184,7 +1330,7 @@ else{
             }else{
                 array_push($total1['cargo_4_temp'],$document['cargo_4_temp']);
             }
-
+}
 
             
 

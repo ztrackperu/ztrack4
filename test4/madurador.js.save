@@ -1,26 +1,13 @@
 
-// aqui tenemos la fecha en texto
-fechaTotal = Date();
-//aqui buscamos la posicion de GMT
+fechaTotal =Date();
+
 posFecha =fechaTotal.search("GMT");
-//AQUI CAPTURAMOS el uso  horario , le sumamos 3 la longitud de GMT y 5 la longitud de la hora
+//cadena que muestra el GMT para pero "-0500
 cadenaGMT = fechaTotal.substr(posFecha+3,5);
 console.log(fechaTotal);
 console.log(posFecha);
 console.log(cadenaGMT);
 //console.log(fechaTotal.toJSON());
-
-// tomamos los valores del GMT  
-signoGMT=cadenaGMT.substr(0,1);
-horaGMT=cadenaGMT.substr(1,2);
-minutoGMT=cadenaGMT.substr(3,2);
-
-console.log(signoGMT);
-console.log(horaGMT);
-console.log(minutoGMT);
-
-
-//signoGMT = CADE
 
 function USDA(dato){
     dato1 =parseFloat(dato);
@@ -101,7 +88,7 @@ function inyectar(dato){
 
 function malEhylene(dato){
     dato1 =parseFloat(dato);
-    if(dato1>230.00){
+    if(dato1>200.00){
       respuesta = "NA";
     }else{
       respuesta = dato1;
@@ -1888,7 +1875,7 @@ async function filtroFechaM(id){
     $(".loader").show();
     fecha_pasada = moment().add(-12,'hour').format('YYYY-MM-DD HH:mm'); 
     fecha_actual = moment().format('YYYY-MM-DD HH:mm');
-    acumulado1 = fecha_pasada +','+fecha_actual+';'+id+'|'+cadenaGMT;
+    acumulado1 = fecha_pasada +','+fecha_actual+';'+id;
     console.log(acumulado1);
     console.time('loop');
     //const config = {method: 'get',dataType: 'json', url: '../../ztrack2/controllers/principalController.php?option=consultaFechaMadurador&id=' + acumulado1 }
@@ -1915,9 +1902,7 @@ async function filtroFechaM(id){
             $(".loader").show();
             idf =start.format('YYYY-MM-DD HH:mm ');
             idf1 =end.format('YYYY-MM-DD HH:mm ');
-           // acumulado = idf +','+idf1+';'+id;
-        acumulado = idf +','+idf1+';'+id+'|'+cadenaGMT;
-
+            acumulado = idf +','+idf1+';'+id;
             console.time('loop');
             console.log(acumulado);
             const config = {method: 'get',dataType: 'json', url: '../../ztrack4/controllers/principalController.php?option=consultaFechaMadurador2&id='  + acumulado }

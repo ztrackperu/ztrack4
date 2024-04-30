@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md fixed-top "  aria-label="Offcanvas navbar large">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" style="color: white"><strong>ZGROUP | TELEMETRY</strong> </a>
+      <a class="navbar-brand" href="#" style="color: white"><strong>ZGROUP | TELEMETRY</strong></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -16,6 +16,14 @@
   <strong > <a>ON  |  <?= $totalON?> </a> </strong>
   </button>
 
+<?php
+$ripener = "RIPENER";
+if($empresa_general==43 || $empresa_general==42){
+$ripener = "REEFER";
+}
+
+?>
+
   <ul class="dropdown-menu" >
                 <?php
                       if($cRon['count(*)'] != 0){
@@ -28,7 +36,7 @@
                       if($cMon['count(*)'] != 0){
                 ?>
                 <li class="">
-                  <a class="dropdown-item" style ="color:green;" onclick="mostrarMaduradorON()">RIPENER |<?= $cMon['count(*)'] ?></a>
+                  <a class="dropdown-item" style ="color:green;" onclick="mostrarMaduradorON()"><?= $ripener ?> |<?= $cMon['count(*)'] ?></a>
                 </li>
                 <?php
                       }
@@ -62,7 +70,7 @@
                       if($cMwait['count(*)'] != 0){
                 ?>
                 <li class="">
-                  <a class="dropdown-item" style ="color:orange;" onclick="mostrarMaduradorWAIT()">RIPENER | <?= $cMwait['count(*)'] ?></a>
+                  <a class="dropdown-item" style ="color:orange;" onclick="mostrarMaduradorWAIT()"><?= $ripener ?>  | <?= $cMwait['count(*)'] ?></a>
                 </li>
                 <?php
                       }
@@ -100,7 +108,7 @@
                       if($cMoff['count(*)'] != 0){
                 ?>
                 <li class="">
-                  <a class="dropdown-item" onclick="mostrarMaduradorOFF()">RIPENER | <?= $cMoff['count(*)'] ?></a>
+                  <a class="dropdown-item" onclick="mostrarMaduradorOFF()"><?= $ripener ?>  | <?= $cMoff['count(*)'] ?></a>
                 </li>
                 <?php
                       }
@@ -140,7 +148,7 @@
                       if($cM['count(*)'] != 0){
                 ?>
                 <li class="">
-                  <a class="dropdown-item" onclick="mostrarMadurador()">RIPENER</a>
+                  <a class="dropdown-item" onclick="mostrarMadurador()"> <?= $ripener ?>  </a>
                 </li>
                 <?php
                       }
