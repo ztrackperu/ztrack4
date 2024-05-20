@@ -108,9 +108,10 @@ if($signoGMT=="-"){
          $fechaaInicio1 =$fechaaInicio.":00";
          $fechaFin1 =$fechaFin.":00";
          //problemas con fecha 5 horas menos debe ser UTC-5
-$nivelMundial = -5-5-($horaG);
+        $nivelMundial = -5-5-($horaG);
  //$nivelMundial = -13;
         $puntoA = strtotime($fechaaInicio);
+
          $puntoA1 = strtotime($nivelMundial." hours",$puntoA)*1000;
          $puntoB = strtotime($fechaFin)  ;
          $puntoB1 = strtotime($nivelMundial." hours" ,$puntoB)*1000;
@@ -1386,7 +1387,11 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
                 
                 
                 else{
-                    array_push($total1['D_ethylene'],$document['ethylene']);
+                    if($document['ethylene']>300){
+                        array_push($total1['D_ethylene'],null);
+                    }else{
+                        array_push($total1['D_ethylene'],$document['ethylene']);
+                    }
                 }
                 /*
                 if($document['ethylene']>=80.00){
