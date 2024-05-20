@@ -1398,7 +1398,7 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
                 */
     
                 else{
-                    if($document['ethylene']>250){
+                    if($document['ethylene']>50){
                         array_push($total1['D_ethylene'],null);
                     }else{
                         array_push($total1['D_ethylene'],$document['ethylene']);
