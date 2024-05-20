@@ -603,7 +603,17 @@ if($document['ethylene']>230){
                     }
 
                 }
+                else{
+                    if($document['ethylene']>250){
+                        array_push($total['D_ethylene'],null);
 
+                    }else{
+                        array_push($total['D_ethylene'],$document['ethylene']);
+
+                    }
+
+                }
+                /*
                 else if($document['telemetria_id']==378){
                     if($document['ethylene']>89){
                         array_push($total['D_ethylene'],null);
@@ -613,10 +623,11 @@ if($document['ethylene']>230){
 
                     }
                 }
+                */
 
-else{
-                    array_push($total['D_ethylene'],$document['ethylene']);
-                }
+                //else{
+                  //  array_push($total['D_ethylene'],$document['ethylene']);
+                //}
                 /*
                 if($document['ethylene']>=80.00){
                     array_push($total['D_ethylene'],null);
@@ -1374,6 +1385,7 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
                     }
 
                 }
+                /*
                 else if($document['telemetria_id']==378){
                     if($document['ethylene']>89){
                         array_push($total1['D_ethylene'],null);
@@ -1383,11 +1395,10 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
 
                     }
                 }
-
-                
-                
+                */
+    
                 else{
-                    if($document['ethylene']>300){
+                    if($document['ethylene']>250){
                         array_push($total1['D_ethylene'],null);
                     }else{
                         array_push($total1['D_ethylene'],$document['ethylene']);
