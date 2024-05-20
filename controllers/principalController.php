@@ -1366,7 +1366,12 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 ){
                 array_push($total1['inyeccionEtileno'],100); 
-                array_push($total1['D_ethylene'],$document['ethylene']);  
+                if($document['ethylene']>250){
+                    array_push($total1['D_ethylene'],null);
+                }else{
+                    array_push($total1['D_ethylene'],$document['ethylene']);
+                }
+                //array_push($total1['D_ethylene'],$document['ethylene']);  
             }else{
                 array_push($total1['inyeccionEtileno'],0);
                 //if($document['stateProcess']==-1.00){
@@ -1398,7 +1403,7 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
                 */
     
                 else{
-                    if($document['ethylene']>50){
+                    if($document['ethylene']>250){
                         array_push($total1['D_ethylene'],null);
                     }else{
                         array_push($total1['D_ethylene'],$document['ethylene']);
