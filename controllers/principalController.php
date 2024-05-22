@@ -1346,7 +1346,7 @@ if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$docume
 
             
 
-            if($document['co2_reading']>25.4  ){
+            if($document['co2_reading']>=25.4  ){
                 array_push($total1['co2'],null);
             }
             //else if($document['co2_reading']>25){
