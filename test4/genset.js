@@ -475,8 +475,11 @@ async function filtroFechaG(id){
 //Estipulamos la funcion recorrido
 async function recorridoMapa(id){
   console.log(id);
-    letraTipo = id.slice(0,1);
-    telemetriaTotal = id.slice(2);
+    //letraTipo = id.slice(0,1);
+    letraTipo = "G";
+
+    //telemetriaTotal = id.slice(2);
+    telemetriaTotal = id;
     saltarA('#inicio');
 if(letraTipo=="G"){
 
