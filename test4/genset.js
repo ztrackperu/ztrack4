@@ -275,7 +275,7 @@ async function datospruebaG(id){
     const config = {
         method: 'get',
         dataType: 'json',
-        url: '../../ztrack4/controllers/principalController.php?option=puntoEnMapaM&id=' + id
+        url: '../../ztrack4/controllers/principalController.php?option=puntoEnMapaG&id=' + id
     }
      const buena =  await axios(config);
      const info = buena.data;   
