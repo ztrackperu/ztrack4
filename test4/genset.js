@@ -275,7 +275,7 @@ async function datospruebaG(id){
     const config = {
         method: 'get',
         dataType: 'json',
-        url: '../../ztrack2/controllers/principalController.php?option=puntoEnMapaM&id=' + id
+        url: '../../ztrack4/controllers/principalController.php?option=puntoEnMapaM&id=' + id
     }
      const buena =  await axios(config);
      const info = buena.data;   
@@ -467,6 +467,7 @@ async function filtroFechaG(id){
             tablaDatosGenset(info1);
             graficaGenset(info1);
             ultimoPuntoGenset(info1,id);
+            recorridoMapa(id);
             $(".loader").fadeOut("fast"); 
           });
       });

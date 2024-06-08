@@ -175,7 +175,7 @@ class PrincipalModel{
     public function puntoEnMapaM($id)
     {
         $tele = intval($id);
-        $consult = $this->pdo->prepare("SELECT * FROM generadores WHERE telemetria_id=?");
+        $consult = $this->pdo->prepare("SELECT * FROM generadores WHERE telemetria_id=? and latitud != 0 ");
         $consult->execute([$tele]);
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
