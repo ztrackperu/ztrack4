@@ -272,10 +272,11 @@ async function ultimoPuntoGenset(info1,id) {
     saltarA('#g1g1');      
 }
 async function datospruebaG(id){
+  console.log(id);
     const config = {
         method: 'get',
         dataType: 'json',
-        url: '../../ztrack4/controllers/principalController.php?option=puntoEnMapaG&id=' + id
+        url: '../../ztrack4/controllers/principalController.php?option=puntoEnMapaG&id='+id
     }
      const buena =  await axios(config);
      const info = buena.data;   
