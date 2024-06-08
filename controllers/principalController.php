@@ -705,7 +705,7 @@ if($document['ethylene']>230){
     case 'puntoEnMapaG':
         $id = $_GET['id'];
         $data['punto'] = $principal->puntoEnMapaM($id);
-        $contenedor = $principal->puntoEnMapa($id);
+        $contenedor = $principal->puntoEnMapaM($id);
         $empresa =$contenedor['empresa_id'];
         $data['empresa'] = $principal->empresaAsociada($empresa);
 
