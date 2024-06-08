@@ -279,7 +279,7 @@ async function datospruebaG(id){
     }
      const buena =  await axios(config);
      const info = buena.data;   
-     //console.log(info);
+     console.log(info);
      tableBooking ='';
      tableAlarms ='';
      tableLocation ='';
