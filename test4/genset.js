@@ -1,4 +1,5 @@
 async function tablaDatosGenset(info){
+
     let html = '';
     let html1 = '';
     info.tramaGenset.forEach(permiso1 => {
@@ -444,10 +445,10 @@ async function filtroFechaG(id){
     fecha_pasada = moment().add(-24,'hour').format('YYYY-MM-DD HH:mm'); 
     fecha_actual = moment().format('YYYY-MM-DD HH:mm');
     acumulado1 = fecha_pasada +','+fecha_actual+';'+id;
-    const config = {method: 'get',dataType: 'json', url: '../../ztrack2/controllers/principalController.php?option=consultaFechaGenset&id=' + acumulado1 }
+    const config = {method: 'get',dataType: 'json', url: '../../ztrack4/controllers/principalController.php?option=consultaFechaGenset&id=' + acumulado1 }
     const buena =  await axios(config);
     const info = buena.data;
-    $(".loader").show(); 
+    $(".loader").show();  
     tablaDatosGenset(info);
     graficaGenset(info);
     ultimoPuntoGenset(info,id);
@@ -458,7 +459,7 @@ async function filtroFechaG(id){
             idf =start.format('YYYY-MM-DD HH:mm');
             idf1 =end.format('YYYY-MM-DD HH:mm');
             acumulado = idf +','+idf1+';'+id;
-            const config = {method: 'get',dataType: 'json', url: '../../ztrack2/controllers/principalController.php?option=consultaFechaGenset&id=' + acumulado }
+            const config = {method: 'get',dataType: 'json', url: '../../ztrack4/controllers/principalController.php?option=consultaFechaGenset&id=' + acumulado }
             const buena =  await axios(config);
             const info1 = buena.data;
             $(".loader").show(); 
