@@ -452,6 +452,7 @@ async function filtroFechaG(id){
     tablaDatosGenset(info);
     graficaGenset(info);
     ultimoPuntoGenset(info,id);
+    recorridoMapa(id);
     $(".loader").fadeOut("fast"); 
     $(function() {
         $('input[name="datetimes"]').daterangepicker({ timePicker: true,startDate : moment().add(-24,'hour'),endDate: moment(),locale: { format: 'YYYY-MM-DD ' }, },
@@ -481,7 +482,7 @@ if(letraTipo=="G"){
   const config1 = {
           method: 'get',
           dataType: 'json',
-          url: '../../ztrack2/controllers/reeferController.php?option=genset&id=' + telemetriaTotal
+          url: '../../ztrack4/controllers/reeferController.php?option=genset&id=' + telemetriaTotal
       }
   markers.clearLayers();
    const buena1 =  await axios(config1);
