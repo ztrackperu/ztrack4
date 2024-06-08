@@ -709,8 +709,8 @@ if($document['ethylene']>230){
         //$empresa =$contenedor['empresa_id'];
         //$data['empresa'] = $principal->empresaAsociada($empresa);
 
-        //echo json_encode($data['punto']);
-        echo json_encode($id);       
+        echo json_encode($data['punto']);
+        //echo json_encode($id);       
         break;
 
 
