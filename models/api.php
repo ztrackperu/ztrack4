@@ -328,7 +328,7 @@ class ApiModel{
     }
     public function upunto($id)
     {
-            $consult = $this->pdo->prepare("SELECT * FROM registro_generador WHERE telemetria_id = ? ORDER BY id DESC LIMIT 1 ");
+            $consult = $this->pdo->prepare("SELECT * FROM registro_generador WHERE telemetria_id = ? and latitud != 0 ORDER BY id DESC LIMIT 1 ");
             $consult->execute([$id]);
             return $consult->fetch(PDO::FETCH_ASSOC);
     }
