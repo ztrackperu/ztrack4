@@ -229,7 +229,7 @@ async function terribleOnOff() {
     totalData = "TERRIBLE,"+Acum;
     
     // validar clave de seguridad 
-    if(claveVU == "saasaperu@!" || claveVU=="Proyectoztrack2023!"){
+    if(claveVU == "saasaperu@!" || claveVU=="Proyectoztrack2023!" || claveVU=="kronenperu2024"){  
 
     Snackbar.show({
         text: 'Are you sure you want to ON/OFF ? : ',
