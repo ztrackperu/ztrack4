@@ -166,7 +166,7 @@ if($signoGMT=="-"){
             //array_push($total['fecha'],$document['created_at']);
             $fechaJa = json_decode($document['created_at'])/1000;
             // $fechaJa1 = $fechaJa['$date'];
-            $fechaD = date('d-m-Y H:i:s', $fechaJa);
+            $fechaD = date('d-m-Y H:i:s', intval($fechaJa));
     
             $puntoA = strtotime($fechaD);
 $baseHoraGTM = +5 +5+($horaG);
