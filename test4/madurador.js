@@ -125,7 +125,7 @@ async function tablaDatosMadurador(info){
 
 tel = info.telemetria_id[0];
 
-if(tel==4584 ||  tel==4586 || tel==4587  ||  tel==4588 || tel==4589 || tel==33 || tel==258 || tel==259 || tel==260  || tel==4500 || tel==4487 ) {
+if(tel==4584 ||  tel==4586 || tel==4587  ||  tel==4588 || tel==4589 || tel==33 || tel==258 || tel==259 || tel==260  || tel==4500 || tel==4487 || tel==14872 ) {
 variable = 2;
 }
 
@@ -672,7 +672,7 @@ console.log(dataTelemetria.data);
 textotemperatura="Temperature( C°)" ;
 tel= info.telemetria_id[0];
 
-if(tel==4584 ||tel==4586 ||tel==4587  || tel==4588 ||tel==4589 ||tel==33 || tel==258 ||tel==259 ||tel==260  || tel==4500 ||tel==4487 ) {
+if(tel==4584 ||tel==4586 ||tel==4587  || tel==4588 ||tel==4589 ||tel==33 || tel==258 ||tel==259 ||tel==260  || tel==4500 ||tel==4487 ||tel==14872 ) {
 textotemperatura="Temperature( F°)";
 }
 
