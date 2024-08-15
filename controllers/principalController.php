@@ -175,6 +175,10 @@ if($signoGMT=="-"){
             if($cont%1==0)
             {
 
+                if($document['power_kwh']==0){
+                    $document['relative_humidity']=null;
+                }
+
             //array_push($total['fecha'],$document['created_at']);
             $fechaJa = json_decode($document['created_at'])/1000;
             // $fechaJa1 = $fechaJa['$date'];
@@ -1286,6 +1290,10 @@ $minutoGTM = substr($GMT ,3,2);
             $cont++;
             if($cont%1==0)
             {
+            if($document['power_kwh']==0){
+                $document['relativeHumidity']=null;
+
+            }
 
             //array_push($total['fecha'],$document['created_at']);
             $fechaJa = json_decode($document['created_at'])/1000;
@@ -1310,37 +1318,52 @@ $minutoGTM = substr($GMT ,3,2);
 
 
 if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
+    if($document['power_kwh']==0){
+        $document['set_point']=null;
+        $document['return_air']=null;
+        $document['temp_supply_1']=null;
+        $document['ambient_air']=null;
+        $document['evaporation_coil']=null;
+        $document['cargo_1_temp']=null;
+        $document['cargo_2_temp']=null;
+        $document['cargo_3_temp']=null;
+        $document['cargo_4_temp']=null;
+        $document['inyeccion_pwm']=null;
+        $document['sp_ethyleno']=null;
+        $document['co2_reading']=null;
+        $document['stateProcess']=null;
 
+    }
 
-            array_push($total1['setPoint'],round(faren($document['set_point'])));
-            array_push($total1['returnAir'],round(faren($document['return_air']),1));
-            array_push($total1['tempSupply'],round(faren($document['temp_supply_1']),1));
-            array_push($total1['ambienteAir'],round(faren($document['ambient_air']),1));
+            array_push($total1['setPoint'],redondo_ok(faren($document['set_point'])));
+            array_push($total1['returnAir'],redondo_ok(faren($document['return_air'])));
+            array_push($total1['tempSupply'],redondo_ok(faren($document['temp_supply_1'])));
+            array_push($total1['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
             if($document['evaporation_coil']>=50.00){
                 array_push($total1['evaporationCoil'],null);
             }else{
-                array_push($total1['evaporationCoil'],round(faren($document['evaporation_coil']),1));
+                array_push($total1['evaporationCoil'],redondo_ok(faren($document['evaporation_coil'])));
             }
             if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
                 array_push($total1['cargo_1_temp'],null);
             }else{
-                array_push($total1['cargo_1_temp'],round(faren($document['cargo_1_temp']),1));
+                array_push($total1['cargo_1_temp'],redondo_ok(faren($document['cargo_1_temp']),1));
             }
 
             if($document['cargo_2_temp']>=40.00){
                 array_push($total1['cargo_2_temp'],null);
             }else{
-                array_push($total1['cargo_2_temp'],round(faren($document['cargo_2_temp'])));
+                array_push($total1['cargo_2_temp'],redondo_ok(faren($document['cargo_2_temp'])));
             }
             if($document['cargo_3_temp']>=40.00){
                 array_push($total1['cargo_3_temp'],null);
             }else{
-                array_push($total1['cargo_3_temp'],round(faren($document['cargo_3_temp'])));
+                array_push($total1['cargo_3_temp'],redondo_ok(faren($document['cargo_3_temp'])));
             }
             if($document['cargo_4_temp']>=40.00){
                 array_push($total1['cargo_4_temp'],null);
             }else{
-                array_push($total1['cargo_4_temp'],faren($document['cargo_4_temp']));
+                array_push($total1['cargo_4_temp'],redondo_ok(faren($document['cargo_4_temp'])));
             }
 }else{
             array_push($total1['setPoint'],$document['set_point']);
