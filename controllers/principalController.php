@@ -190,7 +190,24 @@ $baseHoraGTM = +5 +5+($horaG);
 
 
 
-if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
+if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
+            if($document['power_kwh']==0){
+                $document['set_point']=null;
+                $document['return_air']=null;
+                $document['temp_supply_1']=null;
+                $document['ambient_air']=null;
+                $document['evaporation_coil']=null;
+                $document['cargo_1_temp']=null;
+                $document['cargo_2_temp']=null;
+                $document['cargo_3_temp']=null;
+                $document['cargo_4_temp']=null;
+                $document['inyeccion_pwm']=null;
+                $document['sp_ethyleno']=null;
+                $document['co2_reading']=null;
+                $document['stateProcess']=null;
+
+            }
+    
             array_push($total['setPoint'],round(faren($document['set_point'])));
             array_push($total['returnAir'],round(faren($document['return_air']),1));
             array_push($total['tempSupply'],round(faren($document['temp_supply_1']),1));
@@ -293,7 +310,8 @@ if($document['ethylene']>230){
                 //}
                 if($document['telemetria_id']==260 || $document['telemetria_id']==259 || $document['telemetria_id']==258 || $document['telemetria_id']==33 ){
                     //se hace la regulacion  de datos por encima de 20 ppm
-                    $nuevoEthyleno = (intval(($document['ethylene']-0.9)*10))/10;
+                    //$nuevoEthyleno = (intval(($document['ethylene']-0.9)*10))/10;
+                    $nuevoEthyleno=$document['ethylene'];
                     if($nuevoEthyleno>0 && $nuevoEthyleno<20){
                         array_push($total['D_ethylene'],$nuevoEthyleno);
                     }elseif($nuevoEthyleno>20){
