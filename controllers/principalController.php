@@ -9,11 +9,12 @@ error_reporting(E_ALL);
 
 
 function faren($celcius){
-
-
-$conver = ($celcius*9)/5 +32;
-return $conver ;
-
+    if($celcius==null){
+        $conver = null;
+    }else{
+        $conver = ($celcius*9)/5 +32;
+    }
+    return $conver ;
 }
 
 ini_set('memory_limit', '-1'); 
@@ -158,7 +159,9 @@ if($signoGMT=="-"){
          $total['madurador2'] = [];
          $total['inyeccion_pwm'] =[];
          $cont=0;
+         $extension_data =null;
          foreach ($cursor as $document) {
+
             $cont++;
             if($cont%1==0)
             {
@@ -291,7 +294,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
            
             //array_push($total['fecha'],$document['created_at']);
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
-            if($document['stateProcess']==5.00 ){
+            if($document['stateProcess']==5.00 || $document['stateProcess']==null ){
                 array_push($total['inyeccionEtileno'],100); 
 if($document['ethylene']>230){
                array_push($total['D_ethylene'],null);
