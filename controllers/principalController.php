@@ -17,6 +17,15 @@ function faren($celcius){
     return $conver ;
 }
 
+function redondo_ok($dato){
+    if($dato==null){
+        $conver = null;
+    }else{
+        $conver = round($dato,1);
+    }
+    return $conver ;
+}
+
 ini_set('memory_limit', '-1'); 
 require_once '../models/principal.php';
 
@@ -211,35 +220,35 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
 
             }
     
-            array_push($total['setPoint'],round(faren($document['set_point']),1));
-            array_push($total['returnAir'],round(faren($document['return_air']),1));
-            array_push($total['tempSupply'],round(faren($document['temp_supply_1']),1));
-            array_push($total['ambienteAir'],round(faren($document['ambient_air']),1));
+            array_push($total['setPoint'],redondo_ok(faren($document['set_point'])));
+            array_push($total['returnAir'],redondo_ok(faren($document['return_air'])));
+            array_push($total['tempSupply'],redondo_ok(faren($document['temp_supply_1'])));
+            array_push($total['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
             if($document['evaporation_coil']>=50.00){
                 array_push($total['evaporationCoil'],null);
             }else{
-                array_push($total['evaporationCoil'],round(faren($document['evaporation_coil']),1));
+                array_push($total['evaporationCoil'],redondo_ok(faren($document['evaporation_coil'])));
             }
             if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
                 array_push($total['cargo_1_temp'],null);
             }else{
-                array_push($total['cargo_1_temp'],round(faren($document['cargo_1_temp']),1));
+                array_push($total['cargo_1_temp'],redondo_ok(faren($document['cargo_1_temp'])));
             }
 
             if($document['cargo_2_temp']>=40.00){
                 array_push($total['cargo_2_temp'],null);
             }else{
-                array_push($total['cargo_2_temp'],round(faren($document['cargo_2_temp']),1));
+                array_push($total['cargo_2_temp'],redondo_ok(faren($document['cargo_2_temp'])));
             }
             if($document['cargo_3_temp']>=40.00){
                 array_push($total['cargo_3_temp'],null);
             }else{
-                array_push($total['cargo_3_temp'],round(faren($document['cargo_3_temp']),1));
+                array_push($total['cargo_3_temp'],redondo_ok(faren($document['cargo_3_temp'])));
             }
             if($document['cargo_4_temp']>=40.00){
                 array_push($total['cargo_4_temp'],null);
             }else{
-                array_push($total['cargo_4_temp'],faren($document['cargo_4_temp']));
+                array_push($total['cargo_4_temp'],redondo_ok($document['cargo_4_temp']));
             }
 }else{
             array_push($total['setPoint'],$document['set_point']);
