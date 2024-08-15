@@ -1291,7 +1291,7 @@ $minutoGTM = substr($GMT ,3,2);
             if($cont%1==0)
             {
             if($document['power_kwh']==0){
-                $document['relativeHumidity']=null;
+                $document['relative_humidity']=null;
 
             }
 
