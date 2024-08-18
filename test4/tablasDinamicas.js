@@ -383,6 +383,48 @@ async function terribleHum(){
     }   
 }
 
+async function avl_full() {
+    //totalData = "DEFROST,"+Acum;
+    //Acum =  document.getElementById('MaduradorDefrost').value ;
+    //totalData = "DEFROST,"+Acum;
+    Snackbar.show({
+        text: 'Are you sure you want to ACTIVE AVL  ? : ',
+        width: '605px',
+        actionText: '  YES  ',
+        backgroundColor: '#198754',
+        onActionClick: async function (element) {
+            trama = "Trama_Writeout(5,200,1)";
+            trama2 ="Trama_Writeout(9,1,1)";
+            trama =trama2+"|"+trama;
+            const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoCo2&id='+trama;  
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                data =JSON.parse(data)
+                console.log(data.estado);
+                if(data.estado==1){
+                    message('success', 'loading...'); 
+                }else{
+                    message('danger', 'wait...'); 
+
+                }
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+
+        }       
+      }); 
+
+}
+
 async function terribleDefrost() {
     //totalData = "DEFROST,"+Acum;
     Acum =  document.getElementById('MaduradorDefrost').value ;
@@ -1100,7 +1142,7 @@ $(document).ready(function () {
                 label: '<a href="#" style="color:#192c4e"; > AVL</a>',
                 action: function(option, contextMenuIndex, optionIndex) {},
                 submenu:  [{ // sub menus
-                  label: '<input style="width:50px" id="inyection">&nbsp<input id="inyection" type="hidden" value="'+cadenaSWITH+'" /><button onclick="terribleOnOff()" type="button" class="'+boton+'">'+textoA+'</button>',
+                  label: '<input style="width:50px" id="avl_f">&nbsp<button onclick="avl_full()" type="button" class="btn btn-success">FULL</button>',
                   action: function(option, contextMenuIndex, optionIndex) {},
                   submenu: null,
                   disabled: false
