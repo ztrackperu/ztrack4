@@ -58,6 +58,8 @@ async function terrible_f(){
                 .then(data => {
                     if(data.estado==1){
                         message('success', 'loading...'); 
+                    }else{
+                        message('danger', 'wait...'); 
 
                     }
                     console.log('Respuesta del servidor:', data);
