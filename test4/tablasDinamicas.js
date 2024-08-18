@@ -736,7 +736,7 @@ $(document).ready(function () {
       console.log(nombreT);
  
     
-      if( v_online =="<strong>ONLINE</strong>" && nombreT=="ZGRU9026566"){
+      if( v_online =="<strong>ONLINE</strong>" && nombreT=="<strong>ZGRU9026566</strong>"){
         nombreT1 = nombreT.replace("<strong>","");
         nombreT2 = nombreT1.replace("</strong>","");
   
@@ -950,7 +950,7 @@ $(document).ready(function () {
 
 
 
-    if( v_online =="<strong>ONLINE</strong>" && nombreT!="ZGRU9026566"){
+    if( v_online =="<strong>ONLINE</strong>" ){
       nombreT1 = nombreT.replace("<strong>","");
       nombreT2 = nombreT1.replace("</strong>","");
 
