@@ -77,7 +77,6 @@ async function terrible_f(){
    // console.log(SP_Setpoint+","+Acum);   
 }
 
-
 async function terrible(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverSP').value ;
@@ -234,7 +233,60 @@ async function terribleCo2(){
           });                
     }   
 }
+async function terribleHum_f(){
+    //console.log("dentro pa");
+    SP_Setpoint =  document.getElementById('reciverHum_f').value ;
+    Acum =  document.getElementById('MaduradorHum_f').value ;
 
+    if(SP_Setpoint==""){
+        console.log("no ha enviado datos a cambiar ");
+        tip = "error";
+        mens = "NO DATA TO CHANGE...";
+        message(tip, mens);  
+    }else if(!isNumber(SP_Setpoint)){
+        console.log("Tiene que ingresar un numero valido ...");
+        tip = "error";
+        mens = "ENTER VALID NUMBERS...";
+        message(tip, mens);  
+    }else{      
+        totalData = SP_Setpoint+","+Acum;
+        Snackbar.show({
+            text: 'Are you sure you want to change the SP Humidity ? : '+SP_Setpoint,
+            width: '605px',
+            actionText: '  YES  ',
+            backgroundColor: '#198754',
+            onActionClick: async function (element) {
+
+                trama = "Trama_Writeout(4,"+SP_Setpoint+",100)"
+
+                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    data =JSON.parse(data)
+                    console.log(data.estado);
+                    if(data.estado==1){
+                        message('success', 'loading...'); 
+                    }else{
+                        message('danger', 'wait...'); 
+
+                    }
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar la solicitud:', error);
+                });
+
+            }       
+          });                 
+    }   
+}
 async function terribleHum(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverHum').value ;
@@ -778,7 +830,10 @@ $(document).ready(function () {
         // valor actual de co2 
         SPCo2= data[37];
         // valor actual de Humedad
-        SPHum = data[35];
+        SPHum = data[35]; //66 y 67
+
+        Inyeccion_hora =data[66];
+
         // dato de imagen prendida 
         Icono =data[4];
         //console.log(Icono);
@@ -912,7 +967,7 @@ $(document).ready(function () {
               },
               submenu: [{ // sub menus
   
-                  label: '<input style="width:50px" id="reciverEthy">  <input id="MaduradorEthy" type="hidden" value="'+cadenaE+'" /><p style="color:#fff">ss </p> <button onclick="terribleEthy()" type="button" class="btn btn-success">CHANGE ETHYLENE</button>',
+                  label: '<input style="width:50px" id="reciverEthy_f">  <input id="MaduradorEthy_f" type="hidden" value="'+cadenaE+'" /><p style="color:#fff">ss </p> <button onclick="terribleEthy()" type="button" class="btn btn-success">CHANGE ETHYLENE</button>',
                   action: function(option, contextMenuIndex, optionIndex) {},
                   submenu: null,
                   disabled: false
@@ -936,7 +991,7 @@ $(document).ready(function () {
               label: '<a href="#" style="color:#192c4e"; >SP Humidity :&nbsp&nbsp&nbsp&nbsp&nbsp </a><a style="color:blue">' +SPHum+' % </a>',
               action: function(option, contextMenuIndex, optionIndex) {},
               submenu: [{ // sub menus
-                  label: '<input style="width:50px" id="reciverHum">  <input id="MaduradorHum" type="hidden" value="'+cadenaH+'" /><p style="color:#fff">ss </p> <button onclick="terribleHum()" type="button" class="btn btn-success">CHANGE HUMIDITY</button>',
+                  label: '<input style="width:50px" id="reciverHum_f">  <input id="MaduradorHum_f" type="hidden" value="'+cadenaH+'" /><p style="color:#fff">ss </p> <button onclick="terribleHum_f()" type="button" class="btn btn-success">CHANGE HUMIDITY</button>',
                   action: function(option, contextMenuIndex, optionIndex) {},
                   submenu: null,
                   disabled: false
