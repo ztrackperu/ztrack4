@@ -6,7 +6,8 @@ async function terrible_f(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverSP_f').value ;
     Acum =  document.getElementById('MaduradorTemp_f').value ;
-
+    console.log(SP_Setpoint)
+    console.log(Acum)
     if(SP_Setpoint==""){
         console.log("no ha enviado datos a cambiar ");
         tip = "error";
@@ -15,7 +16,7 @@ async function terrible_f(){
     }else if(!isNumber(SP_Setpoint)){
         console.log("Tiene que ingresar un numero valido ...");
         tip = "error";
-        mens = "ENTER VALID NUMBERS...";
+        mens = "ENTER VALID NUMBERS...F°";
         message(tip, mens);  
     }else{
         //console.log(SP_Setpoint+","+Acum);
