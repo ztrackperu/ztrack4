@@ -27,8 +27,15 @@ async function terrible_f(){
             width: '605px',
             actionText: '  YES  ',
             backgroundColor: '#198754',
-            /*
+            
             onActionClick: async function (element) {
+                // convertir a celcius y chancar los decimales 
+                const celsius = (SP_Setpoint - 32) * 5 / 9;
+    
+                // Redondear al entero más cercano y retornar el resultado
+                fato_f = Math.round(celsius);
+                console.log(fato_f)
+                /*
                 const config = {
                     method: 'get',
                     dataType: 'json',
@@ -39,9 +46,10 @@ async function terrible_f(){
                  const info = buena.data;
     
                  message(info.tipo, info.mensaje); 
+                 */
 
             }       
-            */
+            
           });           
     }
    // console.log(SP_Setpoint+","+Acum);   
