@@ -40,7 +40,7 @@ async function terrible_f(){
                 const datos_tempearauta = {
                     imei: '866782048942516',
                     comando: trama,
-                    estado :0
+                    //estado :0
                 };
                 console.log(datos_tempearauta)
 
