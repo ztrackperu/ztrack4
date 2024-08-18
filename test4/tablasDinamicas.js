@@ -1023,7 +1023,33 @@ $(document).ready(function () {
               },],
     
               disabled: false
-            }
+            },
+            {
+                icon: 'fa fa-google-plus',
+                label: '<a href="#" style="color:#192c4e"; > Inyection</a>',
+                action: function(option, contextMenuIndex, optionIndex) {},
+                submenu:  [{ // sub menus
+                  label: '<input style="width:50px" id="inyection">&nbsp<input id="inyection" type="hidden" value="'+cadenaSWITH+'" /><button onclick="terribleOnOff()" type="button" class="'+boton+'">'+textoA+'</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+      
+                disabled: false
+              },
+              {
+                icon: 'fa fa-google-plus',
+                label: '<a href="#" style="color:#192c4e"; > AVL</a>',
+                action: function(option, contextMenuIndex, optionIndex) {},
+                submenu:  [{ // sub menus
+                  label: '<input style="width:50px" id="inyection">&nbsp<input id="inyection" type="hidden" value="'+cadenaSWITH+'" /><button onclick="terribleOnOff()" type="button" class="'+boton+'">'+textoA+'</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+      
+                disabled: false
+              }
       
       
       ],
