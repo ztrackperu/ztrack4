@@ -1037,7 +1037,7 @@ $(document).ready(function () {
             label: '<a href="#" style="color:#192c4e"; >SP Co2 :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </a><a style="color:blue">' +SPCo2+' % </a>',
             action: function(option, contextMenuIndex, optionIndex) {},
             submenu:[{ // sub menus}
-              label: '<input style="width:50px" id="reciverCo2">  <input id="MaduradorCo2" type="hidden" value="'+cadenaC+'" /><p style="color:#fff">ss </p> <button onclick="terribleCo2()" type="button" class="btn btn-success">CHANGE CO2</button>',
+              label: '<input style="width:50px" id="reciverCo2_f">  <input id="MaduradorCo2_f" type="hidden" value="'+cadenaC+'" /><p style="color:#fff">ss </p> <button onclick="terribleCo2_f()" type="button" class="btn btn-success">CHANGE CO2</button>',
               action: function(option, contextMenuIndex, optionIndex) {},
               submenu: null,
               disabled: false
