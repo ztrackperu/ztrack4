@@ -161,9 +161,9 @@ switch ($option) {
             //'estado' =>0,
             'comando'=>$matriz[1]      
         );
-        $dataControl = $empresas->EnvioComando($cadena1);
+        $dataControl = $empresas->EnvioComando_libre($cadena1);
         sleep(1);
-        $dataControl1 = $empresas->EnvioComando($cadena2);
+        $dataControl1 = $empresas->EnvioComando_libre($cadena2);
 
         //$resultadoMadurador = json_decode($dataMadurador);
         //$resultadoMadurador = $resultadoMadurador->data;
