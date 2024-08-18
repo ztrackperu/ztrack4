@@ -222,7 +222,7 @@ async function terribleCo2_f(){
             backgroundColor: '#198754',
             onActionClick: async function (element) {
                 trama = "Trama_Writeout(3,"+SP_Setpoint+",100)";
-                trama2 ="Trama_Writeout(9,2,100)";
+                trama2 ="Trama_Writeout(9,2,1)";
                 trama =trama2+"|"+trama;
                 const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoCo2&id='+trama;  
 
