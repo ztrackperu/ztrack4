@@ -383,6 +383,47 @@ async function terribleHum(){
     }   
 }
 
+
+//avl_stop()
+async function avl_stop() {
+    //totalData = "DEFROST,"+Acum;
+    Snackbar.show({
+        text: 'Are you sure you want to STOP AVL  ? : ',
+        width: '605px',
+        actionText: '  YES  ',
+        backgroundColor: '#198754',
+        onActionClick: async function (element) {
+            trama = "Trama_Writeout(9,0,1)";
+            const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                data =JSON.parse(data)
+                console.log(data.estado);
+                if(data.estado==1){
+                    message('success', 'loading...'); 
+                }else{
+                    message('danger', 'wait...'); 
+
+                }
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+
+        }       
+        }); 
+
+
+}
+
+
 async function avl_full() {
     //totalData = "DEFROST,"+Acum;
     //Acum =  document.getElementById('MaduradorDefrost').value ;
@@ -1142,11 +1183,18 @@ $(document).ready(function () {
                 label: '<a href="#" style="color:#192c4e"; > AVL</a>',
                 action: function(option, contextMenuIndex, optionIndex) {},
                 submenu:  [{ // sub menus
-                  label: '<input style="width:50px" id="avl_f">&nbsp<button onclick="avl_full()" type="button" class="btn btn-success">FULL</button>',
+                  label: '<button onclick="avl_full()" type="button" class="btn btn-success">FULL</button>',
                   action: function(option, contextMenuIndex, optionIndex) {},
                   submenu: null,
                   disabled: false
-                },],
+                },
+                { // sub menus
+                    label: '<button onclick="avl_stop()" type="button" class="btn btn-success">STOP</button>',
+                    action: function(option, contextMenuIndex, optionIndex) {},
+                    submenu: null,
+                    disabled: false
+                  }
+            ],
       
                 disabled: false
               }
