@@ -56,6 +56,7 @@ async function terrible_f(){
                 })
                 .then(response => response.json())
                 .then(data => {
+                    data =data.json()
                     console.log(data.estado);
                     if(data.estado==1){
                         message('success', 'loading...'); 
