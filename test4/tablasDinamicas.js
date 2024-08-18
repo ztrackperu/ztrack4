@@ -35,7 +35,7 @@ async function terrible_f(){
                 // Redondear al entero más cercano y retornar el resultado
                 //fato_f = Math.round(celsius);
                 fato_f =parseInt(celsius, 10);
-                trama = "Trama_Writeout(0, "+fato_f+", 100)"
+                trama = "Trama_Writeout(0,"+fato_f+",100)"
                 console.log(trama)
                 const datos_tempearauta = {
                     imei: '866782048942516',
@@ -45,7 +45,7 @@ async function terrible_f(){
                 console.log(datos_tempearauta)
                 //axios.post('../../ztrack4/controllers/empresasController.php?option=GrabarComando', totalData)
                 //const url = 'http://161.132.206.104:9050/Comandos/';  
-                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComando_temp&id='+trama;  
+                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
 
                 fetch(url, {
                     method: 'GET',

@@ -130,10 +130,11 @@ switch ($option) {
         break;
 
 
-    case 'GrabarComando_temp':
+    case 'GrabarComandoTemp':
         $comando = $_GET['id'];
         $text ="viene de afuera"+$comando;
-        echo json_encode($text);
+        //echo json_encode($text);
+        echo $text;
         break;
 
 
