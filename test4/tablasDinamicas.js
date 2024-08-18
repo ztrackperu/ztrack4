@@ -1,6 +1,52 @@
 //const { default: axios } = require("axios");
 
 const isNumber = n => $.isNumeric(n);
+
+async function terrible_f(){
+    //console.log("dentro pa");
+    SP_Setpoint =  document.getElementById('reciverSP_f').value ;
+    Acum =  document.getElementById('MaduradorTemp_f').value ;
+
+    if(SP_Setpoint==""){
+        console.log("no ha enviado datos a cambiar ");
+        tip = "error";
+        mens = "NO DATA TO CHANGE...";
+        message(tip, mens);  
+    }else if(!isNumber(SP_Setpoint)){
+        console.log("Tiene que ingresar un numero valido ...");
+        tip = "error";
+        mens = "ENTER VALID NUMBERS...";
+        message(tip, mens);  
+    }else{
+        //console.log(SP_Setpoint+","+Acum);
+        totalData = SP_Setpoint+","+Acum;
+
+        Snackbar.show({
+            text: 'Are you sure you want to change the temperature? : '+SP_Setpoint,
+            width: '605px',
+            actionText: '  YES  ',
+            backgroundColor: '#198754',
+            /*
+            onActionClick: async function (element) {
+                const config = {
+                    method: 'get',
+                    dataType: 'json',
+                    url: '../../ztrack4/controllers/empresasController.php?option=GrabarComando_cliente&id='  + totalData
+                }
+                 const buena =  await axios(config);
+                //console.log(buena);
+                 const info = buena.data;
+    
+                 message(info.tipo, info.mensaje); 
+
+            }       
+            */
+          });           
+    }
+   // console.log(SP_Setpoint+","+Acum);   
+}
+
+
 async function terrible(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverSP').value ;
@@ -229,11 +275,10 @@ async function terribleOnOff() {
     totalData = "TERRIBLE,"+Acum;
     
     // validar clave de seguridad 
-    if(claveVU == "saasaperu@!" || claveVU=="Proyectoztrack2023!" || claveVU=="kronenperu2024"){  
+    if(claveVU == "saasaperu@!" || claveVU=="Proyectoztrack2023!" || claveVU=="kronenperu2024" || claveVU=="jhonvena2024!"){  
 
     Snackbar.show({
         text: 'Are you sure you want to ON/OFF ? : ',
-        width: '605px',
         actionText: '  YES  ',
         backgroundColor: '#198754',
         onActionClick: async function (element) {
@@ -688,7 +733,222 @@ $(document).ready(function () {
       // verificamos que el dispositivo est en linea 
       v_online =data[3];
       //console.log(v_online);
-      if( v_online =="<strong>ONLINE</strong>"){
+    
+      if( v_online =="<strong>ONLINE</strong>" && nombreT=="ZGRU9026566"){
+        nombreT1 = nombreT.replace("<strong>","");
+        nombreT2 = nombreT1.replace("</strong>","");
+  
+        // valor actual de set point 
+        SPTemp = data[29];
+        // valor actual de Ethyleno 
+        SPEthy = data[33];
+        // valor actual de co2 
+        SPCo2= data[37];
+        // valor actual de Humedad
+        SPHum = data[35];
+        // dato de imagen prendida 
+        Icono =data[4];
+        //console.log(Icono);
+        
+        //comandos-id para las tramas 
+        comandoT = 4;
+        comandoE = 6;
+        comandoC = 7;
+        comandoH = 8;
+        comandoDefrost =10;
+        
+        comandoON =9;
+        
+        comandoOFF = 3;
+        
+        telemetria = data[1];
+        if(Icono=='<img src="run.png" height="25" width="25">'){
+          cadenaSWITH = nombreT2+","+comandoON+","+telemetria+",1";
+          textoA = "APAGAR";
+          boton ="btn btn-danger";
+        }else{
+          cadenaSWITH = nombreT2+","+comandoOFF+","+telemetria+",0";
+          textoA = "ENCENDER";
+          boton ="btn btn-success";
+        }
+        console.log(cadenaSWITH)
+        //telemetria_id
+        
+        // cadena 
+        cadenaM = nombreT2+","+comandoT+","+telemetria+","+SPTemp;
+        //cadena para Ethyleno
+        cadenaE = nombreT2+","+comandoE+","+telemetria+","+SPEthy;
+        //CADENA PARA CO2
+        cadenaC = nombreT2+","+comandoC+","+telemetria+","+SPCo2;
+        //cadena para HUMEDAD
+        cadenaH = nombreT2+","+comandoH+","+telemetria+","+SPHum;
+        // cadena Defrost
+        CadenaDefrost = nombreT2+","+comandoDefrost+","+telemetria+",DEFROST";
+       
+        if(SPCo2>100 || SPCo2<0){
+          SPCo2 ="NA";
+        }
+      // console.log()
+        var myMenu1 = [
+      {
+              label: '<a href="#" style="color:#000";>COD : '+ nombreT+'</a>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: null,
+              disabled: false
+      }, 
+      {
+          // This example uses Font Awesome Iconic Font.       
+          // Menu Label
+          label: '<a href="#" style="color:#192c4e";>Email</a>',
+          // Callback
+          action: function(option, contextMenuIndex, optionIndex) {},
+          // An array of submenu objects
+          submenu: [{ // sub menus
+  
+              label: 'Today',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: [{ // sub menus
+                  label: '&nbsp<input style="width:200px" id="reciverSP"> &nbsp<button onclick="#" type="button" class="btn btn-success">SEND</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+              disabled: false
+            },
+            { // sub menus
+  
+              label: 'Search by date',
+              action: function(option, contextMenuIndex, optionIndex) {
+              },
+              submenu: [{ // sub menus
+                  label: '<input style="border: 0; " type="text" name="datetimesEmail" />',
+                  action: function(option, contextMenuIndex, optionIndex) {
+                      $(function() {
+                          $('input[name="datetimesEmail"]').daterangepicker({ timePicker: true,startDate : moment().add(-24,'hour'),endDate: moment(),locale: { format: 'YYYY-MM-DD ' }, },
+                          async function(start,end,label){
+                      
+                            });
+                        });
+                  },
+                  submenu: null,
+                  disabled: false
+                },],
+              disabled: false
+            }
+          ],
+          // is disabled?
+          disabled: false   //Disabled status of the option
+        },
+        {
+        
+          label: '<a href="#" style="color:#192c4e";>Report</a>',
+          action: function(option, contextMenuIndex, optionIndex) {},
+          submenu: null,
+          disabled: false
+        },
+        { 
+          label: '<a href="#" style="color:#192c4e";>Graph</a>',
+          action: function(option, contextMenuIndex, optionIndex) {},
+          submenu: null,
+          disabled: false
+        },
+  
+        {      
+          label: 'Controller',
+          action: function(option, contextMenuIndex, optionIndex) {},
+          submenu: [{ // sub menus
+            icon: 'fa fa-facebook',
+            label: '<a href="#" style="color:#192c4e"; >SP Temperature : </a><a style="color:blue">'+SPTemp+' F°</a>',
+            action: function(option, contextMenuIndex, optionIndex) {},
+            submenu: [{ // sub menus
+              label: '<input style="width:50px" id="reciverSP_f">  <input id="MaduradorTemp_f" type="hidden" value="'+cadenaM+'" /><p style="color:#fff">ss </p> <button onclick="terrible_f()" type="button" class="btn btn-success">CHANGE TEMPERATURE</button>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: null,
+              disabled: false
+            },],
+            disabled: false
+          },
+          {
+              icon: 'fa fa-twitter',
+              label: '<a onclick="#" style="color:#192c4e"; >SP Ethylene : &nbsp&nbsp&nbsp&nbsp&nbsp</a><a style="color:blue">'+ SPEthy+'  PPM</a>',
+              action: function(option, contextMenuIndex, optionIndex) {
+                 
+                     //$('#myModalComando').modal({show:true});
+                     modal.style.display = "block";
+                     console.log("app");   
+              },
+              submenu: [{ // sub menus
+  
+                  label: '<input style="width:50px" id="reciverEthy">  <input id="MaduradorEthy" type="hidden" value="'+cadenaE+'" /><p style="color:#fff">ss </p> <button onclick="terribleEthy()" type="button" class="btn btn-success">CHANGE ETHYLENE</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+              disabled: false
+            },
+          {
+            icon: 'fa fa-twitter',
+            label: '<a href="#" style="color:#192c4e"; >SP Co2 :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </a><a style="color:blue">' +SPCo2+' % </a>',
+            action: function(option, contextMenuIndex, optionIndex) {},
+            submenu:[{ // sub menus}
+              label: '<input style="width:50px" id="reciverCo2">  <input id="MaduradorCo2" type="hidden" value="'+cadenaC+'" /><p style="color:#fff">ss </p> <button onclick="terribleCo2()" type="button" class="btn btn-success">CHANGE CO2</button>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: null,
+              disabled: false
+            },],
+            disabled: false
+          },
+          {
+              icon: 'fa fa-google-plus',
+              label: '<a href="#" style="color:#192c4e"; >SP Humidity :&nbsp&nbsp&nbsp&nbsp&nbsp </a><a style="color:blue">' +SPHum+' % </a>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: [{ // sub menus
+                  label: '<input style="width:50px" id="reciverHum">  <input id="MaduradorHum" type="hidden" value="'+cadenaH+'" /><p style="color:#fff">ss </p> <button onclick="terribleHum()" type="button" class="btn btn-success">CHANGE HUMIDITY</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+              disabled: false
+          },
+          {
+            icon: 'fa fa-google-plus',
+            label: '<a href="#" style="color:#192c4e"; > Defrost</a>',
+            action: function(option, contextMenuIndex, optionIndex) {},
+            submenu:  [{ // sub menus
+              label: '&nbsp<input id="MaduradorDefrost" type="hidden" value="'+CadenaDefrost+'" /><button onclick="terribleDefrost()" type="button" class="btn btn-success">ACTIVATE DEFROST</button>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: null,
+              disabled: false
+            },],
+  
+            disabled: false
+          },
+          {
+              icon: 'fa fa-google-plus',
+              label: '<a href="#" style="color:#192c4e"; > ON/OFF</a>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu:  [{ // sub menus
+                label: '<input style="width:50px" id="claveV">&nbsp<input id="OnOff" type="hidden" value="'+cadenaSWITH+'" /><button onclick="terribleOnOff()" type="button" class="'+boton+'">'+textoA+'</button>',
+                action: function(option, contextMenuIndex, optionIndex) {},
+                submenu: null,
+                disabled: false
+              },],
+    
+              disabled: false
+            }
+      
+      
+      ],
+          disabled: false
+        },
+      ];
+        superCm.createMenu(myMenu1, e);
+      }
+
+
+
+
+    if( v_online =="<strong>ONLINE</strong>"){
       nombreT1 = nombreT.replace("<strong>","");
       nombreT2 = nombreT1.replace("</strong>","");
 
@@ -898,6 +1158,8 @@ $(document).ready(function () {
     ];
       superCm.createMenu(myMenu1, e);
     }
+
+    
 }
     );
     // funcion click para ocultar columnas
