@@ -135,7 +135,7 @@ switch ($option) {
         $text ="viene de afuera".$comando;
         $cadena = array(
             'imei'=>"866782048942516",
-            'estado' =>0,
+            //'estado' =>0,
             'comando'=>$comando      
         );
         $dataControl = $empresas->EnvioComando($cadena);
