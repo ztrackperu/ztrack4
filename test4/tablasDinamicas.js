@@ -40,18 +40,19 @@ async function terrible_f(){
                 const datos_tempearauta = {
                     imei: '866782048942516',
                     comando: trama,
+                    estado :0
                 };
                 console.log(datos_tempearauta)
 
-                /*
-                const url = 'https://example.com/api/endpoint';
+                
+                const url = 'http://161.132.206.104:9050/Comandos/';
                 
                 fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(datos)
+                    body: JSON.stringify(datos_tempearauta)
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -60,19 +61,6 @@ async function terrible_f(){
                 .catch(error => {
                     console.error('Error al enviar la solicitud:', error);
                 });
-                //console.log(fato_f)
-                
-                const config = {
-                    method: 'get',
-                    dataType: 'json',
-                    url: '../../ztrack4/controllers/empresasController.php?option=GrabarComando_cliente&id='  + totalData
-                }
-                 const buena =  await axios(config);
-                //console.log(buena);
-                 const info = buena.data;
-    
-                 message(info.tipo, info.mensaje); 
-                 */
 
             }       
             
