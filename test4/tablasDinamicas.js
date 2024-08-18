@@ -732,7 +732,9 @@ $(document).ready(function () {
       nombreT = data[9];
       // verificamos que el dispositivo est en linea 
       v_online =data[3];
-      //console.log(v_online);
+      console.log(v_online);
+      console.log(nombreT);
+ 
     
       if( v_online =="<strong>ONLINE</strong>" && nombreT=="ZGRU9026566"){
         nombreT1 = nombreT.replace("<strong>","");
@@ -948,7 +950,7 @@ $(document).ready(function () {
 
 
 
-    if( v_online =="<strong>ONLINE</strong>"){
+    if( v_online =="<strong>ONLINE</strong>" && nombreT!="ZGRU9026566"){
       nombreT1 = nombreT.replace("<strong>","");
       nombreT2 = nombreT1.replace("</strong>","");
 
