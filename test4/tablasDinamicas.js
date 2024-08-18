@@ -35,8 +35,33 @@ async function terrible_f(){
                 // Redondear al entero más cercano y retornar el resultado
                 //fato_f = Math.round(celsius);
                 fato_f =parseInt(celsius, 10);
-                console.log(fato_f)
+                trama = "Trama_Writeout(0, "+fato_f+", 100)"
+                console.log(trama)
+                const datos_tempearauta = {
+                    imei: '866782048942516',
+                    comando: trama,
+                };
+                console.log(datos_tempearauta)
+
                 /*
+                const url = 'https://example.com/api/endpoint';
+                
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar la solicitud:', error);
+                });
+                //console.log(fato_f)
+                
                 const config = {
                     method: 'get',
                     dataType: 'json',
