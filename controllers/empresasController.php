@@ -144,7 +144,32 @@ switch ($option) {
         echo json_encode($dataControl);
         //echo $text;
         break;
+    
+    //GrabarComandoCo2
 
+    case 'GrabarComandoCo2':
+        $comando = $_GET['id'];
+        $matriz = explode("|", $comando);
+
+        $cadena1 = array(
+            'imei'=>"866782048942516",
+            //'estado' =>0,
+            'comando'=>$matriz[0]      
+        );
+        $cadena2 = array(
+            'imei'=>"866782048942516",
+            //'estado' =>0,
+            'comando'=>$matriz[1]      
+        );
+        $dataControl = $empresas->EnvioComando($cadena1);
+        sleep(1);
+        $dataControl1 = $empresas->EnvioComando($cadena2);
+
+        //$resultadoMadurador = json_decode($dataMadurador);
+        //$resultadoMadurador = $resultadoMadurador->data;
+        echo json_encode($dataControl1);
+        //echo $text;
+        break;
 
 
     case 'GrabarComando_cliente':

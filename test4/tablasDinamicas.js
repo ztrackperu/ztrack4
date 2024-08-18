@@ -196,6 +196,62 @@ async function terribleEthy(){
     
 }
 
+
+async function terribleCo2_f(){
+    //console.log("dentro pa");
+    SP_Setpoint =  document.getElementById('reciverCo2_f').value ;
+    Acum =  document.getElementById('MaduradorCo2_f').value ;
+
+    if(SP_Setpoint==""){
+        console.log("no ha enviado datos a cambiar ");
+        tip = "error";
+        mens = "NO DATA TO CHANGE...";
+        message(tip, mens);  
+    }else if(!isNumber(SP_Setpoint)){
+        console.log("Tiene que ingresar un numero valido ...");
+        tip = "error";
+        mens = "ENTER VALID NUMBERS...";
+        message(tip, mens);  
+    }else{
+        
+        totalData = SP_Setpoint+","+Acum;
+        Snackbar.show({
+            text: 'Are you sure you want to change the SP CO2? : '+SP_Setpoint,
+            width: '605px',
+            actionText: '  YES  ',
+            backgroundColor: '#198754',
+            onActionClick: async function (element) {
+                trama = "Trama_Writeout(3,"+SP_Setpoint+",100)";
+                trama2 ="Trama_Writeout(9,2,100)";
+                trama =trama2+"|"+trama;
+                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoCo2&id='+trama;  
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    data =JSON.parse(data)
+                    console.log(data.estado);
+                    if(data.estado==1){
+                        message('success', 'loading...'); 
+                    }else{
+                        message('danger', 'wait...'); 
+
+                    }
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar la solicitud:', error);
+                });
+
+            }        
+          });                
+    }   
+}
 async function terribleCo2(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverCo2').value ;
@@ -233,6 +289,8 @@ async function terribleCo2(){
           });                
     }   
 }
+
+
 async function terribleHum_f(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverHum_f').value ;
