@@ -133,8 +133,16 @@ switch ($option) {
     case 'GrabarComandoTemp':
         $comando = $_GET['id'];
         $text ="viene de afuera".$comando;
-        //echo json_encode($text);
-        echo $text;
+        $cadena = array(
+            'imei'=>"866782048942516",
+            'estado' =>0,
+            'comando'=>$comando      
+        );
+        $dataControl = $empresas->EnvioComando($cadena);
+        //$resultadoMadurador = json_decode($dataMadurador);
+        //$resultadoMadurador = $resultadoMadurador->data;
+        echo json_encode($dataControl);
+        //echo $text;
         break;
 
 
