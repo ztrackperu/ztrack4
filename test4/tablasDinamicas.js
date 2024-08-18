@@ -43,16 +43,16 @@ async function terrible_f(){
                     //estado :0
                 };
                 console.log(datos_tempearauta)
+                //axios.post('../../ztrack4/controllers/empresasController.php?option=GrabarComando', totalData)
+                //const url = 'http://161.132.206.104:9050/Comandos/';  
+                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComando_temp&id='+trama;  
 
-                
-                const url = 'http://161.132.206.104:9050/Comandos/';
-                
                 fetch(url, {
-                    method: 'POST',
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(datos_tempearauta)
+                    //body: JSON.stringify(datos_tempearauta)
                 })
                 .then(response => response.json())
                 .then(data => {

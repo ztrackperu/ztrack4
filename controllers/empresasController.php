@@ -102,6 +102,7 @@ switch ($option) {
         $data['datosDispositivo'] = $empresas->datosDispositivoComando($tipo,$dispositivo);
         echo json_encode($data);
         break;
+    
 
     case 'GrabarComando':
         $nombre_dispositivo = $_POST['nombre_dispositivo'];
@@ -127,6 +128,15 @@ switch ($option) {
         echo json_encode($res);
 
         break;
+
+
+    case 'GrabarComando_temp':
+        $comando = $_GET['id'];
+        $text ="viene de afuera"+$comando;
+        echo json_encode($text);
+        break;
+
+
 
     case 'GrabarComando_cliente':
         $lista = $_GET['id'];
