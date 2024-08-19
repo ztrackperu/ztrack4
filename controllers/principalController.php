@@ -12,7 +12,24 @@ function faren($celcius){
     if($celcius==null){
         $conver = null;
     }else{
-        $conver = ($celcius*9)/5 +32;
+        if($celcius>-50 ||$celcius<150){
+            $conver = ($celcius*9)/5 +32;
+        }else{
+            $conver = null;  
+        }
+    }
+    return $conver ;
+}
+
+function porce($celcius){
+    if($celcius==null){
+        $conver = null;
+    }else{
+        if($celcius>=0 ||$celcius<=100){
+            $conver = $celcius;
+        }else{
+            $conver = null;  
+        }
     }
     return $conver ;
 }
@@ -195,7 +212,7 @@ $baseHoraGTM = +5 +5+($horaG);
 
 
             if($document['relative_humidity']<=100.00){
-                array_push($total['relativeHumidity'],$document['relative_humidity']);
+                array_push($total['relativeHumidity'],porce($document['relative_humidity']));
 
             }else{
                 array_push($total['relativeHumidity'],null);
@@ -252,7 +269,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             if($document['cargo_4_temp']>=40.00){
                 array_push($total['cargo_4_temp'],null);
             }else{
-                array_push($total['cargo_4_temp'],redondo_ok($document['cargo_4_temp']));
+                array_push($total['cargo_4_temp'],redondo_ok(faren($document['cargo_4_temp'])));
             }
 }else{
             array_push($total['setPoint'],$document['set_point']);
@@ -296,7 +313,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
               //  array_push($total['co2'],0.1);
             //}
             else{
-                array_push($total['co2'],$document['co2_reading']);
+                array_push($total['co2'],porce($document['co2_reading']));
             }
             //array_push($total['co2'],$document['co2_reading']);
             if($document['sp_ethyleno']==-1.00){
@@ -1308,7 +1325,7 @@ $minutoGTM = substr($GMT ,3,2);
             //array_push($total['tramaMadurador'],$document);  
             
             if($document['relative_humidity']<=100.00){
-                array_push($total1['relativeHumidity'],$document['relative_humidity']);
+                array_push($total1['relativeHumidity'],porce($document['relative_humidity']));
 
             }else{
                 array_push($total1['relativeHumidity'],null);
@@ -1411,7 +1428,7 @@ $minutoGTM = substr($GMT ,3,2);
               //  array_push($total['co2'],0.1);
             //}
             else{
-                array_push($total1['co2'],$document['co2_reading']);
+                array_push($total1['co2'],porce($document['co2_reading']));
             }
             //array_push($total['co2'],$document['co2_reading']);
             if($document['sp_ethyleno']==-1.00){
