@@ -161,6 +161,51 @@ async function terrible(){
    // console.log(SP_Setpoint+","+Acum);   
 }
 
+async function terribleEthy_f(){
+    //console.log("dentro pa");
+    SP_Setpoint =  document.getElementById('reciverEthy_f').value ;
+    Acum =  document.getElementById('MaduradorEthy_f').value ;
+
+    if(SP_Setpoint==""){
+        console.log("no ha enviado datos a cambiar ");
+        tip = "error";
+        mens = "NO DATA TO CHANGE...";
+        message(tip, mens);  
+    }else if(!isNumber(SP_Setpoint)){
+        console.log("Tiene que ingresar un numero valido ...");
+        tip = "error";
+        mens = "ENTER VALID NUMBERS...";
+        message(tip, mens);  
+    }else{
+        
+        totalData = SP_Setpoint+","+Acum;
+
+        Snackbar.show({
+            text: 'Are you sure you want to change the SP Ethylene? : '+SP_Setpoint,
+            width: '605px',
+            actionText: '  YES  ',
+            backgroundColor: '#198754',
+            onActionClick: async function (element) {
+
+                const config = {
+                    method: 'get',
+                    dataType: 'json',
+                    url: '../../ztrack4/controllers/empresasController.php?option=GrabarComando_cliente&id='  + totalData
+                }
+                 const buena =  await axios(config);
+                //console.log(buena);
+                 const info = buena.data;
+    
+                 message(info.tipo, info.mensaje); 
+
+            }
+         
+          });
+                   
+    }
+    
+}
+
 async function terribleEthy(){
     //console.log("dentro pa");
     SP_Setpoint =  document.getElementById('reciverEthy').value ;
@@ -557,7 +602,7 @@ async function terribleOnOff_f() {
                 trama = "Trama_Writeout(29,0,0)";
 
             }else{
-                trama = "Trama_Writeout(29,1,0)";
+                trama = "Trama_Writeout(29,1,1)";
 
             }
             console.log(trama);
@@ -1220,7 +1265,7 @@ $(document).ready(function () {
               },
               submenu: [{ // sub menus
   
-                  label: '<input style="width:50px" id="reciverEthy_f">  <input id="MaduradorEthy_f" type="hidden" value="'+cadenaE+'" /><p style="color:#fff">ss </p> <button onclick="terribleEthy()" type="button" class="btn btn-success">CHANGE ETHYLENE</button>',
+                  label: '<input style="width:50px" id="reciverEthy_f">  <input id="MaduradorEthy_f" type="hidden" value="'+cadenaE+'" /><p style="color:#fff">ss </p> <button onclick="terribleEthy_f()" type="button" class="btn btn-success">CHANGE ETHYLENE</button>',
                   action: function(option, contextMenuIndex, optionIndex) {},
                   submenu: null,
                   disabled: false
