@@ -542,7 +542,7 @@ async function terribleOnOff_f() {
     //totalData = "DEFROST,"+Acum;
     Acum =  document.getElementById('OnOff_f').value ;
    
-    claveVU =  document.getElementById('claveV').value ;
+    claveVU =  document.getElementById('claveV_f').value ;
     totalData = "TERRIBLE,"+Acum;
     
     // validar clave de seguridad 
