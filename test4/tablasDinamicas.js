@@ -1,6 +1,14 @@
 //const { default: axios } = require("axios");
 
 const isNumber = n => $.isNumeric(n);
+function roundToDecimal(number, decimals) {
+    // Redondea el número a la cantidad deseada de decimales
+    let roundedNumber = number.toFixed(decimals);
+    
+    // Reemplaza la coma con punto (si es necesario)
+    return roundedNumber.replace(',', '.');
+}
+
 
 async function terrible_f(){
     //console.log("dentro pa");
@@ -33,7 +41,7 @@ async function terrible_f(){
                 const celsius = (SP_Setpoint - 32) * 5 / 9;
     
                 // Redondear al entero más cercano y retornar el resultado
-                fato_f = Math.round(celsius,1);
+                fato_f = roundToDecimal(celsius,1);
                 //sin decimal
                 //fato_f =parseInt(celsius, 10);
                 trama = "Trama_Writeout(0,"+fato_f+",100)"
