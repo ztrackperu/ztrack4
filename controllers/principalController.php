@@ -244,10 +244,11 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             array_push($total['setPoint'],redondo_ok(faren($document['set_point'])));
             array_push($total['returnAir'],redondo_ok(faren($document['return_air'])));
             array_push($total['tempSupply'],redondo_ok(faren($document['temp_supply_1'])));
-            if(redondo_ok(faren($document['ambient_air']))==-37.3){
-                array_push($total1['ambienteAir'],null);
+            $valor =redondo_ok(faren($document['ambient_air']));
+            if($valor==-37.3){
+                array_push($total['ambienteAir'],null);
             }else{
-                array_push($total1['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
+                array_push($total['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
             }
 
             
