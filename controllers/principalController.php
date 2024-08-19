@@ -12,7 +12,7 @@ function faren($celcius){
     if($celcius==null){
         $conver = null;
     }else{
-        if($celcius>-50 ||$celcius<150){
+        if($celcius>-50 && $celcius<150){
             $conver = ($celcius*9)/5 +32;
         }else{
             $conver = null;  
@@ -25,7 +25,7 @@ function porce($celcius){
     if($celcius==null){
         $conver = null;
     }else{
-        if($celcius>=0 ||$celcius<=100){
+        if($celcius>=0 && $celcius<=100){
             $conver = $celcius;
         }else{
             $conver = null;  
