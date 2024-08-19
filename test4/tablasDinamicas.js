@@ -186,17 +186,33 @@ async function terribleEthy_f(){
             actionText: '  YES  ',
             backgroundColor: '#198754',
             onActionClick: async function (element) {
+                trama = "SP_ETILENO("+SP_Setpoint+")";
 
-                const config = {
-                    method: 'get',
-                    dataType: 'json',
-                    url: '../../ztrack4/controllers/empresasController.php?option=GrabarComando_cliente&id='  + totalData
-                }
-                 const buena =  await axios(config);
-                //console.log(buena);
-                 const info = buena.data;
-    
-                 message(info.tipo, info.mensaje); 
+                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    data =JSON.parse(data)
+                    console.log(data.estado);
+                    if(data.estado==1){
+                        message('success', 'loading...'); 
+                    }else{
+                        message('danger', 'wait...'); 
+
+                    }
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar la solicitud:', error);
+                });
+
+
 
             }
          
