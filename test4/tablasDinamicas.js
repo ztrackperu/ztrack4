@@ -535,6 +535,65 @@ async function avl_full() {
       }); 
 
 }
+
+//terrible_horas sp_sp_ethy
+async function terrible_horas(){
+    //console.log("dentro pa");
+    SP_Setpoint =  document.getElementById('reciverHum_f').value ;
+    sp_sp_ethy1 =  document.getElementById('sp_sp_ethy').value ;
+
+
+    if(SP_Setpoint==""){
+        console.log("no ha enviado datos a cambiar ");
+        tip = "error";
+        mens = "NO DATA TO CHANGE...";
+        message(tip, mens);  
+    }else if(!isNumber(SP_Setpoint)){
+        console.log("Tiene que ingresar un numero valido ...");
+        tip = "error";
+        mens = "ENTER VALID NUMBERS...";
+        message(tip, mens);  
+    }else{      
+        totalData = SP_Setpoint+","+Acum;
+        Snackbar.show({
+            text: 'Are you sure you want to change the hours Inyection ? : '+SP_Setpoint,
+            width: '605px',
+            actionText: '  YES  ',
+            backgroundColor: '#198754',
+            onActionClick: async function (element) {
+                //Temporizadores(0,10,200)
+                //trama = "Trama_Writeout(4,"+SP_Setpoint+",100)"
+                trama = "Temporizadores(0,"+SP_Setpoint+","+sp_sp_ethy1+")";
+
+                const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    data =JSON.parse(data)
+                    console.log(data.estado);
+                    if(data.estado==1){
+                        message('success', 'loading...'); 
+                    }else{
+                        message('danger', 'wait...'); 
+
+                    }
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar la solicitud:', error);
+                });
+
+            }       
+          });                 
+    }   
+}
+
 async function send_comando(){
     comando =  document.getElementById('comando_ff').value ;
 
@@ -1381,7 +1440,7 @@ $(document).ready(function () {
                 label: '<a href="#" style="color:#192c4e"; > Inyection</a>',
                 action: function(option, contextMenuIndex, optionIndex) {},
                 submenu:  [{ // sub menus
-                  label: '<input style="width:50px" id="inyection">&nbsp<input id="inyection" type="hidden" value="'+cadenaSWITH+'" /><button onclick="terribleOnOff()" type="button" class="'+boton+'">'+textoA+'</button>',
+                  label: '<input style="width:50px" id="i_horas">&nbsp<input id="sp_sp_ethy" type="hidden" value="'+SPEthy+'" /><button onclick="terrible_horas()" type="button" class="btn btn-success">Hours</button>',
                   action: function(option, contextMenuIndex, optionIndex) {},
                   submenu: null,
                   disabled: false
@@ -1411,7 +1470,7 @@ $(document).ready(function () {
               },
               {
                 icon: 'fa fa-google-plus',
-                label: '<a href="#" style="color:#192c4e"; > Inyection</a>',
+                label: '<a href="#" style="color:#192c4e"; > COMAND</a>',
                 action: function(option, contextMenuIndex, optionIndex) {},
                 submenu:  [{ // sub menus
                   label: '<input style="width:50px" id="comando_ff">&nbsp<button onclick="send_comando()" type="button" class="btn btn-success">SEND</button>',

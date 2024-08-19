@@ -113,6 +113,15 @@ function faren(dato){
 	fare1 =Math.round(fare*10)/10;
 	return fare1;
 }
+function menork(dato1){
+    dato1 =parseFloat(dato);
+    if(dato1<0.00){
+      respuesta = "NA";
+    }else{
+      respuesta = dato1;
+    }
+    return respuesta;
+}
 
 async function tablaDatosMadurador(info){ 
     let html = '';
@@ -148,7 +157,7 @@ if(variable==1){
      html += `
      <tr>
      <td><strong>${fechita.toLocaleString()}</strong></td>
-     <td>${permiso1.power_kwh}</td>
+     <td>${menork(permiso1.power_kwh)}</td>
      <td>${validarDatosR_M(permiso1.set_point)}</td>
      <td>${validarDatosR_M(permiso1.temp_supply_1)}</td>
      <td>${validarDatosR_M(permiso1.return_air)}</td>
