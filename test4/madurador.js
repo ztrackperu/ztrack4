@@ -114,7 +114,7 @@ function faren(dato){
 	return fare1;
 }
 function menork(dato1){
-    dato1 =parseFloat(dato);
+    dato1 =parseFloat(dato1);
     if(dato1<0.00){
       respuesta = "NA";
     }else{

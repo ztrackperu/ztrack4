@@ -554,7 +554,7 @@ async function terrible_horas(){
         mens = "ENTER VALID NUMBERS...";
         message(tip, mens);  
     }else{      
-        totalData = SP_Setpoint+","+Acum;
+        //totalData = SP_Setpoint+","+Acum;
         Snackbar.show({
             text: 'Are you sure you want to change the hours Inyection ? : '+SP_Setpoint,
             width: '605px',
