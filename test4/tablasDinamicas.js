@@ -561,6 +561,28 @@ async function terribleOnOff_f() {
 
             }
             console.log(trama);
+            const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                data =JSON.parse(data)
+                console.log(data.estado);
+                if(data.estado==1){
+                    message('success', 'loading...'); 
+                }else{
+                    message('danger', 'wait...'); 
+
+                }
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
 
             
         }       
