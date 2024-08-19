@@ -475,6 +475,44 @@ async function avl_full() {
 
 }
 
+async function terribleDefrost_f() {
+    //totalData = "DEFROST,"+Acum;
+    Acum =  document.getElementById('MaduradorDefrost').value ;
+    totalData = "DEFROST,"+Acum;
+    Snackbar.show({
+        text: 'Are you sure you want to ACTIVE DEFROST ? : ',
+        width: '605px',
+        actionText: '  YES  ',
+        backgroundColor: '#198754',
+        onActionClick: async function (element) {
+            trama = "Trama_Writeout(21,0,0)";
+            const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                data =JSON.parse(data)
+                console.log(data.estado);
+                if(data.estado==1){
+                    message('success', 'loading...'); 
+                }else{
+                    message('danger', 'wait...'); 
+
+                }
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+        }       
+      }); 
+
+}
+
 async function terribleDefrost() {
     //totalData = "DEFROST,"+Acum;
     Acum =  document.getElementById('MaduradorDefrost').value ;
@@ -499,6 +537,45 @@ async function terribleDefrost() {
       }); 
 
 }
+
+async function terribleOnOff_f() {
+    //totalData = "DEFROST,"+Acum;
+    Acum =  document.getElementById('OnOff_f').value ;
+   
+    claveVU =  document.getElementById('claveV').value ;
+    totalData = "TERRIBLE,"+Acum;
+    
+    // validar clave de seguridad 
+    if(claveVU == "saasaperu@!" || claveVU=="Proyectoztrack2023!" || claveVU=="kronenperu2024" || claveVU=="jhonvena2024!"){  
+
+    Snackbar.show({
+        text: 'Are you sure you want to ON/OFF ? : ',
+        actionText: '  YES  ',
+        backgroundColor: '#198754',
+        onActionClick: async function (element) {
+            if(Acum=="APAGAR"){
+                trama = "Trama_Writeout(29,0,0)";
+
+            }else{
+                trama = "Trama_Writeout(29,1,0)";
+
+            }
+            console.log(trama);
+
+            
+        }       
+      }); 
+    }else{
+        Snackbar.show({
+            text: 'NO ESTA AUTORIZADO! ',
+            width: '605px',
+            backgroundColor: 'red',
+            actionText: ' OK ',
+        });
+    }
+
+}
+
 
 async function terribleOnOff() {
     //totalData = "DEFROST,"+Acum;
@@ -1004,10 +1081,14 @@ $(document).ready(function () {
           cadenaSWITH = nombreT2+","+comandoON+","+telemetria+",1";
           textoA = "APAGAR";
           boton ="btn btn-danger";
+          cadenaSWITH_f =textoA;
+
         }else{
           cadenaSWITH = nombreT2+","+comandoOFF+","+telemetria+",0";
           textoA = "ENCENDER";
           boton ="btn btn-success";
+          cadenaSWITH_f =textoA;
+
         }
         console.log(cadenaSWITH)
         //telemetria_id
@@ -1153,7 +1234,7 @@ $(document).ready(function () {
             label: '<a href="#" style="color:#192c4e"; > Defrost</a>',
             action: function(option, contextMenuIndex, optionIndex) {},
             submenu:  [{ // sub menus
-              label: '&nbsp<input id="MaduradorDefrost" type="hidden" value="'+CadenaDefrost+'" /><button onclick="terribleDefrost()" type="button" class="btn btn-success">ACTIVATE DEFROST</button>',
+              label: '&nbsp<input id="MaduradorDefrost" type="hidden" value="'+CadenaDefrost+'" /><button onclick="terribleDefrost_f()" type="button" class="btn btn-success">ACTIVATE DEFROST</button>',
               action: function(option, contextMenuIndex, optionIndex) {},
               submenu: null,
               disabled: false
@@ -1166,7 +1247,7 @@ $(document).ready(function () {
               label: '<a href="#" style="color:#192c4e"; > ON/OFF</a>',
               action: function(option, contextMenuIndex, optionIndex) {},
               submenu:  [{ // sub menus
-                label: '<input style="width:50px" id="claveV">&nbsp<input id="OnOff" type="hidden" value="'+cadenaSWITH+'" /><button onclick="terribleOnOff()" type="button" class="'+boton+'">'+textoA+'</button>',
+                label: '<input style="width:50px" id="claveV_f">&nbsp<input id="OnOff_f" type="hidden" value="'+cadenaSWITH_f+'" /><button onclick="terribleOnOff_f()" type="button" class="'+boton+'">'+textoA+'</button>',
                 action: function(option, contextMenuIndex, optionIndex) {},
                 submenu: null,
                 disabled: false
@@ -1198,7 +1279,7 @@ $(document).ready(function () {
                   disabled: false
                 },
                 { // sub menus
-                    label: '<button onclick="avl_stop()" type="button" class="btn btn-success">STOP</button>',
+                    label: '<button onclick="avl_stop()" type="button" class="btn btn-danger">STOP</button>',
                     action: function(option, contextMenuIndex, optionIndex) {},
                     submenu: null,
                     disabled: false
