@@ -33,8 +33,9 @@ async function terrible_f(){
                 const celsius = (SP_Setpoint - 32) * 5 / 9;
     
                 // Redondear al entero más cercano y retornar el resultado
-                //fato_f = Math.round(celsius);
-                fato_f =parseInt(celsius, 10);
+                fato_f = Math.round(celsius,1);
+                //sin decimal
+                //fato_f =parseInt(celsius, 10);
                 trama = "Trama_Writeout(0,"+fato_f+",100)"
                 console.log(trama)
                 const datos_tempearauta = {
