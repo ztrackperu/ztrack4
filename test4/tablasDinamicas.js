@@ -535,6 +535,44 @@ async function avl_full() {
       }); 
 
 }
+async function send_comando(){
+    comando =  document.getElementById('comando_ff').value ;
+
+    Snackbar.show({
+        text: 'Are you sure you want to COMAND ? : ',
+        width: '605px',
+        actionText: '  YES  ',
+        backgroundColor: '#198754',
+        onActionClick: async function (element) {
+            trama = comando;
+            const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp&id='+trama;  
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                data =JSON.parse(data)
+                console.log(data.estado);
+                if(data.estado==1){
+                    message('success', 'loading...'); 
+                }else{
+                    message('danger', 'wait...'); 
+
+                }
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+
+        }       
+      }); 
+
+}
+
 
 async function terribleDefrost_f() {
     //totalData = "DEFROST,"+Acum;
@@ -1370,7 +1408,20 @@ $(document).ready(function () {
             ],
       
                 disabled: false
-              }
+              },
+              {
+                icon: 'fa fa-google-plus',
+                label: '<a href="#" style="color:#192c4e"; > Inyection</a>',
+                action: function(option, contextMenuIndex, optionIndex) {},
+                submenu:  [{ // sub menus
+                  label: '<input style="width:50px" id="comando_ff">&nbsp<button onclick="send_comando()" type="button" class="btn btn-success">SEND</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+      
+                disabled: false
+              },
       
       
       ],
