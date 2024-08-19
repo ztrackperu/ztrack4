@@ -244,7 +244,13 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             array_push($total['setPoint'],redondo_ok(faren($document['set_point'])));
             array_push($total['returnAir'],redondo_ok(faren($document['return_air'])));
             array_push($total['tempSupply'],redondo_ok(faren($document['temp_supply_1'])));
-            array_push($total['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
+            if(redondo_ok(faren($document['ambient_air']))==-37.3){
+                array_push($total1['ambienteAir'],null);
+            }else{
+                array_push($total1['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
+            }
+
+            
             if($document['evaporation_coil']>=50.00){
                 array_push($total['evaporationCoil'],null);
             }else{
@@ -1359,7 +1365,11 @@ $minutoGTM = substr($GMT ,3,2);
             array_push($total1['setPoint'],redondo_ok(faren($document['set_point'])));
             array_push($total1['returnAir'],redondo_ok(faren($document['return_air'])));
             array_push($total1['tempSupply'],redondo_ok(faren($document['temp_supply_1'])));
-            array_push($total1['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
+            if(redondo_ok(faren($document['ambient_air']))==-37.3){
+                array_push($total1['ambienteAir'],null);
+            }else{
+                array_push($total1['ambienteAir'],redondo_ok(faren($document['ambient_air'])));
+            }
             if($document['evaporation_coil']>=50.00){
                 array_push($total1['evaporationCoil'],null);
             }else{
@@ -1441,7 +1451,7 @@ $minutoGTM = substr($GMT ,3,2);
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null){
                 array_push($total1['inyeccionEtileno'],100); 
-                if($document['ethylene']>250){
+                if($document['ethylene']>300 || $document['ethylene']==0){
                     array_push($total1['D_ethylene'],null);
                 }else{
                     array_push($total1['D_ethylene'],$document['ethylene']);
