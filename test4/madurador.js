@@ -200,7 +200,7 @@ if(variable==1){
      html += `
      <tr>
      <td><strong>${fechita.toLocaleString()}</strong></td>
-     <td>${permiso1.power_kwh}</td>
+     <td>${menork(permiso1.power_kwh)}</td>
      <td>${Math.round(faren(validarDatosR_M(permiso1.set_point)))} F°</td>
      <td>${faren(validarDatosR_M(permiso1.temp_supply_1))} F°</td>
      <td>${faren(validarDatosR_M(permiso1.return_air))} F°</td>

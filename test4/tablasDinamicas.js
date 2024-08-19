@@ -539,7 +539,7 @@ async function avl_full() {
 //terrible_horas sp_sp_ethy
 async function terrible_horas(){
     //console.log("dentro pa");
-    SP_Setpoint =  document.getElementById('reciverHum_f').value ;
+    SP_Setpoint =  document.getElementById('i_horas').value ;
     sp_sp_ethy1 =  document.getElementById('sp_sp_ethy').value ;
 
 
