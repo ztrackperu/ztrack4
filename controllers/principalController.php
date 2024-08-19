@@ -326,7 +326,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null ){
                 array_push($total['inyeccionEtileno'],100); 
-if($document['ethylene']>230){
+if($document['ethylene']>300 || $document['ethylene']==0){
                array_push($total['D_ethylene'],null);
 
 }else{
