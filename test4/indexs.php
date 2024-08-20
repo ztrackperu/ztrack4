@@ -60,6 +60,44 @@ echo " ala empresa es : ".$empresa_general ;
 
 
 
+function EstadoDispositivo($ultima_conexion){
+    $captura30min = date('Y-m-d H:i:s',mktime(date('H'),date('i')-30,date('s'),date('n'),date('j'),date('Y')));
+    $captura1dia= date('Y-m-d H:i:s',mktime(date('H'),date('i'),date('s'),date('n'),date('j')-1,date('Y')));
+    if($captura30min>=$ultima_conexion){
+      if($captura1dia>=$ultima_conexion){
+        $estado =3;
+      }else{
+        $estado =2;
+      }
+    }else{
+      $estado = 1;
+    }
+    return $estado;
+  }
+    $R = $api->TablaReefer($tipo_usuario,$empresa_general);
+    $M = $api->TablaMadurador($tipo_usuario,$empresa_general);
+    $G = $api->TablaGenset($tipo_usuario,$empresa_general);
+    //contador de elementos generales ADMIN/EMPRESAS
+    $cR = $api->ContarReffer($tipo_usuario,$empresa_general);
+    $cM = $api->ContarMadurador($tipo_usuario,$empresa_general);
+    $cG = $api->ContarGenset($tipo_usuario,$empresa_general);
+    //Contar dispositivos en ON
+    $cRon = $api->ContarRefferON($tipo_usuario,$empresa_general);
+    $cMon = $api->ContarMaduradorON($tipo_usuario,$empresa_general);
+    $cGon = $api->ContarGensetON($tipo_usuario,$empresa_general);
+    $totalON =$cRon['count(*)'] +$cMon['count(*)'] + $cGon['count(*)'];
+    //Contar dispositivos en WAIT
+    $cRwait = $api->ContarRefferWAIT($tipo_usuario,$empresa_general);
+    $cMwait = $api->ContarMaduradorWAIT($tipo_usuario,$empresa_general);
+    $cGwait = $api->ContarGensetWAIT($tipo_usuario,$empresa_general);
+    $totalWAIT =$cRwait['count(*)'] +$cMwait['count(*)'] + $cGwait['count(*)'];
+      //Contar dispositivos en OFF
+      $cRoff = $api->ContarRefferOFF($tipo_usuario,$empresa_general);
+      $cMoff = $api->ContarMaduradorOFF($tipo_usuario,$empresa_general);
+      $cGoff = $api->ContarGensetOFF($tipo_usuario,$empresa_general);
+      $totalOFF =$cRoff['count(*)'] +$cMoff['count(*)'] + $cGoff['count(*)'];
+  ?>
+
 
 
 ?>
