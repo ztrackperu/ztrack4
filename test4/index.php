@@ -410,7 +410,7 @@ function EstadoDispositivo($ultima_conexion){
     <script>
       //genialtotal = await analizarTabla(<?= $tipo_usuario ?>,<?= $empresa_general ?>);
      // var empresa_gener = <?= $empresa_general ?>;
-      cargar_circulos(<?= $tipo_usuario ?>,<?= $empresa_general ?>);
+      cargar_circulos(<?= $tipo_usuario ?>,<?= $empresa_general_t ?>);
       //console.log(genialtotal);    
     </script>
     <?php
