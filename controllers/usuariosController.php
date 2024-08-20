@@ -9,6 +9,8 @@ switch ($option) {
             $data[$i]['accion'] = '<div class="d-flex">
                 <a class="btn btn-danger btn-sm" onclick="deleteUser(' . $data[$i]['id'] . ')"><i class="fas fa-eraser"></i>D</a>
                 <a class="btn btn-primary btn-sm" onclick="editUser(' . $data[$i]['id'] . ')"><i class="fas fa-edit"></i>E</a>
+                <a class="btn btn-info btn-sm" onclick="usuarioEmpresa_salog(' . $data[$i]['id'] . ')"><i class="fas fa-lock"></i>R</a>
+
                 </div>';
         }
         echo json_encode($data);

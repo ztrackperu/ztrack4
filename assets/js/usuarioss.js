@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       { data: 'apellidos' },
       { data: 'nombres' },
       { data: 'correo' },
-      { data: 'user_crea' },
+      { data: 'create_at' },
       { data: 'accion' }
     ],
     language: {
@@ -269,6 +269,74 @@ function usuarioEmpresa(id) {
       </div>
 
       `;
+      // aqui se agrega segun el nombre del frm
+      permiso.innerHTML = html;
+      $('#modalUsuario-Empresa').modal('show');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+function usuarioEmpresa_salog(id) {
+  axios.get(ruta + 'controllers/usuariosController.php?option=userEmpresa&id=' + id)
+    .then(function (response) {    
+      const info = response.data;
+      let html = '';
+      console.log(info);
+      html += `
+      <div class="row">
+      <div class="col-md-3">
+      </div> 
+      <div class="col-md-3">
+      <h4>USUARIO: </h4>
+      <p></p>
+      </div>
+      <div class="col-md-3">
+      <h4>${info.usuario.nombres} ${info.usuario.apellidos}</h4>
+      <p></p>
+      </div>
+      <div class="col-md-3">
+      
+      </div>
+      </div>
+
+      
+      `;
+
+
+      html += `
+      <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-credit-card mr-1"></i> Contraseña</span>
+          </div>
+                        <input type="password" class="form-control" id="password_salog" name="password_salog" placeholder="Contraseña...">
+
+                </div>
+                </div>
+                <div class="col-md-3">
+                </div>
+                </div>
+
+              `;
+
+      html += `<input name="id_usuario" type="hidden" value="${id}" />
+      <div class="row">
+      <div class="col-md-3">
+      </div> 
+      <div class="col-md-6">
+      
+      
+      <button class="btn btn-outline-success btn-lg btn-block" type="submit">CAMBIAR PASS</button>
+      </div>
+
+
+`;
+
       // aqui se agrega segun el nombre del frm
       permiso.innerHTML = html;
       $('#modalUsuario-Empresa').modal('show');
