@@ -412,6 +412,8 @@ function EstadoDispositivo($ultima_conexion){
     <script>
       //genialtotal = await analizarTabla(<?= $tipo_usuario ?>,<?= $empresa_general ?>);
      // var empresa_gener = <?= $empresa_general ?>;
+     console.log("aqui debe enviar el id");
+     console.log(<?= $empresa_general ?>)
       cargar_circulos(<?= $tipo_usuario ?>,<?= $empresa_general ?>);
       //console.log(genialtotal);    
     </script>
