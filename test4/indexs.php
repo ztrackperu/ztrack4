@@ -48,9 +48,12 @@ $usuario = $_SESSION['id'] ;
 echo "ola mundo";
 echo " este es el  TIPO usuario : ".$tipo_usuario ;
 echo " este es el USUARIO : ".$usuario ;
+$empresa_general_t = 1 ;
+
 if($tipo_usuario ==1){
     $empresa_general = 1;
-    $empresa_general_t=1;
+    $empresa_general_t = 1 ;
+
 }else {
 echo " este es el usuario : ".$usuario ;
 $datosUsuario = $api->UsuarioEmpresa($usuario);
