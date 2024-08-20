@@ -326,7 +326,13 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             if($document['sp_ethyleno']==-1.00 ||$document['sp_ethyleno']>300){
                 array_push($total['sp_ethylene'],null);
             }else{
-                array_push($total['sp_ethylene'],$document['sp_ethyleno']);
+                if($document['sp_ethyleno']>16000){
+                    array_push($total['sp_ethylene'],$document['sp_ethyleno']-17000);
+
+                }else{
+                    array_push($total['sp_ethylene'],$document['sp_ethyleno']);
+
+                }
             }
            
             //array_push($total['fecha'],$document['created_at']);
