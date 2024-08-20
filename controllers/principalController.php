@@ -323,7 +323,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                 array_push($total['co2'],porce($document['co2_reading']));
             }
             //array_push($total['co2'],$document['co2_reading']);
-            if($document['sp_ethyleno']==-1.00 ||$document['sp_ethyleno']>300){
+            if($document['sp_ethyleno']==-1.00 ){
                 array_push($total['sp_ethylene'],null);
             }else{
                 if($document['sp_ethyleno']>16000){
