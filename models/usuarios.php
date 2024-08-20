@@ -7,6 +7,16 @@ class UsuariosModel{
         $this->con = new Conexion();
         $this->pdo = $this->con->conectar();
     }
+    //$usuarios->actualizar_pass($hash, $id_user);
+    public function actualizar_pass($hash, $id_user)
+    {
+        //$consult = $this->pdo->prepare("SELECT * FROM usuarios WHERE estado =1 and user_crea=77 ");
+        //$consult->execute();
+        //return $consult->fetchAll(PDO::FETCH_ASSOC);
+        $fecha_actualizado =date("Y-m-d H:i:s");
+        $consult = $this->pdo->prepare("UPDATE usuarios SET password=? ,updated_at=? WHERE id=?");
+        return $consult->execute([$hash, $fecha_actualizado, $id_user]);
+    }
 
     //getUsers_salog
     public function getUsers_salog()

@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
   permiso.onsubmit = function (e) {
     e.preventDefault();
     const frmData = new FormData(this);
-      axios.post(ruta + 'controllers/usuariosController.php?option=savePermiso', frmData)
+      axios.post(ruta + 'controllers/usuariosController.php?option=savePermiso_salog', frmData)
         .then(function (response) {
           const info = response.data;
           message(info.tipo, info.mensaje);

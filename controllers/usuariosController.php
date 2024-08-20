@@ -103,6 +103,22 @@ switch ($option) {
         }
         echo json_encode($res);
         break;
+        //savePermiso_salog
+        case 'savePermiso_salog':
+            $id_user = $_POST['id_usuario'];
+            $password_salog =$_POST['password_salog'];
+            //$res = $usuarios->asignarEmpresa($id_empresa, $id_user);
+            $hash = password_hash($password_salog, PASSWORD_DEFAULT);
+
+            $res =$usuarios->actualizar_pass($hash, $id_user);
+            if ($res) {
+
+                $res = array('tipo' => 'success', 'mensaje' => 'CONTRASEÑA ACTUALIZADA');
+            } else {
+                $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL ACTUALIZAR CONTRASEÑA');
+            }                  
+            echo json_encode($res);
+            break;
 
 
 
