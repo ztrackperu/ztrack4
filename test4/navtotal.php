@@ -191,7 +191,7 @@ $ripener = "REEFER";
 
 <?php
             
-            if( $tipo_usuario == 1){
+            if( $tipo_usuario == 1 || $empresa_general=77){
                 ?>
             </li></h5>
             <h5  ><li class="nav-item dropdown">
