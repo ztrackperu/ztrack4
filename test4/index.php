@@ -50,7 +50,7 @@ echo "ola mundo";
 //echo " este es el  TIPO usuario : ".$tipo_usuario ;
 //echo " este es el USUARIO : ".$usuario ;
 
-/*
+
 if($tipo_usuario ==1){
   $empresa_general = 1;
 }else {
