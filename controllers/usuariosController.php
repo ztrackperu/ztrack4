@@ -3,6 +3,20 @@ require_once '../models/usuarios.php';
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
 $usuarios = new UsuariosModel();
 switch ($option) {
+    case 'listar_salog':
+        $data = $usuarios->getUsers_salog();
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['accion'] = '<div class="d-flex">
+                <a class="btn btn-danger btn-sm" onclick="deleteUser(' . $data[$i]['id'] . ')"><i class="fas fa-eraser"></i>D</a>
+                <a class="btn btn-primary btn-sm" onclick="editUser(' . $data[$i]['id'] . ')"><i class="fas fa-edit"></i>E</a>
+                </div>';
+        }
+        echo json_encode($data);
+        break;
+
+
+
+
     case 'acceso':
         $accion = file_get_contents('php://input');
         $array = json_decode($accion, true);

@@ -8,6 +8,14 @@ class UsuariosModel{
         $this->pdo = $this->con->conectar();
     }
 
+    //getUsers_salog
+    public function getUsers_salog()
+    {
+        $consult = $this->pdo->prepare("SELECT * FROM usuarios WHERE estado =1 and user_crea=77 ");
+        $consult->execute();
+        return $consult->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getLogin($usuario)
     {
         $consult = $this->pdo->prepare("SELECT * FROM usuarios WHERE usuario = ?");
