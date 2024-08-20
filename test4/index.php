@@ -53,6 +53,8 @@ echo "ola mundo";
 
 if($tipo_usuario ==1){
   $empresa_general = 1;
+  $empresa_general_t = 1 ;
+
 }else {
   echo " este es el usuario : ".$usuario ;
   $datosUsuario = $api->UsuarioEmpresa($usuario);
