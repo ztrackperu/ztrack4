@@ -58,6 +58,8 @@ if($tipo_usuario ==1){
   $datosUsuario = $api->UsuarioEmpresa($usuario);
   echo var_dump($datosUsuario);
   $empresa_general = $datosUsuario['empresa_id'] ;
+  $empresa_general_t = $datosUsuario['empresa_id'] ;
+
 }
 echo " ala empresa es : ".$empresa_general ;
 function EstadoDispositivo($ultima_conexion){

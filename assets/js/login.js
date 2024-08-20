@@ -73,7 +73,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 const info = response.data;
                 console.log(info);
                 if (info.tipo == 'success') {
-                    window.location = '../../ztrack4/test4/indexs.php';
+                    //window.location = '../../ztrack4/test4/indexs.php';
+                    window.location = '../../ztrack4/test4/index.php';
+
                 }
                 message(info.tipo, info.mensaje);
               })
