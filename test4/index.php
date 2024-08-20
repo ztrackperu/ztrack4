@@ -44,7 +44,9 @@ $usuario = $_SESSION['id'] ;
 if($tipo_usuario ==1){
   $empresa_general = 1;
 }else {
+  echo " este es el usuario : ".$usuario ;
   $datosUsuario = $api->UsuarioEmpresa($usuario);
+  echo var_dump($datosUsuario);
   $empresa_general = $datosUsuario['empresa_id'] ;
 }
 echo " ala empresa es : ".$empresa_general ;

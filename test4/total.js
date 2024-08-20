@@ -106,7 +106,7 @@ async function analizarTabla(tipo,empresa){
       const config = {
         method: 'get',
         dataType: 'json',
-        url: '../../ztrack1/controllers/integralController.php?option=analizarTablas&id=' + textazo
+        url: '../../ztrack4/controllers/integralController.php?option=analizarTablas&id=' + textazo
     }
      const buena =  await axios(config);
      const info = buena.data;  
