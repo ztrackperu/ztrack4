@@ -55,6 +55,8 @@ echo " este es el usuario : ".$usuario ;
 $datosUsuario = $api->UsuarioEmpresa($usuario);
 echo var_dump($datosUsuario);
 $empresa_general = $datosUsuario['empresa_id'] ;
+$empresa_general_t = $datosUsuario['empresa_id'] ;
+
 }
 echo " ala empresa es : ".$empresa_general ;
 
@@ -413,8 +415,8 @@ function EstadoDispositivo($ultima_conexion){
       //genialtotal = await analizarTabla(<?= $tipo_usuario ?>,<?= $empresa_general ?>);
      // var empresa_gener = <?= $empresa_general ?>;
      console.log("aqui debe enviar el id");
-     console.log(<?= $empresa_general ?>)
-      cargar_circulos(<?= $tipo_usuario ?>,<?= $empresa_general ?>);
+     console.log(<?= $empresa_general_t ?>)
+      cargar_circulos(<?= $tipo_usuario ?>,<?= $empresa_general_t ?>);
       //console.log(genialtotal);    
     </script>
     <?php
