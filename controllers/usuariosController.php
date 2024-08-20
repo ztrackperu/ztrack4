@@ -32,8 +32,8 @@ switch ($option) {
             if (empty($consult)) {
                 $hash = password_hash($clave, PASSWORD_DEFAULT);
                 $res = "estamos aqui en salog ";
-                //$result = $usuarios->saveUser_salog($usuario_registrado, $nombres, $apellidos,$correo,$hash,$user_creo);
-                /*
+                $result = $usuarios->saveUser_salog($usuario_registrado, $nombres, $apellidos,$correo,$hash,$user_creo);
+                
                 if ($result) {
                     //$res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
                     //aqui solicitamos los datos del usuario que acabamos de guardar
@@ -65,7 +65,7 @@ switch ($option) {
                     $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL AGREGAR');
                 }
 
-                */
+                
             } else {
                 $res = array('tipo' => 'error', 'mensaje' => 'EL CORREO YA EXISTE');
             }
