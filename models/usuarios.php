@@ -19,7 +19,7 @@ class UsuariosModel{
     public function saveUser_salog($usuario, $nombres, $apellidos,$correo,$clave,$user_creo)
     {
         $consult = $this->pdo->prepare("INSERT INTO usuarios (usuario, nombres, apellidos, correo,password,user_creo) VALUES (?,?,?,?,?,?)");
-        return $consult->execute([$usuario, $nombres, $apellidos,$correo,$clave]);
+        return $consult->execute([$usuario, $nombres, $apellidos,$correo,$clave,$user_creo]);
     }
 
     public function getLogin($usuario)
