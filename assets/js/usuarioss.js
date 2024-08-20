@@ -13,7 +13,7 @@ const btn_save = document.querySelector('#btn-save');
 document.addEventListener('DOMContentLoaded', function () {
   $('#table_users').DataTable({
     ajax: {
-      url: ruta + 'controllers/usuariosController.php?option=listar',
+      url: ruta + 'controllers/usuariosController.php?option=listar_salog', 
       dataSrc: ''
     },
     columns: [

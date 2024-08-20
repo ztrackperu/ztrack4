@@ -14,9 +14,6 @@ switch ($option) {
         echo json_encode($data);
         break;
 
-
-
-
     case 'acceso':
         $accion = file_get_contents('php://input');
         $array = json_decode($accion, true);
