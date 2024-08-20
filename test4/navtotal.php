@@ -189,6 +189,24 @@ $ripener = "REEFER";
             ?>
 
 
+<?php
+            
+            if( $tipo_usuario == 1){
+                ?>
+            </li></h5>
+            <h5  ><li class="nav-item dropdown">
+            <a class="nav-link " href="../../ztrack4/users.php"  style="color: white">
+            <strong> <u> USERS </u></strong> 
+              </a>
+
+            </li></h5>
+            <?php
+                      }
+
+            ?>
+            
+
+
             <h5 id ="botonProgramacion"></h5>
 
             <h5 id="botonSoporte"></h5>

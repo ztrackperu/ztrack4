@@ -273,6 +273,8 @@ $cargo_4_temp_I = fara($refer['cargo_4_temp']);
     <td><?= $refer['sp_ethyleno'] ?></td>
     <td><?= $ambient_air_I ?> </td>
     <td><?= $refer['humidity_set_point'] ?></td>
+
+
     <td><?= $refer['relative_humidity'] ?></td>
     <td><?= $co2_rect ?></td>
     <td>OOR</td>
@@ -283,6 +285,7 @@ $cargo_4_temp_I = fara($refer['cargo_4_temp']);
     <td>-NA-</td>
     <td>-NA-</td>
     <td>OOR</td>
+
     <td>-NA-</td>
     <td>-NA-</td>
     <td>-NA-</td>
@@ -293,6 +296,7 @@ $cargo_4_temp_I = fara($refer['cargo_4_temp']);
     <td>-NA-</td>
     <td>-NA-</td>
     <td>-NA-</td>
+
     <td>-NA-</td>
     <td><?=  $refer['cargo_1_temp'] ?></td>
     <td><?=  maldato($refer['cargo_2_temp']) ?></td>
@@ -303,8 +307,9 @@ $cargo_4_temp_I = fara($refer['cargo_4_temp']);
     <td>-NA-</td>
     <td>-NA-</td>
     <td>-NA-</td>
-    <td>-NA-</td>
-    <td>-NA-</td>
+
+    <td><?= $refer['inyeccion_hora'] ?></td>
+    <td><?= $refer['sp_ethyleno'] ?></td>
     <td>-NA-</td>
     <td>-NA-</td>
     <td>-NA-</td>
