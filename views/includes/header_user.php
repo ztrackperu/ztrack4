@@ -61,7 +61,7 @@ if (!empty($_GET['pagina'])) {
             <?php if (!empty($usuarios)) { ?>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
-                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'usuarios') ? 'bg-gradient-info' : ''; ?>">
+                <li class="nav-item <?php echo (!empty($_GET['pagina'])  && $_GET['pagina'] == 'usuarioss') ? 'bg-gradient-info' : ''; ?>">
                     <a class="nav-link" href="?pagina=usuarios">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Usuarios</span>
