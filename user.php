@@ -27,7 +27,7 @@ if (isset($_GET['pagina'])) {
         try {
             $archivo = $_GET['pagina'];
             if ($archivo == 'usuarios' && !empty($usuarios)) {
-                $plantilla->usuarios();
+                $plantilla->usuarioss();
             } else if ($archivo == 'configuracion' && !empty($configuracion)) {
                 $plantilla->configuracion();
             } else if ($archivo == 'tramas' && !empty($clientes)) {

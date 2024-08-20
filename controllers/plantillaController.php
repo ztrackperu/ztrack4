@@ -14,6 +14,10 @@ class Plantilla{
     {
         include_once 'views/usuarios/index.php';
     }
+    public function usuarioss()
+    {
+        include_once 'views/usuarioss/index.php';
+    }
 
     //pagina empresas
     public function empresas()
