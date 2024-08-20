@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       { data: 'apellidos' },
       { data: 'nombres' },
       { data: 'correo' },
-      { data: 'create_at' },
+      { data: 'created_at' },
       { data: 'accion' }
     ],
     language: {
