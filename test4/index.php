@@ -31,7 +31,7 @@
   </head>
   <body>
     <?php
-      //session_start();    
+      session_start();    
     ?>
 <!-- Aca evaluamos si el usuario es tipo 1(administrador) o 2(cliente)  -->
 <?php
