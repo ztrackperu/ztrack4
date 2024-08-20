@@ -45,8 +45,9 @@ $api = new IntegralModel();
 //$tipo_usuario = 2 ;
 $tipo_usuario =$_SESSION['permiso'] ;
 $usuario = $_SESSION['id'] ;
-echo " este es el  TIPO usuario : ".$tipo_usuario ;
-echo " este es el USUARIO : ".$usuario ;
+echo "ola mundo";
+//echo " este es el  TIPO usuario : ".$tipo_usuario ;
+//echo " este es el USUARIO : ".$usuario ;
 
 /*
 if($tipo_usuario ==1){
