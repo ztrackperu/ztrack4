@@ -134,8 +134,11 @@ async function analizarTabla(tipo,empresa){
 async function cargar_circulos(tipo_usuario1,empresa_general1)
 {
   tableStatus ='';
+  console.log(tipo_usuario1);
+  console.log(empresa_general1);
+
   genialtotal = await analizarTabla(tipo_usuario1,empresa_general1);
-  //console.log(genialtotal);
+  console.log(genialtotal);
   if(genialtotal==1){
     ocultarR();
   }else{
