@@ -12,7 +12,7 @@ switch ($option) {
         if (empty($result)) {
             $res = array('tipo' => 'error', 'mensaje' => 'Usuario NO EXISTE');
         } else {
-            if (password_verify($password, $result['password'])) {
+            if (password_verify($password, $result['password'])) {  
                 $_SESSION['nombres'] = $result['nombres'];
                 $_SESSION['apellidos'] = $result['apellidos'];
                 $_SESSION['usuario'] = $result['usuario'];

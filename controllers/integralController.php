@@ -13,7 +13,7 @@ switch ($option) {
         $tipoUsuario = substr($idf, 0, strpos($idf, ','));
 
         $data['contarReefer'] = $integral->ContarReffer($tipoUsuario , $empresa);
-        $data['contarMadurador'] = $integral->ContarMadurador($tipoUsuario , $empresa);
+        $data['contarMadurador'] = $integral->ContarMadurador($tipoUsuario , $empresa); 
         $data['contarGenset'] = $integral->ContarGenset($tipoUsuario , $empresa);
 
 
