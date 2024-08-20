@@ -34,6 +34,10 @@
     ?>
 <!-- Aca evaluamos si el usuario es tipo 1(administrador) o 2(cliente)  -->
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    //ob_end_flush()
 require_once '../models/integral.php';
 $api = new IntegralModel();
 //$datosReefer = $api->listaReeferFecha1(1,'2023-06-01 00:00:00','2023-06-01 11:00:00');
