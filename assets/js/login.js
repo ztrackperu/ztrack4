@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if (usuario.value == '' || password.value == '') {
             message('error', 'TODO LOS CAMPOS  SON REQUERIDOS');
         } else {
-            axios.post('../controllers/usuariosController.php?option=acceso', { 
+            axios.post('../../ztrack4/controllers/usuariosController.php?option=acceso', { 
                 usuario: email.value,
                 password: password.value 
             
