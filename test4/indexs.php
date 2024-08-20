@@ -96,8 +96,68 @@ function EstadoDispositivo($ultima_conexion){
       $cMoff = $api->ContarMaduradorOFF($tipo_usuario,$empresa_general);
       $cGoff = $api->ContarGensetOFF($tipo_usuario,$empresa_general);
       $totalOFF =$cRoff['count(*)'] +$cMoff['count(*)'] + $cGoff['count(*)'];
-  ?>
+?>
 
 
+
+
+<div class="loader"></div>
+<main>
+    <?php
+    include 'navtotal.php';
+    ?>
+</main>
+<div id="inicio" class="container-fluid themed-container text-center" style="height: 23px;">  
+</div>
+<div id="map"></div> 
+<?php
+    include 'reefertotal.php';
+    include 'maduradortotal.php';
+    include 'gensettotal1.php';
+?>
+<div id="g1g1" class="container-fluid themed-container text-center" style="height: 20px;">  
+</div>
+<div id="ocultar2" class="" ALIGN=CENTER style="">
+    <div class="col-1"></div>
+    <div class="col-11" style="">
+    <h3><strong>Search by Date:  </strong><input style="border: 0; " type="text" name="datetimes" /></h3>
+    <a id="bajarGrafica" class="btn btn-outline-success btn-lg btn-block">DOWNLOAD GRAPH</a>
+   <canvas align ="center" id="graficaFinal" style="" width="500" height="250"></canvas><br />
+ 
+    </div>
+  </div>
+</div>
+
+<div id="tami" class="" style="height: 20px;">  
+</div>    
+    <div  id="ocultar1"  class="container-fluid themed-container text-center compact" style=" height :410px;">  
+    <form id="bajarExcelR"></form>
+    <p></p>
+    <table id= "table_reffer1" class="display nowrap" style="width: 100%;" >
+  <thead>
+    <tr>
+      <th scope="col">Reception Date</th>
+      <th scope="col">set_point</th>
+      <th scope="col">temp_supply </th>
+      <th scope="col">return_air</th>
+      <th scope="col">evaporation_coil </th>
+      <th scope="col">ambient_air </th>
+      <th scope="col">cargo_1_temp</th>
+      <th scope="col">relative_humidity</th>
+      <th scope="col">alarm_present</th>
+      <th scope="col">alarm_number</th>
+      <th scope="col">controlling_mode</th>
+      <th scope="col">power_state</th>
+      <th scope="col">defrost_term_temp</th>
+      <th scope="col">defrost_interval</th>
+      <th scope="col">latitud</th>
+      <th scope="col">longitud</th>
+    </tr>
+  </thead>
+  <tbody id="frmTramaReefer2">
+
+  </tbody>
+</table>
+</div>
 
 ?>
