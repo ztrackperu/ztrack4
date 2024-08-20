@@ -15,6 +15,12 @@ class UsuariosModel{
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
+    //saveUser_salog
+    public function saveUser_salog($usuario, $nombres, $apellidos,$correo,$clave,$user_creo)
+    {
+        $consult = $this->pdo->prepare("INSERT INTO usuarios (usuario, nombres, apellidos, correo,password,user_creo) VALUES (?,?,?,?,?,?)");
+        return $consult->execute([$usuario, $nombres, $apellidos,$correo,$clave]);
+    }
 
     public function getLogin($usuario)
     {

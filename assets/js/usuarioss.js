@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
       message('error', 'TODO LOS CAMPOS CON * SON REQUERIDOS')
     } else {
       const frmData = new FormData(frm);
-      axios.post(ruta + 'controllers/usuariosController.php?option=save', frmData)
+      axios.post(ruta + 'controllers/usuariosController.php?option=save_salog', frmData)
         .then(function (response) {
           const info = response.data;
           message(info.tipo, info.mensaje);

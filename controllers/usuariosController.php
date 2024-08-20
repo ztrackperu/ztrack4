@@ -14,6 +14,93 @@ switch ($option) {
         echo json_encode($data);
         break;
 
+
+    //save_salog
+    case 'save_salog':
+        //datos deben ser igual al formulario
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $usuario_registrado = $_POST['usuario'];
+        $correo = $_POST['correo'];
+        $clave = $_POST['password'];
+        $id = $_POST['id_user'];
+        $user_creo = $_SESSION['id'];
+        $fecha_actualizado =date("Y-m-d H:i:s");
+        if ($id == '') {
+            //comprueba si correo ya existe
+            $consult = $usuarios->comprobarCorreo($correo);
+            if (empty($consult)) {
+                $hash = password_hash($clave, PASSWORD_DEFAULT);
+                $result = $usuarios->saveUser_salog($usuario_registrado, $nombres, $apellidos,$correo,$hash,$user_creo);
+                if ($result) {
+                    //$res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
+                    //aqui solicitamos los datos del usuario que acabamos de guardar
+                    
+                    $u_result = $usuarios->getUsuario($usuario_registrado);
+                    
+                    $id_r = $u_result['id'];
+                    $usuario_r = $u_result['usuario'];
+                    $apellidos_r = $u_result['apellidos'];
+                    $nombres_r = $u_result['nombres'];
+                    $estado_r = $u_result['estado'];
+                    $permiso_r = $u_result['permiso'];
+                    $correo_r = $u_result['correo'];
+                    $clave_r = $u_result['password'];
+                    $ultimo_acceso_r = $u_result['ultimo_acceso'];
+                    $fecha_cambio = date("Y-m-d H:i:s");
+                    $usuario_cambio_id =$_SESSION['id'];
+                    $accion = "REGISTRADO";
+                    #debemos asignar la empresa 
+                    $asignar_empresa = $usuarios->asignarEmpresa(59,$id_r);
+
+                    //public function asignarEmpresa($id_empresa, $id_user)
+
+                    $historal_usuario_grabar = $usuarios->savehistorialUser($id_r ,$usuario_r , $apellidos_r ,$nombres_r ,$estado_r , $permiso_r ,$correo_r ,$clave_r ,$ultimo_acceso_r ,$usuario_cambio_id ,$accion);
+                    $res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
+
+                } else {
+                    $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL AGREGAR');
+                }
+            } else {
+                $res = array('tipo' => 'error', 'mensaje' => 'EL CORREO YA EXISTE');
+            }
+        } else {
+            $result = $usuarios->updateUser($usuario_registrado, $nombres, $apellidos,$correo,$fecha_actualizado,$id);
+            if ($result) {
+
+
+                $u_result = $usuarios->getUsuario($usuario_registrado);
+                    
+                $id_r = $u_result['id'];
+                $usuario_r = $u_result['usuario'];
+                $apellidos_r = $u_result['apellidos'];
+                $nombres_r = $u_result['nombres'];
+                $estado_r = $u_result['estado'];
+                $permiso_r = $u_result['permiso'];
+                $correo_r = $u_result['correo'];
+                $clave_r = $u_result['password'];
+                $ultimo_acceso_r = $u_result['ultimo_acceso'];
+                $fecha_cambio = date("Y-m-d H:i:s");
+                $usuario_cambio_id =$_SESSION['id'];
+                $accion = "EDITADO";
+                
+
+                $historal_usuario_grabar = $usuarios->savehistorialUser($id_r ,$usuario_r , $apellidos_r ,$nombres_r ,$estado_r , $permiso_r ,$correo_r ,$clave_r ,$ultimo_acceso_r ,$usuario_cambio_id ,$accion);
+
+                
+
+                $res = array('tipo' => 'success', 'mensaje' => 'USUARIO MODIFICADO');
+            } else {
+                $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL MODIFICAR');
+            }
+        }
+        echo json_encode($res);
+        break;
+
+
+
+
+
     case 'acceso':
         $accion = file_get_contents('php://input');
         $array = json_decode($accion, true);
