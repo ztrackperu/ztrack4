@@ -31,7 +31,9 @@ switch ($option) {
             $consult = $usuarios->comprobarCorreo($correo);
             if (empty($consult)) {
                 $hash = password_hash($clave, PASSWORD_DEFAULT);
-                $result = $usuarios->saveUser_salog($usuario_registrado, $nombres, $apellidos,$correo,$hash,$user_creo);
+                $res = "estamos aqui en salog ";
+                //$result = $usuarios->saveUser_salog($usuario_registrado, $nombres, $apellidos,$correo,$hash,$user_creo);
+                /*
                 if ($result) {
                     //$res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
                     //aqui solicitamos los datos del usuario que acabamos de guardar
@@ -58,9 +60,12 @@ switch ($option) {
                     $historal_usuario_grabar = $usuarios->savehistorialUser($id_r ,$usuario_r , $apellidos_r ,$nombres_r ,$estado_r , $permiso_r ,$correo_r ,$clave_r ,$ultimo_acceso_r ,$usuario_cambio_id ,$accion);
                     $res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
 
+
                 } else {
                     $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL AGREGAR');
                 }
+
+                */
             } else {
                 $res = array('tipo' => 'error', 'mensaje' => 'EL CORREO YA EXISTE');
             }
