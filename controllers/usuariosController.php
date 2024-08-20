@@ -24,7 +24,8 @@ switch ($option) {
                 $res = array('tipo' => 'error', 'mensaje' => 'CONTRASEÑA INCORRECTA');
             }
         }
-        echo json_encode($res);
+        //echo json_encode($res);
+        echo json_encode($result);
         break;
     case 'logout':
         session_destroy();
