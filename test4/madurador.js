@@ -123,6 +123,15 @@ function menork(dato1){
     return respuesta;
 }
 
+function arreglar(dato1){
+    if(dato1>16000){
+        res= dato1-17000;
+    }else{
+        res=dato1;
+    }
+    return res ;
+}
+
 async function tablaDatosMadurador(info){ 
     let html = '';
     let html1 = '';
@@ -164,7 +173,7 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.evaporation_coil)}</td>
      <td>${validarDatosR_M(permiso1.ambient_air)}</td>
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
-     <td>${validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2))}</td>
+     <td>${arreglar(validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2)))}</td>
      <td>${malEhylene(permiso1.ethylene)}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>

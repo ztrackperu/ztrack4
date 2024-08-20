@@ -1234,6 +1234,9 @@ $(document).ready(function () {
         SPTemp = data[29];
         // valor actual de Ethyleno 
         SPEthy = data[33];
+        if(SPEthy>16000){
+            SPEthy=SPEthy-17000;
+        }
         // valor actual de co2 
         SPCo2= data[37];
         // valor actual de Humedad
