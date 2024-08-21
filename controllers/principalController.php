@@ -7,6 +7,25 @@ ini_set('display_startup_errors', 1);
 
 error_reporting(E_ALL);
 
+function convertirNumero($x) {
+    // Validar que el número esté dentro del rango permitido
+    if ($x < 120 || $x > 300) {
+        throw new InvalidArgumentException("El número debe estar entre 120 y 300.");
+    }
+
+    // Coeficientes para la conversión lineal
+    $min_x = 120;
+    $max_x = 300;
+    $min_y = 120;
+    $max_y = 130;
+    
+    // Aplicar la fórmula de la conversión lineal
+    $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
+    
+    return $y;
+}
+
+
 
 function faren($celcius){
     if($celcius==null){
@@ -343,7 +362,7 @@ if($document['ethylene']>280 || $document['ethylene']==0){
                array_push($total['D_ethylene'],null);
 
 }else{
-                array_push($total['D_ethylene'],$document['ethylene']);
+                array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
 
 }
 
@@ -1461,7 +1480,7 @@ $minutoGTM = substr($GMT ,3,2);
                 if($document['ethylene']>280 || $document['ethylene']==0){
                     array_push($total1['D_ethylene'],null);
                 }else{
-                    array_push($total1['D_ethylene'],$document['ethylene']);
+                    array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
                 }
                 //array_push($total1['D_ethylene'],$document['ethylene']);  
             }else{
