@@ -22,16 +22,17 @@ console.log(minutoGMT);
 
 //signoGMT = CADE
 function convertirNumero_ethy(x) {
+    y=None;
     // Validar que el número esté dentro del rango permitido
     if (x > 2000 ) {
-        y=null;
+        y=None;
     }
     else if(x < 20000 && x>500){   
         // Coeficientes para la conversión lineal
         const min_x = 500;
         const max_x = 20000;
-        const min_y = 125;
-        const max_y = 130;
+        const min_y = 130;
+        const max_y = 140;
 
         // Aplicar la fórmula de la conversión lineal
         let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
@@ -45,7 +46,7 @@ function convertirNumero_ethy(x) {
         const min_x = 120;
         const max_x = 500;
         const min_y = 120;
-        const max_y = 125;
+        const max_y = 130;
 
         // Aplicar la fórmula de la conversión lineal
         let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
@@ -56,9 +57,6 @@ function convertirNumero_ethy(x) {
     }else{
         y=x ;
     }
-
-
-
     return y;
 }
 function USDA(dato){

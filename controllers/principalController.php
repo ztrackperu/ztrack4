@@ -16,8 +16,8 @@ function convertirNumero($x) {
         // Coeficientes para la conversión lineal
         $min_x = 500;
         $max_x = 20000;
-        $min_y = 125;
-        $max_y = 130;
+        $min_y = 130;
+        $max_y = 140;
         
         // Aplicar la fórmula de la conversión lineal
         $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
@@ -29,7 +29,7 @@ function convertirNumero($x) {
         $min_x = 120;
         $max_x = 500;
         $min_y = 120;
-        $max_y = 125;
+        $max_y = 130;
         
         // Aplicar la fórmula de la conversión lineal
         $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
