@@ -22,15 +22,16 @@ console.log(minutoGMT);
 
 //signoGMT = CADE
 function convertirNumero_ethy(x) {
-    y=0;
+    x=parseFloat(x);
+    y="NA";
     // Validar que el número esté dentro del rango permitido
     if (x > 2000 ) {
         y="NA";
     }
-    else if(x < 20000 && x>450){   
+    else if(x < 2000 && x>450){   
         // Coeficientes para la conversión lineal
         const min_x = 450;
-        const max_x = 20000;
+        const max_x = 2000;
         const min_y = 125;
         const max_y = 130;
 

@@ -15,7 +15,7 @@ function convertirNumero($x) {
     else if($x < 2000 && $x>450){
         // Coeficientes para la conversión lineal
         $min_x = 450;
-        $max_x = 20000;
+        $max_x = 2000;
         $min_y = 125;
         $max_y = 130;
         
