@@ -12,10 +12,10 @@ function convertirNumero($x) {
     if ( $x > 400) {
         $y=null ;
     }
-    else if($x < 2000 && $x>500){
+    else if($x < 20000 && $x>500){
         // Coeficientes para la conversión lineal
         $min_x = 120;
-        $max_x = 500;
+        $max_x = 20000;
         $min_y = 120;
         $max_y = 125;
         
@@ -377,7 +377,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null ){
                 array_push($total['inyeccionEtileno'],100); 
-if($document['ethylene']>2000 || $document['ethylene']==0){
+if($document['ethylene']>20000 || $document['ethylene']==0){
                array_push($total['D_ethylene'],null);
 
 }else{
@@ -1496,7 +1496,7 @@ $minutoGTM = substr($GMT ,3,2);
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null){
                 array_push($total1['inyeccionEtileno'],100); 
-                if($document['ethylene']>2000 || $document['ethylene']==0){
+                if($document['ethylene']>20000 || $document['ethylene']==0){
                     array_push($total1['D_ethylene'],null);
                 }else{
                     array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
