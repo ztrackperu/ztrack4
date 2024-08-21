@@ -19,9 +19,45 @@ console.log(signoGMT);
 console.log(horaGMT);
 console.log(minutoGMT);
 
-
-//signoGMT = CADE
 function convertirNumero_ethy(x) {
+    x = parseFloat(x);
+    let y = "NA";  // Inicialmente, asignamos "NA"
+
+    // Validar que el número esté dentro del rango permitido
+    if (x < 121) {
+        y = x;  // Si el número es menor que 121, simplemente devolvemos el número
+    } else if (x >= 121 && x <= 450) {
+        // Coeficientes para la conversión lineal
+        const min_x = 121;
+        const max_x = 450;
+        const min_y = 121;
+        const max_y = 125;
+
+        // Aplicar la fórmula de la conversión lineal
+        y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+    } else if (x > 450 && x <= 2000) {
+        // Coeficientes para la conversión lineal
+        const min_x = 450;
+        const max_x = 2000;
+        const min_y = 125;
+        const max_y = 130;
+
+        // Aplicar la fórmula de la conversión lineal
+        y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+    } else {
+        y = "NA";  // Si el número no está en ningún rango, devolvemos "NA"
+    }
+
+    return y;
+}
+//signoGMT = CADE
+function convertirNumero_ethy_ERROR(x) {
     x=parseFloat(x);
     y="NA";
     // Validar que el número esté dentro del rango permitido
