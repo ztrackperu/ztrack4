@@ -9,20 +9,27 @@ error_reporting(E_ALL);
 
 function convertirNumero($x) {
     // Validar que el número esté dentro del rango permitido
-    if ($x < 120 || $x > 400) {
-        return null ;
+    if ( $x > 400) {
+        $y=null ;
     }
+    else if($x < 400 && $x>120){
+        // Coeficientes para la conversión lineal
+        $min_x = 120;
+        $max_x = 400;
+        $min_y = 120;
+        $max_y = 130;
+        
+        // Aplicar la fórmula de la conversión lineal
+        $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
+        $y = round($y, 1);
 
-    // Coeficientes para la conversión lineal
-    $min_x = 120;
-    $max_x = 400;
-    $min_y = 120;
-    $max_y = 130;
-    
-    // Aplicar la fórmula de la conversión lineal
-    $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
-    
-    return $y;
+    }
+    else{
+        $y =$x;
+    }
+    return $y ;
+
+
 }
 
 
