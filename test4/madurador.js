@@ -22,17 +22,17 @@ console.log(minutoGMT);
 
 //signoGMT = CADE
 function convertirNumero_ethy(x) {
-    y=None;
+    y=0;
     // Validar que el número esté dentro del rango permitido
     if (x > 2000 ) {
         y="NA";
     }
-    else if(x < 20000 && x>400){   
+    else if(x < 20000 && x>450){   
         // Coeficientes para la conversión lineal
-        const min_x = 400;
+        const min_x = 450;
         const max_x = 20000;
-        const min_y = 130;
-        const max_y = 140;
+        const min_y = 125;
+        const max_y = 130;
 
         // Aplicar la fórmula de la conversión lineal
         let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
@@ -41,12 +41,12 @@ function convertirNumero_ethy(x) {
         y = Math.round(y * 10) / 10;
 
     }
-    else if(x < 400 && x>120){   
+    else if(x < 450 && x>120){   
         // Coeficientes para la conversión lineal
         const min_x = 120;
-        const max_x = 400;
+        const max_x = 450;
         const min_y = 120;
-        const max_y = 130;
+        const max_y = 125;
 
         // Aplicar la fórmula de la conversión lineal
         let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);

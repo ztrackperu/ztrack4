@@ -12,24 +12,24 @@ function convertirNumero($x) {
     if ( $x > 2000) {
         $y=null ;
     }
-    else if($x < 2000 && $x>400){
+    else if($x < 2000 && $x>450){
         // Coeficientes para la conversión lineal
-        $min_x = 400;
+        $min_x = 450;
         $max_x = 20000;
-        $min_y = 130;
-        $max_y = 140;
+        $min_y = 125;
+        $max_y = 130;
         
         // Aplicar la fórmula de la conversión lineal
         $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
         $y = round($y, 1);
 
     }
-    else if($x < 400 && $x>120){
+    else if($x < 450 && $x>120){
         // Coeficientes para la conversión lineal
         $min_x = 120;
-        $max_x = 400;
+        $max_x = 450;
         $min_y = 120;
-        $max_y = 130;
+        $max_y = 125;
         
         // Aplicar la fórmula de la conversión lineal
         $y = $min_y + ($x - $min_x) * ($max_y - $min_y) / ($max_x - $min_x);
