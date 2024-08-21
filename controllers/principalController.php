@@ -9,13 +9,13 @@ error_reporting(E_ALL);
 
 function convertirNumero($x) {
     // Validar que el número esté dentro del rango permitido
-    if ($x < 120 || $x > 300) {
-        throw new InvalidArgumentException("El número debe estar entre 120 y 300.");
+    if ($x < 120 || $x > 400) {
+        return null ;
     }
 
     // Coeficientes para la conversión lineal
     $min_x = 120;
-    $max_x = 300;
+    $max_x = 400;
     $min_y = 120;
     $max_y = 130;
     
@@ -358,7 +358,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null ){
                 array_push($total['inyeccionEtileno'],100); 
-if($document['ethylene']>280 || $document['ethylene']==0){
+if($document['ethylene']>400 || $document['ethylene']==0){
                array_push($total['D_ethylene'],null);
 
 }else{
@@ -1477,7 +1477,7 @@ $minutoGTM = substr($GMT ,3,2);
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null){
                 array_push($total1['inyeccionEtileno'],100); 
-                if($document['ethylene']>280 || $document['ethylene']==0){
+                if($document['ethylene']>400 || $document['ethylene']==0){
                     array_push($total1['D_ethylene'],null);
                 }else{
                     array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
