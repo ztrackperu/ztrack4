@@ -23,7 +23,7 @@ console.log(minutoGMT);
 //signoGMT = CADE
 function convertirNumero_ethy(x) {
     x=parseFloat(x);
-    //y="NA";
+    y="NA";
     // Validar que el número esté dentro del rango permitido
     
     if (x < 121 ) {
@@ -57,7 +57,7 @@ function convertirNumero_ethy(x) {
 
     }
     else{
-        y=None ;
+        y="NA" ;
     }
     return y;
 }
