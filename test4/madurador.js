@@ -21,7 +21,46 @@ console.log(minutoGMT);
 
 
 //signoGMT = CADE
+function convertirNumero_ethy(x) {
+    // Validar que el número esté dentro del rango permitido
+    if (x > 2000 ) {
+        y=null;
+    }
+    else if(x < 20000 && x>500){   
+        // Coeficientes para la conversión lineal
+        const min_x = 500;
+        const max_x = 20000;
+        const min_y = 125;
+        const max_y = 130;
 
+        // Aplicar la fórmula de la conversión lineal
+        let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+
+    }
+    else if(x < 500 && x>120){   
+        // Coeficientes para la conversión lineal
+        const min_x = 120;
+        const max_x = 500;
+        const min_y = 120;
+        const max_y = 125;
+
+        // Aplicar la fórmula de la conversión lineal
+        let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+
+    }else{
+        y=x ;
+    }
+
+
+
+    return y;
+}
 function USDA(dato){
     dato1 =parseFloat(dato);
     if(dato1==-38.50){
@@ -174,7 +213,7 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.ambient_air)}</td>
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
      <td>${arreglar(validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2)))}</td>
-     <td>${malEhylene(permiso1.ethylene)}</td>
+     <td>${convertirNumero_ethy(permiso1.ethylene)}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>
 
@@ -217,7 +256,7 @@ if(variable==1){
      <td>${faren(validarDatosR_M(permiso1.ambient_air))} F°</td>
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
      <td>${validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2))}</td>
-     <td>${malEhylene(permiso1.ethylene)}</td>
+     <td>${convertirNumero_ethy(permiso1.ethylene)}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>
 
