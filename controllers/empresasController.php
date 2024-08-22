@@ -146,6 +146,22 @@ switch ($option) {
         break;
     
     //GrabarComandoCo2
+    case 'GrabarComandoTemp_API':
+        $comando = $_GET['id'];
+        $text ="viene de afuera".$comando;
+        $cadena = array(
+            'imei'=>"860389052714546",
+            //'estado' =>0,
+            'comando'=>$comando      
+        );
+        $dataControl = $empresas->EnvioComando($cadena);
+        //$resultadoMadurador = json_decode($dataMadurador);
+        //$resultadoMadurador = $resultadoMadurador->data;
+        echo json_encode($dataControl);
+        //echo $text;
+        break;
+    
+    //GrabarComandoCo2
 
     case 'GrabarComandoCo2':
         $comando = $_GET['id'];

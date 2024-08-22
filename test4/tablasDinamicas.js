@@ -633,6 +633,44 @@ async function send_comando(){
 }
 
 
+async function send_comando_API(){
+    comando =  document.getElementById('comando_ff').value ;
+
+    Snackbar.show({
+        text: 'Are you sure you want to COMAND ? : ',
+        width: '605px',
+        actionText: '  YES  ',
+        backgroundColor: '#198754',
+        onActionClick: async function (element) {
+            trama = comando;
+            const url = '../../ztrack4/controllers/empresasController.php?option=GrabarComandoTemp_API&id='+trama;  
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                data =JSON.parse(data)
+                console.log(data.estado);
+                if(data.estado==1){
+                    message('success', 'loading...'); 
+                }else{
+                    message('danger', 'wait...'); 
+
+                }
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+            });
+
+        }       
+      }); 
+
+}
+
 async function terribleDefrost_f() {
     //totalData = "DEFROST,"+Acum;
     Acum =  document.getElementById('MaduradorDefrost').value ;
@@ -1225,8 +1263,166 @@ $(document).ready(function () {
       console.log(v_online);
       console.log(nombreT);
  
+
+
+
+      if( v_online =="<strong>ONLINE</strong>" && (nombreT=="<strong>ZGRU1231231</strong>")){
+        nombreT1 = nombreT.replace("<strong>","");
+        nombreT2 = nombreT1.replace("</strong>","");
+  
+        // valor actual de set point 
+        SPTemp = data[29];
+        // valor actual de Ethyleno 
+        SPEthy = data[33];
+        if(SPEthy>16000){
+            SPEthy=SPEthy-17000;
+        }
+        // valor actual de co2 
+        SPCo2= data[37];
+        // valor actual de Humedad
+        SPHum = data[35]; //66 y 67
+
+        Inyeccion_hora =data[66];
+
+        // dato de imagen prendida 
+        Icono =data[4];
+        //console.log(Icono);
+        
+        //comandos-id para las tramas 
+        comandoT = 4;
+        comandoE = 6;
+        comandoC = 7;
+        comandoH = 8;
+        comandoDefrost =10;
+        
+        comandoON =9;
+        
+        comandoOFF = 3;
+        
+        telemetria = data[1];
+        if(Icono=='<img src="run.png" height="25" width="25">'){
+          cadenaSWITH = nombreT2+","+comandoON+","+telemetria+",1";
+          textoA = "APAGAR";
+          boton ="btn btn-danger";
+          cadenaSWITH_f =textoA;
+
+        }else{
+          cadenaSWITH = nombreT2+","+comandoOFF+","+telemetria+",0";
+          textoA = "ENCENDER";
+          boton ="btn btn-success";
+          cadenaSWITH_f =textoA;
+
+        }
+        console.log(cadenaSWITH)
+        //telemetria_id
+        
+        // cadena 
+        cadenaM = nombreT2+","+comandoT+","+telemetria+","+SPTemp;
+        //cadena para Ethyleno
+        cadenaE = nombreT2+","+comandoE+","+telemetria+","+SPEthy;
+        //CADENA PARA CO2
+        cadenaC = nombreT2+","+comandoC+","+telemetria+","+SPCo2;
+        //cadena para HUMEDAD
+        cadenaH = nombreT2+","+comandoH+","+telemetria+","+SPHum;
+        // cadena Defrost
+        CadenaDefrost = nombreT2+","+comandoDefrost+","+telemetria+",DEFROST";
+       
+        if(SPCo2>100 || SPCo2<0){
+          SPCo2 ="NA";
+        }
+      // console.log()
+        var myMenu1 = [
+      {
+              label: '<a href="#" style="color:#000";>COD : '+ nombreT+'</a>',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: null,
+              disabled: false
+      }, 
+      {
+          // This example uses Font Awesome Iconic Font.       
+          // Menu Label
+          label: '<a href="#" style="color:#192c4e";>Email</a>',
+          // Callback
+          action: function(option, contextMenuIndex, optionIndex) {},
+          // An array of submenu objects
+          submenu: [{ // sub menus
+  
+              label: 'Today',
+              action: function(option, contextMenuIndex, optionIndex) {},
+              submenu: [{ // sub menus
+                  label: '&nbsp<input style="width:200px" id="reciverSP"> &nbsp<button onclick="#" type="button" class="btn btn-success">SEND</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+              disabled: false
+            },
+            { // sub menus
+  
+              label: 'Search by date',
+              action: function(option, contextMenuIndex, optionIndex) {
+              },
+              submenu: [{ // sub menus
+                  label: '<input style="border: 0; " type="text" name="datetimesEmail" />',
+                  action: function(option, contextMenuIndex, optionIndex) {
+                      $(function() {
+                          $('input[name="datetimesEmail"]').daterangepicker({ timePicker: true,startDate : moment().add(-24,'hour'),endDate: moment(),locale: { format: 'YYYY-MM-DD ' }, },
+                          async function(start,end,label){
+                      
+                            });
+                        });
+                  },
+                  submenu: null,
+                  disabled: false
+                },],
+              disabled: false
+            }
+          ],
+          // is disabled?
+          disabled: false   //Disabled status of the option
+        },
+        {
+        
+          label: '<a href="#" style="color:#192c4e";>Report</a>',
+          action: function(option, contextMenuIndex, optionIndex) {},
+          submenu: null,
+          disabled: false
+        },
+        { 
+          label: '<a href="#" style="color:#192c4e";>Graph</a>',
+          action: function(option, contextMenuIndex, optionIndex) {},
+          submenu: null,
+          disabled: false
+        },
+  
+        {      
+          label: 'Controller',
+          action: function(option, contextMenuIndex, optionIndex) {},
+          submenu: [
+
+              {
+                icon: 'fa fa-google-plus',
+                label: '<a href="#" style="color:#192c4e"; > COMAND</a>',
+                action: function(option, contextMenuIndex, optionIndex) {},
+                submenu:  [{ // sub menus
+                  label: '<input style="width:50px" id="comando_ff">&nbsp<button onclick="send_comando_API()" type="button" class="btn btn-success">SEND</button>',
+                  action: function(option, contextMenuIndex, optionIndex) {},
+                  submenu: null,
+                  disabled: false
+                },],
+      
+                disabled: false
+              },
+      
+      
+      ],
+          disabled: false
+        },
+      ];
+        superCm.createMenu(myMenu1, e);
+      }
     
-      if( v_online =="<strong>ONLINE</strong>" && (nombreT=="<strong>ZGRU9026566</strong>" ||nombreT=="<strong>ZGRU1231231</strong>")){
+      if( v_online =="<strong>ONLINE</strong>" && (nombreT=="<strong>ZGRU9026566</strong>" )){
         nombreT1 = nombreT.replace("<strong>","");
         nombreT2 = nombreT1.replace("</strong>","");
   
@@ -1496,7 +1692,7 @@ $(document).ready(function () {
 
 
 
-    if( v_online =="<strong>ONLINE</strong>" && nombreT!="<strong>ZGRU9026566</strong>"){
+    if( v_online =="<strong>ONLINE</strong>" && nombreT!="<strong>ZGRU9026566</strong>" && nombreT!="<strong>ZGRU1231231</strong>"){
       nombreT1 = nombreT.replace("<strong>","");
       nombreT2 = nombreT1.replace("</strong>","");
 
