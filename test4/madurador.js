@@ -20,7 +20,6 @@ console.log(horaGMT);
 console.log(minutoGMT);
 
 
-//signoGMT = CADE
 
 function reemplazarDatosPorNull(fechas, datos, fechaInicio, fechaFin) {
     // Convertir fechaInicio y fechaFin a objetos Date
@@ -38,6 +37,85 @@ function reemplazarDatosPorNull(fechas, datos, fechaInicio, fechaFin) {
     }
     
     return datos;
+}
+
+function convertirNumero_ethy(x) {
+    x = parseFloat(x);
+    let y = "NA";  // Inicialmente, asignamos "NA"
+
+    // Validar que el número esté dentro del rango permitido
+    if (x < 121) {
+        y = x;  // Si el número es menor que 121, simplemente devolvemos el número
+    } else if (x >= 121 && x <= 450) {
+        // Coeficientes para la conversión lineal
+        const min_x = 121;
+        const max_x = 450;
+        const min_y = 121;
+        const max_y = 125;
+
+        // Aplicar la fórmula de la conversión lineal
+        y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+    } else if (x > 450 && x <= 2000) {
+        // Coeficientes para la conversión lineal
+        const min_x = 450;
+        const max_x = 2000;
+        const min_y = 125;
+        const max_y = 130;
+
+        // Aplicar la fórmula de la conversión lineal
+        y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+    } else {
+        y = "NA";  // Si el número no está en ningún rango, devolvemos "NA"
+    }
+
+    return y;
+}
+//signoGMT = CADE
+function convertirNumero_ethy_ERROR(x) {
+    x=parseFloat(x);
+    y="NA";
+    // Validar que el número esté dentro del rango permitido
+    
+    if (x < 121 ) {
+        y=x;
+    }
+    else if (x >= 121 && x <= 450) {
+        // Coeficientes para la conversión lineal
+        const min_x = 121;
+        const max_x = 450;
+        const min_y = 121;
+        const max_y = 125;
+
+        // Aplicar la fórmula de la conversión lineal
+        let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+    }
+    else if (x > 450 && x <= 2000) {   
+        // Coeficientes para la conversión lineal
+        const min_x = 450;
+        const max_x = 2000;
+        const min_y = 125;
+        const max_y = 130;
+
+        // Aplicar la fórmula de la conversión lineal
+        let y = min_y + (x - min_x) * (max_y - min_y) / (max_x - min_x);
+
+        // Redondear a un decimal
+        y = Math.round(y * 10) / 10;
+
+    }
+    else{
+        y="NA" ;
+    }
+    return y;
 }
 
 
@@ -193,7 +271,7 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.ambient_air)}</td>
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
      <td>${arreglar(validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2)))}</td>
-     <td>${malEhylene(permiso1.ethylene)}</td>
+     <td>${convertirNumero_ethy(permiso1.ethylene)}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>
 
@@ -236,7 +314,7 @@ if(variable==1){
      <td>${faren(validarDatosR_M(permiso1.ambient_air))} F°</td>
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
      <td>${validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2))}</td>
-     <td>${malEhylene(permiso1.ethylene)}</td>
+     <td>${convertirNumero_ethy(permiso1.ethylene)}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>
 
@@ -1186,10 +1264,12 @@ textotemperatura="Temperature( F°)";
    plano16 = info.cargo_4_temp
    
    planoTelemetria = info.telemetria_id;
-      //telemetria_is de filadelfia 14872
+    //telemetria_is de filadelfia 14872
+
     if(planoTelemetria[0]==14872){
         plano6 = reemplazarDatosPorNull(info.fecha, plano6, '21-08-2024 17:18:33', '21-08-2024 20:09:35');
     }
+
 
 
    // CONFIGURACION NORMAL
