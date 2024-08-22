@@ -22,6 +22,25 @@ console.log(minutoGMT);
 
 //signoGMT = CADE
 
+function reemplazarDatosPorNull(fechas, datos, fechaInicio, fechaFin) {
+    // Convertir fechaInicio y fechaFin a objetos Date
+    const inicio = new Date(fechaInicio.split(' ')[0].split('-').reverse().join('-') + 'T' + fechaInicio.split(' ')[1]);
+    const fin = new Date(fechaFin.split(' ')[0].split('-').reverse().join('-') + 'T' + fechaFin.split(' ')[1]);
+
+    // Recorrer el array de fechas
+    for (let i = 0; i < fechas.length; i++) {
+        const fecha = new Date(fechas[i].split(' ')[0].split('-').reverse().join('-') + 'T' + fechas[i].split(' ')[1]);
+        
+        // Comprobar si la fecha está dentro del rango
+        if (fecha >= inicio && fecha <= fin) {
+            datos[i] = null;
+        }
+    }
+    
+    return datos;
+}
+
+
 function USDA(dato){
     dato1 =parseFloat(dato);
     if(dato1==-38.50){
@@ -1143,6 +1162,9 @@ textotemperatura="Temperature( F°)";
 
    generalPWD =[];
 
+
+
+
    longitudB = Math.trunc(longitudA/bloques);
    plano1 = info.returnAir;
    plano2 = info.relativeHumidity;
@@ -1152,6 +1174,7 @@ textotemperatura="Temperature( F°)";
    plano5 = info.evaporationCoil;
    plano6 = info.D_ethylene;
    plano7 = info.sp_ethylene;
+
    plano8 = info.co2;
    plano9 = info.setPoint;
    plano10 = info.inyeccionEtileno;
@@ -1163,6 +1186,10 @@ textotemperatura="Temperature( F°)";
    plano16 = info.cargo_4_temp
    
    planoTelemetria = info.telemetria_id;
+      //telemetria_is de filadelfia 14872
+    if(planoTelemetria[0]==14872){
+        plano6 = reemplazarDatosPorNull(info.fecha, plano6, '21-08-2024 17:18:33', '21-08-2024 20:09:35');
+    }
 
 
    // CONFIGURACION NORMAL
