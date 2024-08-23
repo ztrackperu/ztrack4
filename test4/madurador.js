@@ -242,6 +242,12 @@ tel = info.telemetria_id[0];
 
 if(tel==4584 ||  tel==4586 || tel==4587  ||  tel==4588 || tel==4589 || tel==33 || tel==258 || tel==259 || tel==260  || tel==4500 || tel==4487 || tel==14872 ) {
 variable = 2;
+ganas = info.madurador2 ;
+ganas =ganas.reverse();
+
+}else{
+    ganas = info.madurador2 ;
+
 }
 
 console.log(variable);
@@ -251,8 +257,11 @@ console.log(variable);
     //console.log(info);
 
 
-    
-    info.madurador2.forEach(permiso1 => {
+    //ganas = info.madurador2 ;
+    //ganas =ganas.reverse();
+    //info.madurador2.forEach(permiso1 => {
+
+        ganas.forEach(permiso1 => {
         enBruto = parseInt(permiso1.created_at.$date.$numberLong);
         mashoras = 5*60*60000 + 60000;
         alterado = enBruto + mashoras ;
@@ -1267,7 +1276,55 @@ textotemperatura="Temperature( F°)";
     //telemetria_is de filadelfia 14872
 
     if(planoTelemetria[0]==14872){
-        plano6 = reemplazarDatosPorNull(info.fecha, plano6, '21-08-2024 17:18:33', '21-08-2024 20:09:35');
+        //plano6 = reemplazarDatosPorNull(info.fecha, plano6, '21-08-2024 17:18:33', '21-08-2024 20:09:35');
+        plano1 = info.returnAir;
+        plano1 =plano1.reverse();
+        plano2 = info.relativeHumidity;
+        plano2 =plano2.reverse();
+
+        plano3 = info.ambienteAir;
+        plano3 =plano3.reverse();
+
+        plano4 = info.tempSupply;
+        plano4 =plano4.reverse();
+
+        plano5 = info.evaporationCoil;
+        plano5 =plano5.reverse();
+
+        plano6 = info.D_ethylene;
+        plano6 =plano6.reverse();
+
+        plano7 = info.sp_ethylene;
+        plano7 =plano7.reverse();
+
+     
+        plano8 = info.co2;
+        plano8 =plano8.reverse();
+
+        plano9 = info.setPoint;
+        plano9 =plano9.reverse();
+
+        plano10 = info.inyeccionEtileno;
+        plano10 =plano10.reverse();
+
+        plano11 = info.inyeccion_pwm;
+        plano11 =plano11.reverse();
+
+        plano12 = info.cargo_1_temp
+        plano12 =plano12.reverse();
+
+        plano13 = info.objetivo
+        plano13 =plano13.reverse();
+
+        plano14 = info.cargo_2_temp
+        plano14 =plano14.reverse();
+
+        plano15 = info.cargo_3_temp
+        plano15 =plano15.reverse();
+
+        plano16 = info.cargo_4_temp
+        plano16 =plano16.reverse();
+
     }
 
 
