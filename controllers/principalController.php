@@ -361,6 +361,12 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                 array_push($total['co2'],porce($document['co2_reading']));
             }
             //array_push($total['co2'],$document['co2_reading']);
+
+            if($document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260 ) {
+                //if()
+            }
+
+
             if($document['sp_ethyleno']==-1.00 ){
                 array_push($total['sp_ethylene'],null);
             }else{
@@ -377,20 +383,24 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null ){
                 array_push($total['inyeccionEtileno'],100); 
-if($document['ethylene']>20000 || $document['ethylene']==0){
-               array_push($total['D_ethylene'],null);
-
-}else{
-                array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
-
-}
-
-
+                if($document['telemetria_id']==260 || $document['telemetria_id']==259 || $document['telemetria_id']==258 || $document['telemetria_id']==33 ){
+                    if($document['ethylene']>50){
+                        array_push($total['D_ethylene'],null);
+                    }else{
+                        array_push($total['D_ethylene'],$document['ethylene']);
+                    }
+                }else{
+                    if($document['ethylene']>20000 || $document['ethylene']==0){
+                        array_push($total['D_ethylene'],null);
+    
+                    }else{
+                        array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                    }
+                }
                // array_push($total['D_ethylene'],$document['ethylene']);  
             }else{
                 array_push($total['inyeccionEtileno'],0);
                 //if($document['stateProcess']==-1.00){
-
                 //}
                 if($document['telemetria_id']==260 || $document['telemetria_id']==259 || $document['telemetria_id']==258 || $document['telemetria_id']==33 ){
                     //se hace la regulacion  de datos por encima de 20 ppm
@@ -414,21 +424,14 @@ if($document['ethylene']>20000 || $document['ethylene']==0){
                         array_push($total['D_ethylene'],$document['ethylene']);
 
                     }
-                }
-
-                
-                
-                else{
-                   
-if($document['ethylene']>230){
-               array_push($total['D_ethylene'],null);
-
-}else{
-                array_push($total['D_ethylene'],$document['ethylene']);
-
-}
-
-// array_push($total['D_ethylene'],$document['ethylene']);
+                }  
+                else{                
+                    if($document['ethylene']>230){
+                        array_push($total['D_ethylene'],null);
+                    }else{
+                        array_push($total['D_ethylene'],$document['ethylene']);
+                    }
+                    // array_push($total['D_ethylene'],$document['ethylene']);
                 }
                 /*
                 if($document['ethylene']>=80.00){
@@ -685,8 +688,25 @@ if($document['ethylene']>230){
             //array_push($total['fecha'],$document['created_at']);
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 ){
+                //array_push($total['inyeccionEtileno'],100); 
+                //array_push($total['D_ethylene'],$document['ethylene']);  
+
+
                 array_push($total['inyeccionEtileno'],100); 
-                array_push($total['D_ethylene'],$document['ethylene']);  
+                if($document['telemetria_id']==260 || $document['telemetria_id']==259 || $document['telemetria_id']==258 || $document['telemetria_id']==33 ){
+                    if($document['ethylene']>50){
+                        array_push($total['D_ethylene'],null);
+                    }else{
+                        array_push($total['D_ethylene'],$document['ethylene']);
+                    }
+                }else{
+                    if($document['ethylene']>20000 || $document['ethylene']==0){
+                        array_push($total['D_ethylene'],null);
+    
+                    }else{
+                        array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                    }
+                }
             }else{
                 array_push($total['inyeccionEtileno'],0);
                 //if($document['stateProcess']==-1.00){
@@ -1495,12 +1515,33 @@ $minutoGTM = substr($GMT ,3,2);
             //array_push($total['fecha'],$document['created_at']);
             //array_push($total['inyeccionEtileno'],$document['stateProcess']);
             if($document['stateProcess']==5.00 || $document['stateProcess']==null){
-                array_push($total1['inyeccionEtileno'],100); 
-                if($document['ethylene']>20000 || $document['ethylene']==0){
-                    array_push($total1['D_ethylene'],null);
+                //array_push($total1['inyeccionEtileno'],100); 
+                //if($document['ethylene']>20000 || $document['ethylene']==0){
+                    //array_push($total1['D_ethylene'],null);
+                //}else{
+                    //array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
+                //}
+
+
+                array_push($total['inyeccionEtileno'],100); 
+                if($document['telemetria_id']==260 || $document['telemetria_id']==259 || $document['telemetria_id']==258 || $document['telemetria_id']==33 ){
+                    if($document['ethylene']>50){
+                        array_push($total['D_ethylene'],null);
+                    }else{
+                        array_push($total['D_ethylene'],$document['ethylene']);
+                    }
                 }else{
-                    array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
+                    if($document['ethylene']>20000 || $document['ethylene']==0){
+                        array_push($total['D_ethylene'],null);
+    
+                    }else{
+                        array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                    }
                 }
+
+
+
+
                 //array_push($total1['D_ethylene'],$document['ethylene']);  
             }else{
                 array_push($total1['inyeccionEtileno'],0);
