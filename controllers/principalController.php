@@ -1523,19 +1523,19 @@ $minutoGTM = substr($GMT ,3,2);
                 //}
 
 
-                array_push($total['inyeccionEtileno'],100); 
+                array_push($total1['inyeccionEtileno'],100); 
                 if($document['telemetria_id']==260 || $document['telemetria_id']==259 || $document['telemetria_id']==258 || $document['telemetria_id']==33 ){
                     if($document['ethylene']>50){
-                        array_push($total['D_ethylene'],null);
+                        array_push($total1['D_ethylene'],null);
                     }else{
-                        array_push($total['D_ethylene'],$document['ethylene']);
+                        array_push($total1['D_ethylene'],$document['ethylene']);
                     }
                 }else{
                     if($document['ethylene']>20000 || $document['ethylene']==0){
-                        array_push($total['D_ethylene'],null);
+                        array_push($total1['D_ethylene'],null);
     
                     }else{
-                        array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                        array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
                     }
                 }
 
