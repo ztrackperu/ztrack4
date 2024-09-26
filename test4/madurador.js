@@ -268,6 +268,7 @@ console.log(variable);
         fechita = new Date(alterado);
 
 if(variable==1){
+    //<td>${convertirNumero_ethy(permiso1.ethylene)}</td>
 
      html += `
      <tr>
@@ -280,7 +281,9 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.ambient_air)}</td>
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
      <td>${arreglar(validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2)))}</td>
-     <td>${convertirNumero_ethy(permiso1.ethylene)}</td>
+
+     <td>${permiso1.ethylene}</td>
+
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>
 

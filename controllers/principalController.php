@@ -394,7 +394,9 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                         array_push($total['D_ethylene'],null);
     
                     }else{
-                        array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                        //array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                        array_push($total['D_ethylene'],$document['ethylene']);
+
                     }
                 }
                // array_push($total['D_ethylene'],$document['ethylene']);  
@@ -704,7 +706,9 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                         array_push($total['D_ethylene'],null);
     
                     }else{
-                        array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                        //array_push($total['D_ethylene'],convertirNumero($document['ethylene']));
+                        array_push($total['D_ethylene'],$document['ethylene']);
+
                     }
                 }
             }else{
@@ -1535,7 +1539,9 @@ $minutoGTM = substr($GMT ,3,2);
                         array_push($total1['D_ethylene'],null);
     
                     }else{
-                        array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
+                        //array_push($total1['D_ethylene'],convertirNumero($document['ethylene']));
+                        array_push($total1['D_ethylene'],$document['ethylene']);
+
                     }
                 }
 
