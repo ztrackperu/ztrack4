@@ -390,7 +390,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                         array_push($total['D_ethylene'],$document['ethylene']);
                     }
                 }else{
-                    if($document['ethylene']>20000 || $document['ethylene']==0){
+                    if($document['ethylene']>299 || $document['ethylene']==0){
                         array_push($total['D_ethylene'],null);
     
                     }else{
@@ -702,7 +702,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                         array_push($total['D_ethylene'],$document['ethylene']);
                     }
                 }else{
-                    if($document['ethylene']>20000 || $document['ethylene']==0){
+                    if($document['ethylene']>299 || $document['ethylene']==0){
                         array_push($total['D_ethylene'],null);
     
                     }else{
@@ -1535,7 +1535,7 @@ $minutoGTM = substr($GMT ,3,2);
                         array_push($total1['D_ethylene'],$document['ethylene']);
                     }
                 }else{
-                    if($document['ethylene']>20000 || $document['ethylene']==0){
+                    if($document['ethylene']>299 || $document['ethylene']==0){
                         array_push($total1['D_ethylene'],null);
     
                     }else{
