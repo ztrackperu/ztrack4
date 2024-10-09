@@ -333,7 +333,7 @@ function seleccionar_tipo(value,id){
     console.log(error);
   });
   }
-  else if(value=="Madurador"){
+  else if(value=="Madurador"){ 
     axios.get(ruta + 'controllers/empresasController.php?option=ListaMaduradores&id=' + id)
     .then(function (response) {  
     const info = response.data;
@@ -362,6 +362,12 @@ function seleccionar_tipo(value,id){
     </div></div><div class="col-md-3"> </div> </div>  
     `;
     permisoDispositivo1.innerHTML = html;
+    //agregar el select2 para que se puedaa realizar la busqueda
+    $('#listaDispositivos').select2({
+      dropdownParent: $('#modalEmpresa-Dispositivo')
+    });
+
+
   })
   .catch(function (error) {
     console.log(error);

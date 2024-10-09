@@ -106,7 +106,9 @@ class EmpresasModel{
     }
     public function maduradorDisponible()
     {
-        $consult = $this->pdo->prepare("SELECT id , nombre_contenedor FROM contenedores WHERE empresa_id =1 AND tipo ='Madurador'  AND estado = 1");
+        //aqui se consideraba solo los que no estaban asignados , ahora se tendra en cuenta todos 
+        //$consult = $this->pdo->prepare("SELECT id , nombre_contenedor FROM contenedores WHERE empresa_id =1 AND tipo ='Madurador'  AND estado = 1");
+        $consult = $this->pdo->prepare("SELECT id , nombre_contenedor FROM contenedores WHERE  tipo ='Madurador'  AND estado = 1");
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
