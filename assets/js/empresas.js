@@ -261,7 +261,7 @@ function deleteAsignacion(id)
 }
 
  
-function seleccionar_tipo(value,id){
+async function seleccionar_tipo(value,id){
   empresaSeleccionada =id;
   if(value=="Generador"){
     axios.get(ruta + 'controllers/empresasController.php?option=ListaGeneradores&id=' + id)
@@ -375,7 +375,7 @@ function seleccionar_tipo(value,id){
   }
 
   $('#listaDispositivos').select2({
-    //dropdownParent: $('#modalEmpresa-Dispositivo')
+    dropdownParent: $('#modalEmpresa-Dispositivo')
   });
 }
 
