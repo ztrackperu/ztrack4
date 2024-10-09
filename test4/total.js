@@ -377,8 +377,11 @@ async function seleccionar_tipoD(value){
        <div class="input-group-prepend">
            <span class="input-group-text"><i class="fas fa-credit-card mr-1"></i> ${value}</span>
        </div>
-       <select id="listaDivece" name="listaDivece" class="form-control" onchange="seleccionar_dispositivo(this.value)" >
-             <option value="0">Seleccione ...</option>   
+       <!--<select id="listaDivece" name="listaDivece" class="form-control" onchange="seleccionar_dispositivo(this.value)" >-->
+        <select id ="listaDivece" class="form-control me-2" name="listaDivece" onchange="seleccionar_dispositivo(this.value)">
+   
+       
+       <option value="0">Seleccione ...</option>   
       `;
   
    if(value=="Generador"){
@@ -394,6 +397,7 @@ async function seleccionar_tipoD(value){
               <option value="${permiso.id}.${value}">${permiso.nombre_contenedor}</option>             
               `;
     });
+
    }
 
   //console.log(html);
@@ -410,7 +414,7 @@ async function seleccionar_tipoD(value){
   IntegralComando.innerHTML = '';
   listaComandoAsignados.innerHTML = '';
 }
-
+$('#listaDivece').select2();
 }
 function deleteComandoA(id){
   console.log(id);
