@@ -152,7 +152,7 @@ if (!empty($_GET['pagina'])) {
                     <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item" >
-                   <h3 style="color : red;"> <a  class="nav-link" href="../../ztrack1/test4/">
+                   <h3 style="color : red;"> <a  class="nav-link" href="../../ztrack4/test4/">
                         
                         VOLVER AL MAPA 
                     </a></h3>

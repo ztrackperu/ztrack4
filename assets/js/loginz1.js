@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if (usuario.value == '' || password.value == '') {
             message('error', 'TODO LOS CAMPOS  SON REQUERIDOS');
         } else {
-            axios.post('../../ztrack1/controllers/usuariosController.php?option=acceso', { 
+            axios.post('../../ztrack4/controllers/usuariosController.php?option=acceso', { 
                 usuario: email.value,
                 password: password.value 
             
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 const info = response.data;
                 console.log(info);
                 if (info.tipo == 'success') {
-                    window.location = '../../ztrack1/test4/';
+                    window.location = '../../ztrack4/test4/';
                 }
                 message('success', 'AUTORIZADO');
               })
