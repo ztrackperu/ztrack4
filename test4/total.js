@@ -414,6 +414,11 @@ async function seleccionar_tipoD(value){
   IntegralComando.innerHTML = '';
   listaComandoAsignados.innerHTML = '';
 }
+//sirve para adjuntra al select2 al modal y no al body
+$('#listaDivece').select2({
+  dropdownParent: $('#staticBackdrop')
+});
+
 //$('#listaDivece').select2();
 }
 function deleteComandoA(id){
