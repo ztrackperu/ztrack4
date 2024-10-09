@@ -365,9 +365,7 @@ function seleccionar_tipo(value,id){
     `;
     permisoDispositivo1.innerHTML = html;
     //agregar el select2 para que se puedaa realizar la busqueda
-    $('#listaDispositivos').select2({
-      dropdownParent: $('#modalEmpresa-Dispositivo')
-    });
+
 
 
   })
@@ -375,5 +373,9 @@ function seleccionar_tipo(value,id){
     console.log(error);
   });    
   }
+
+  $('#listaDispositivos').select2({
+    dropdownParent: $('#modalEmpresa-Dispositivo')
+  });
 }
 
