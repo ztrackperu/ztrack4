@@ -347,7 +347,9 @@ function seleccionar_tipo(value,id){
         <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-credit-card mr-1"></i> Maduradores</span>
         </div>
-        <select id="listaDispositivos" name="listaDispositivos" class="form-control" onchange="seleccionar_tipo(this.value)">
+        <!--<select id="listaDispositivos" name="listaDispositivos" class="form-control" onchange="seleccionar_tipo(this.value)">-->
+        <select id ="listaDispositivos" class="form-control me-2" name="listaDispositivos" onchange="seleccionar_tipo(this.value)">
+
               <option value="0">Seleccione ...</option>     
        `;
        info.maduradorDisponible.forEach(permiso => {
