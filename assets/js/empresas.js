@@ -348,7 +348,7 @@ function seleccionar_tipo(value,id){
             <span class="input-group-text"><i class="fas fa-credit-card mr-1"></i> Maduradores</span>
         </div>
         <!--<select id="listaDispositivos" name="listaDispositivos" class="form-control" onchange="seleccionar_tipo(this.value)">-->
-        <select id ="listaDispositivos" class="form-control me-2" name="listaDispositivos" onchange="seleccionar_tipo(this.value)">
+        <select id ="listaDispositivos_M" class="form-control me-2" name="listaDispositivos_M" onchange="seleccionar_tipo(this.value)">
 
               <option value="0">Seleccione ...</option>     
        `;
@@ -374,8 +374,8 @@ function seleccionar_tipo(value,id){
   });    
   }
 
-  $('#listaDispositivos').select2({
-    dropdownParent: $('#modalEmpresa-Dispositivo')
+  $('#listaDispositivos_M').select2({
+    //dropdownParent: $('#modalEmpresa-Dispositivo')
   });
 }
 
