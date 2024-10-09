@@ -20,6 +20,9 @@
     <link href="<?php echo RUTA . 'assets/'; ?>css/iframe.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo RUTA . 'assets/'; ?>css/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo RUTA . 'assets/'; ?>css/dataTables.dateTime.min.css" />
+
+    <link href="<?php echo RUTA . 'js/'; ?>select2.css" rel="stylesheet">
+
 </head>
 <?php $mini = false;
 if (!empty($_GET['pagina'])) {

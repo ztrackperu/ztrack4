@@ -375,7 +375,7 @@ function seleccionar_tipo(value,id){
   }
 
   $('#listaDispositivos_M').select2({
-    //dropdownParent: $('#modalEmpresa-Dispositivo')
+    dropdownParent: $('#modalEmpresa-Dispositivo')
   });
 }
 

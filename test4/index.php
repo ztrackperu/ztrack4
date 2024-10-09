@@ -391,7 +391,7 @@ function EstadoDispositivo($ultima_conexion){
     <script src="leaflet.awesome-markers.js"></script>
     <script src ="leaflet.markercluster-src.js" > </script>
     <script src="L.Path.DashFlow.js"></script>
-    <script src="select2.min.js"></script>
+    <script src="select2.min.js"></script> 
     <script src="snackbar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="tabla_to_excel.js"></script>
