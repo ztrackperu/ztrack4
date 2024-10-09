@@ -414,7 +414,7 @@ async function seleccionar_tipoD(value){
   IntegralComando.innerHTML = '';
   listaComandoAsignados.innerHTML = '';
 }
-$('#listaDivece').select2();
+//$('#listaDivece').select2();
 }
 function deleteComandoA(id){
   console.log(id);
