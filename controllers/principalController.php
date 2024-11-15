@@ -628,6 +628,27 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
            // array_push($total,$fechaD);
            array_push($total['fecha'],$fechaD1);
             //array_push($total['tramaMadurador'],$document);  
+
+               
+            if($document['power_kwh']==0){
+                $document['set_point']=null;
+                $document['return_air']=null;
+                $document['temp_supply_1']=null;
+                $document['ambient_air']=null;
+                $document['evaporation_coil']=null;
+                $document['cargo_1_temp']=null;
+                $document['cargo_2_temp']=null;
+                $document['cargo_3_temp']=null;
+                $document['cargo_4_temp']=null;
+                $document['inyeccion_pwm']=null;
+                $document['sp_ethyleno']=null;
+                $document['co2_reading']=null;
+                $document['stateProcess']=null;
+
+            }
+
+
+
             
             array_push($total['setPoint'],$document['set_point']);
             array_push($total['returnAir'],$document['return_air']);
