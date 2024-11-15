@@ -1466,6 +1466,23 @@ $minutoGTM = substr($GMT ,3,2);
                 array_push($total1['cargo_4_temp'],redondo_ok(faren($document['cargo_4_temp'])));
             }
 }else{
+       
+    if($document['power_kwh']==0){
+        $document['set_point']=null;
+        $document['return_air']=null;
+        $document['temp_supply_1']=null;
+        $document['ambient_air']=null;
+        $document['evaporation_coil']=null;
+        $document['cargo_1_temp']=null;
+        $document['cargo_2_temp']=null;
+        $document['cargo_3_temp']=null;
+        $document['cargo_4_temp']=null;
+        $document['inyeccion_pwm']=null;
+        $document['sp_ethyleno']=null;
+        $document['co2_reading']=null;
+        $document['stateProcess']=null;
+
+    }
             array_push($total1['setPoint'],$document['set_point']);
             array_push($total1['returnAir'],$document['return_air']);
             array_push($total1['tempSupply'],$document['temp_supply_1']);
@@ -1544,8 +1561,6 @@ $minutoGTM = substr($GMT ,3,2);
 
                     }
                 }
-
-
 
 
                 //array_push($total1['D_ethylene'],$document['ethylene']);  
