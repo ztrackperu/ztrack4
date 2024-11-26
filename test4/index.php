@@ -198,6 +198,7 @@ function EstadoDispositivo($ultima_conexion){
       <th scope="col">O2_reading</th>
       
       <th scope="col">Voltage</th>
+      <th scope="col">Frequency</th>
       <th scope="col">USDA 1</th>
       <th scope="col">USDA 2</th>
       <th scope="col">USDA 3</th>

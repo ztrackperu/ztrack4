@@ -302,6 +302,7 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.o2_reading)}</td>
         
      <td>${validar_1(permiso1.line_voltage)}</td>
+     <td>${validar_1(permiso1.line_frequency)}</td>
      <td>${USDA(permiso1.cargo_1_temp)}</td>
      <td>${USDA(permiso1.cargo_2_temp)}</td>
      <td>${USDA(permiso1.cargo_3_temp)}</td>
@@ -345,6 +346,8 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.o2_reading)}</td>
 
      <td>${validar_1(permiso1.line_voltage)}</td>
+     <td>${validar_1(permiso1.line_frequency)}</td>
+
      <td>${faren(USDA(permiso1.cargo_1_temp))} F°</td>
      <td>${faren(USDA(permiso1.cargo_2_temp))} F°</td>
      <td>${faren(USDA(permiso1.cargo_3_temp))} F°</td>
