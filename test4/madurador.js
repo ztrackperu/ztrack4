@@ -404,10 +404,10 @@ async function graficaMadurador1(info){
         evaporationCoil.unshift(parseFloat(permiso.evaporation_coil));
         D_ethylene.unshift(parseFloat(permiso.ethylene));
         co2.unshift(parseFloat(permiso.co2_reading));
-        sp_ethylene.unshift(parseFloat(permiso.sp_ethyleno))
+        sp_ethylene.unshift(parseFloat(permiso.sp_ethyleno));
         fecha.unshift(permiso.created_at);
         datoInyeccion = parseFloat(permiso.stateProcess) ;
-        ;
+        
         poner = 0 ;
         if(datoInyeccion==5.00){
           poner =100;    
@@ -854,6 +854,29 @@ textotemperatura="Temperature( F°)";
 
     */
     console.timeEnd('loop');
+
+    let datosFrecuencia ={
+        label : " sp_Ethy",
+        data : info.line_frequency,
+        backgroundColor: '#d80014', // Color de fondo 973d37
+        borderColor: '#d80014', // Color del borde 95a5z6 d85494
+        borderWidth: 3,
+        yAxisID : 'y1',
+        pointRadius: 0,
+        cubicInterpolationMode: 'monotone',
+        tension: 0.4 , 
+        datalabels: {
+           //display: 'false',
+           labels: {
+               title: null
+             } 
+         },    
+    }
+
+
+
+
+
     let datosInyeccion ={
         label : " Inyected",
         data : info.inyeccionEtileno,
@@ -1256,6 +1279,9 @@ textotemperatura="Temperature( F°)";
    generalPWD =[];
 
 
+   generalFre =[];
+
+
 
 
    longitudB = Math.trunc(longitudA/bloques);
@@ -1277,6 +1303,7 @@ textotemperatura="Temperature( F°)";
    plano14 = info.cargo_2_temp
    plano15 = info.cargo_3_temp
    plano16 = info.cargo_4_temp
+   plano17 = info.line_frequency
    
    planoTelemetria = info.telemetria_id;
     //telemetria_is de filadelfia 14872
@@ -1331,6 +1358,9 @@ textotemperatura="Temperature( F°)";
         plano16 = info.cargo_4_temp
         plano16 =plano16.reverse();
 
+        plano17 = info.line_frequency
+        plano17 =plano17.reverse();
+
     }
 
 
@@ -1352,6 +1382,7 @@ textotemperatura="Temperature( F°)";
    g14 =true;
    g15 = true;
    g16 = true;
+   g17 = false;
 
 extra1 =dataTelemetria.data.extra_1;
 divece =dataTelemetria.data.nombre_contenedor;
@@ -1377,6 +1408,7 @@ if(extra1==1){
     g14 =false;
     g15 = false;
     g16 = false;
+    g17 = false;
 
 }else{
     nombreMadurador="Reefer Monitoring Data  "+divece+"("+descrip+")";
@@ -1396,6 +1428,7 @@ if(extra1==1){
     g14 =true;
     g15 = true;
     g16 = true;
+    g17 = false;
 }
 
 
@@ -1500,6 +1533,8 @@ else if(planoTelemetria[0]==334){
         generalUSDA2[i]=plano14.slice((longitudB*(i-1)),(longitudA+1));
         generalUSDA3[i]=plano15.slice((longitudB*(i-1)),(longitudA+1));
         generalUSDA4[i]=plano16.slice((longitudB*(i-1)),(longitudA+1));
+        generalFre[i]=plano17.slice((longitudB*(i-1)),(longitudA+1));
+
 
         //PWD
         generalPWD[i]=plano11.slice((longitudB*(i-1)),(longitudA+1));
@@ -1528,6 +1563,8 @@ else if(planoTelemetria[0]==334){
         generalUSDA2[i] = plano14.slice((longitudB*(i-1)),(longitudB*(i)));
         generalUSDA3[i] = plano15.slice((longitudB*(i-1)),(longitudB*(i)));
         generalUSDA4[i] = plano16.slice((longitudB*(i-1)),(longitudB*(i)));
+        generalFre[i] = plano17.slice((longitudB*(i-1)),(longitudB*(i)));
+
         
         //general.push([plano1.slice((longitudB*(i-1)),(longitudB*(i)))]);
         //PWD
@@ -1685,6 +1722,24 @@ else if(planoTelemetria[0]==334){
                     cubicInterpolationMode: 'monotone',
                     tension: 0.4 , 
                     hidden :g7,
+                    datalabels: {
+                       //display: 'false',
+                       labels: {
+                           title: null
+                         } 
+                     },    
+                },
+                {
+                    label : " Frecuencia",
+                    data : generalFre[1] ,
+                    backgroundColor: '#d80014', // Color de fondo 973d37
+                    borderColor: '#d80014', // Color del borde 95a5z6 d85494
+                    borderWidth: 3,
+                    yAxisID : 'y1',
+                    pointRadius: 0,
+                    cubicInterpolationMode: 'monotone',
+                    tension: 0.4 , 
+                    hidden :g17,
                     datalabels: {
                        //display: 'false',
                        labels: {
@@ -2052,6 +2107,8 @@ else if(planoTelemetria[0]==334){
     data.datasets[13].data =  data.datasets[13].data.concat(generalUSDA2[j]);
     data.datasets[14].data =  data.datasets[14].data.concat(generalUSDA3[j]);
     data.datasets[15].data =  data.datasets[15].data.concat(generalUSDA4[j]);
+    data.datasets[16].data =  data.datasets[16].data.concat(generalFre[j]);
+
     X1.update();
     }, 100);
     }

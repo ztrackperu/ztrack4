@@ -217,6 +217,8 @@ if($signoGMT=="-"){
          $total['cargo_2_temp'] =[];
          $total['cargo_3_temp'] =[];
          $total['cargo_4_temp'] =[];
+         $total['line_frequency'] =[];
+
 
          //array('$gt'=>new MongoDB\BSON\UTCDateTime(strtotime($fechaaInicio)*1000), '$gte'=>new MongoDB\BSON\UTCDateTime(strtotime($fechaFin)*1000))
          //     $cursor  = $client->ztrack->madurador2->find(array('$and' =>array( ['created_at'=>array('$gt'=>new MongoDB\BSON\UTCDateTime($puntoA)),'created_at'=>array('$gte'=>new MongoDB\BSON\UTCDateTime($puntoB)),'telemetria_id'=>intval($telemetria)] )));
@@ -256,6 +258,9 @@ $baseHoraGTM = +5 +5+($horaG);
                 array_push($total['relativeHumidity'],null);
 
           }
+
+array_push($total['line_frequency'],$document['line_frequency']);
+
 
  array_push($total['objetivo'],2.00);
 
@@ -606,7 +611,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
          // se selcciona los campos y las fechas 
          $cursor  = $client->ztrack_ja->madurador->find(array('$and' =>array( ['created_at'=>array('$gte'=>new MongoDB\BSON\UTCDateTime($puntoA1),'$lte'=>new MongoDB\BSON\UTCDateTime($puntoB1)),'telemetria_id'=>intval($telemetria)] )),
          array('projection' => array('_id' => 0,'trama'=> 1, 'created_at' => 1,'stateProcess' => 1,'set_point' => 1,'temp_supply_1' => 1,'return_air' => 1,'evaporation_coil' => 1,'ambient_air' => 1,'relative_humidity' => 1,'controlling_mode' => 1,'sp_ethyleno' => 1,
-         'ethylene' => 1,'avl' => 1,'power_state' => 1,'compress_coil_1' => 1,'consumption_ph_1' => 1,'consumption_ph_2' => 1,'consumption_ph_3' => 1,'co2_reading' => 1,'o2_reading' => 1,'set_point_o2' => 1,'set_point_co2' => 1,'line_voltage' => 1,
+         'ethylene' => 1,'avl' => 1,'power_state' => 1,'compress_coil_1' => 1,'consumption_ph_1' => 1,'consumption_ph_2' => 1,'consumption_ph_3' => 1,'co2_reading' => 1,'o2_reading' => 1,'set_point_o2' => 1,'set_point_co2' => 1,'line_voltage' => 1,'line_frequency' => 1,
          'defrost_term_temp' => 1,'defrost_interval' => 1,'inyeccion_pwm' => 1,'inyeccion_hora' => 1,'latitud' => 1,'longitud' => 1,'fresh_air_ex_mode' => 1,'telemetria_id'=>1,'cargo_1_temp' =>1,'cargo_2_temp' =>1,'cargo_3_temp' =>1,'cargo_4_temp' =>1,'id'=>1 ,'power_kwh' =>1),'sort'=>array('id'=>1)));
          //$cursor1 =$cursor->sort(array('trama' => 1));
          //array('sort'=>array('trama' => -1))
@@ -632,6 +637,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
          //     $cursor  = $client->ztrack->madurador2->find(array('$and' =>array( ['created_at'=>array('$gt'=>new MongoDB\BSON\UTCDateTime($puntoA)),'created_at'=>array('$gte'=>new MongoDB\BSON\UTCDateTime($puntoB)),'telemetria_id'=>intval($telemetria)] )));
          $total['madurador'] = [];
          $total['inyeccion_pwm'] =[];
+         $total['line_frequency'] =[];
          foreach ($cursor as $document) {
             //array_push($total['fecha'],$document['created_at']);
             $fechaJa = json_decode($document['created_at'])/1000;
@@ -646,6 +652,7 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             //array_push($total['tramaMadurador'],$document);  
 
                
+
             if($document['power_kwh']==0){
                 $document['set_point']=null;
                 $document['return_air']=null;
@@ -665,7 +672,8 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
 
 
 
-            
+            array_push($total['line_frequency'],$document['line_frequency']);
+
             array_push($total['setPoint'],$document['set_point']);
             array_push($total['returnAir'],$document['return_air']);
             array_push($total['tempSupply'],$document['temp_supply_1']);
@@ -1032,7 +1040,7 @@ $minutoGTM = substr($GMT ,3,2);
          // se selcciona los campos y las fechas 
          $cursor  = $client->ztrack_ja->madurador->find(array('$and' =>array( ['created_at'=>array('$gte'=>new MongoDB\BSON\UTCDateTime($puntoA1),'$lte'=>new MongoDB\BSON\UTCDateTime($puntoB1)),'telemetria_id'=>intval($telemetria)] )),
          array('projection' => array('_id' => 0,'trama'=> 1, 'created_at' => 1,'stateProcess' => 1,'set_point' => 1,'temp_supply_1' => 1,'return_air' => 1,'evaporation_coil' => 1,'ambient_air' => 1,'relative_humidity' => 1,'controlling_mode' => 1,'sp_ethyleno' => 1,
-         'ethylene' => 1,'avl' => 1,'power_state' => 1,'compress_coil_1' => 1,'consumption_ph_1' => 1,'consumption_ph_2' => 1,'consumption_ph_3' => 1,'co2_reading' => 1,'o2_reading' => 1,'set_point_o2' => 1,'set_point_co2' => 1,'line_voltage' => 1,
+         'ethylene' => 1,'avl' => 1,'power_state' => 1,'compress_coil_1' => 1,'consumption_ph_1' => 1,'consumption_ph_2' => 1,'consumption_ph_3' => 1,'co2_reading' => 1,'o2_reading' => 1,'set_point_o2' => 1,'set_point_co2' => 1,'line_voltage' => 1,'line_frequency' => 1,
          'defrost_term_temp' => 1,'defrost_interval' => 1,'inyeccion_pwm' => 1,'inyeccion_hora' => 1,'latitud' => 1,'longitud' => 1,'fresh_air_ex_mode' => 1,'telemetria_id'=>1,'cargo_1_temp' =>1,'cargo_2_temp' =>1,'cargo_3_temp' =>1,'cargo_4_temp' =>1,'id'=>1 ,'power_kwh' =>1),'sort'=>array('id'=>1)));
         //analizar el tiempo
         $date1 = new DateTime($fechaaInicio1);
@@ -1065,6 +1073,9 @@ $minutoGTM = substr($GMT ,3,2);
          $total['madurador'] = [];
          $total1['madurador2'] = [];
          $total1['inyeccion_pwm'] =[];
+         $total1['line_frequency'] =[];
+
+         
          $cont=0;
          foreach ($cursor as $document) {
         //$returnInicial =$document['return_air'];
@@ -1471,6 +1482,8 @@ $minutoGTM = substr($GMT ,3,2);
             array_push($total1['setPoint'],redondo_ok(faren($document['set_point'])));
             array_push($total1['returnAir'],redondo_ok(faren($document['return_air'])));
             array_push($total1['tempSupply'],redondo_ok(faren($document['temp_supply_1'])));
+            array_push($total1['line_frequency'],$document['line_frequency']);
+
             if(redondo_ok(faren($document['ambient_air']))==-37.3){
                 array_push($total1['ambienteAir'],null);
             }else{
