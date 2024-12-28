@@ -295,23 +295,23 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
             }else{
                 array_push($total['evaporationCoil'],redondo_ok(faren($document['evaporation_coil'])));
             }
-            if($document['cargo_1_temp']>=40.00 || $document['cargo_1_temp']==25.60  ){
+            if($document['cargo_1_temp']>=10.00 || $document['cargo_1_temp']==25.60  ){
                 array_push($total['cargo_1_temp'],null);
             }else{
                 array_push($total['cargo_1_temp'],redondo_ok(faren($document['cargo_1_temp'])));
             }
 
-            if($document['cargo_2_temp']>=40.00){
+            if($document['cargo_2_temp']>=10.00){
                 array_push($total['cargo_2_temp'],null);
             }else{
                 array_push($total['cargo_2_temp'],redondo_ok(faren($document['cargo_2_temp'])));
             }
-            if($document['cargo_3_temp']>=40.00){
+            if($document['cargo_3_temp']>=10.00){
                 array_push($total['cargo_3_temp'],null);
             }else{
                 array_push($total['cargo_3_temp'],redondo_ok(faren($document['cargo_3_temp'])));
             }
-            if($document['cargo_4_temp']>=40.00){
+            if($document['cargo_4_temp']>=10.00){
                 array_push($total['cargo_4_temp'],null);
             }else{
                 array_push($total['cargo_4_temp'],redondo_ok(faren($document['cargo_4_temp'])));

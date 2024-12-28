@@ -121,7 +121,9 @@ function convertirNumero_ethy_ERROR(x) {
 
 function USDA(dato){
     dato1 =parseFloat(dato);
-    if(dato1==-38.50){
+    //if(dato1==-38.50){
+    if(dato1>10.00){
+
       respuesta = "NA";
     }else{
       respuesta = dato1;
