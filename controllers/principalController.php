@@ -257,7 +257,7 @@ $baseHoraGTM = +5 +5+($horaG);
 
           }
 
- array_push($total['objetivo'],2.00);
+ array_push($total['objetivo'],0.00);
 
 
 
