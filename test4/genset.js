@@ -143,7 +143,9 @@ async function graficaGenset(info){
                         //console.log(w.toBase64Image());
                         //if(descargarImagen==1){
                         var today = moment().format("DD-MM-YYYY_HH-mm-ss");
-                        var dispositivoGrafica = info.genset.nombre_generador;        
+                        //var dispositivoGrafica = info.genset.nombre_generador; 
+                        var dispositivoGrafica = "Genset";        
+       
                         bajarGrafica.href= w.toBase64Image();
                         bajarGrafica.download =''+dispositivoGrafica+'_'+today;
                           //bajarGrafica.click();
