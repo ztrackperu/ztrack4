@@ -261,7 +261,7 @@ $baseHoraGTM = +5 +5+($horaG);
 
 
 
-if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
+if($document['telemetria_id']==15216 || $document['telemetria_id']==15218 || $document['telemetria_id']==15255 || $document['telemetria_id']==15256 || $document['telemetria_id']==15257 || $document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
             if($document['power_kwh']==0){
                 $document['set_point']=null;
                 $document['return_air']=null;
@@ -1411,9 +1411,10 @@ $minutoGTM = substr($GMT ,3,2);
 
 //if($document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
 
-    if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
+            // aqui van las telemetrias que deben modificarse  a farenget
+    if($document['telemetria_id']==15216 || $document['telemetria_id']==15218 || $document['telemetria_id']==14872 || $document['telemetria_id']==15256 || $document['telemetria_id']==15257 || $document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
 
-   
+  
     if($document['power_kwh']==0){
         $document['set_point']=null;
         $document['return_air']=null;

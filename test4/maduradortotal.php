@@ -167,7 +167,7 @@ $cargo_3_temp_I = $refer['cargo_3_temp'];
 $cargo_4_temp_I = $refer['cargo_4_temp'];
 
 
-if($empresa_general_t==42 || $empresa_general_t==43 || $empresa_general_t==22 || $empresa_general_t==61){ 
+if($empresa_general_t==42 || $empresa_general_t==43 || $empresa_general_t==22 || $empresa_general_t==61 || $empresa_general_t==76){ 
 
 
 $temp_supply_I = fara($refer['temp_supply_1']);
