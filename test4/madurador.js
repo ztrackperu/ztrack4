@@ -245,12 +245,15 @@ tel = info.telemetria_id[0];
 if(tel==15216 || tel==15218 || tel==15255  || tel==15256 || tel==15217 ||tel==4584 ||  tel==4586 || tel==4587  ||  tel==4588 || tel==4589 || tel==33 || tel==258 || tel==259 || tel==260  || tel==4500 || tel==4487 || tel==14872 ) {
 variable = 2;
 ganas = info.madurador2 ;
-ganas =ganas.reverse();
+//ganas =ganas.reverse();
 
 }else{
     ganas = info.madurador2 ;
 
 }
+console.log("********************")
+console.log(ganas)
+console.log("********************")
 
 console.log(variable);
 
