@@ -230,7 +230,7 @@ if($signoGMT=="-"){
             if($cont%1==0)
             {
 
-                if($document['power_kwh']==0){
+                if($document['power_kwh']==10){
                     $document['relative_humidity']=null;
                 }
 
@@ -262,7 +262,7 @@ $baseHoraGTM = +5 +5+($horaG);
 
 
 if($document['telemetria_id']==15216 || $document['telemetria_id']==15218 || $document['telemetria_id']==15255 || $document['telemetria_id']==15256 || $document['telemetria_id']==15257 || $document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
-            if($document['power_kwh']==0 &&($document['telemetria_id']!=15216 || $document['telemetria_id']!=15218 || $document['telemetria_id']!=15255 || $document['telemetria_id']!=15256 || $document['telemetria_id']!=15257) ){
+            if($document['power_kwh']==10  ){
                 $document['set_point']=null;
                 $document['return_air']=null;
                 $document['temp_supply_1']=null;
@@ -1382,7 +1382,7 @@ $minutoGTM = substr($GMT ,3,2);
             $cont++;
             if($cont%1==0)
             {
-            if($document['power_kwh']==0){
+            if($document['power_kwh']==10){
                 $document['relative_humidity']=null;
 
             }
@@ -1415,7 +1415,7 @@ $minutoGTM = substr($GMT ,3,2);
     if($document['telemetria_id']==15216 || $document['telemetria_id']==15218 || $document['telemetria_id']==14872 || $document['telemetria_id']==15256 || $document['telemetria_id']==15257 || $document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$document['telemetria_id']==4586 ||$document['telemetria_id']==4587  || $document['telemetria_id']==4588 ||$document['telemetria_id']==4589 ||$document['telemetria_id']==33 || $document['telemetria_id']==258 ||$document['telemetria_id']==259 ||$document['telemetria_id']==260  || $document['telemetria_id']==4500 ||$document['telemetria_id']==4487 ) {
 
   
-    if($document['power_kwh']==0){
+    if($document['power_kwh']==10){
         $document['set_point']=null;
         $document['return_air']=null;
         $document['temp_supply_1']=null;
