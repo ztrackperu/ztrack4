@@ -10,6 +10,69 @@ console.log(posFecha);
 console.log(cadenaGMT);
 //console.log(fechaTotal.toJSON());
 
+function transformarValores_eti_2(n) {
+    if (n >= 1 && n <= 50) {
+      return n; // mantener
+    }
+
+    // 50.1 a 100 → 50.1 a 54
+    if (n > 50 && n <= 100) {
+      const inMin = 50.1, inMax = 100;
+      const outMin = 50.1, outMax = 54;
+      return (((n - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin).toFixed(1);
+    }
+
+    // 100.1 a 300 → 54.1 a 70
+    if (n > 100 && n <= 300) {
+      const inMin = 100.1, inMax = 300;
+      const outMin = 54.1, outMax = 70;
+      return (((n - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin).toFixed(1);
+    }
+
+    // > 300 → null
+    if (n > 300) {
+      return null;
+    }
+
+    // valores fuera de rango (menores a 1)
+    return n;
+
+
+}
+
+
+
+function transformarValores_eti(arr) {
+  return arr.map(n => {
+    if (n >= 1 && n <= 50) {
+      return n; // mantener
+    }
+
+    // 50.1 a 100 → 50.1 a 54
+    if (n > 50 && n <= 100) {
+      const inMin = 50.1, inMax = 100;
+      const outMin = 50.1, outMax = 54;
+      return (((n - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin).toFixed(1);
+    }
+
+    // 100.1 a 300 → 54.1 a 70
+    if (n > 100 && n <= 300) {
+      const inMin = 100.1, inMax = 300;
+      const outMin = 54.1, outMax = 70;
+      return (((n - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin).toFixed(1);
+    }
+
+    // > 300 → null
+    if (n > 300) {
+      return null;
+    }
+
+    // valores fuera de rango (menores a 1)
+    return n;
+  });
+}
+
+
 // tomamos los valores del GMT  
 signoGMT=cadenaGMT.substr(0,1);
 horaGMT=cadenaGMT.substr(1,2);
@@ -287,7 +350,7 @@ if(variable==1){
      <td>${validarDatosR_M(permiso1.relative_humidity)}</td>
      <td>${arreglar(validar_1(parseFloat(permiso1.sp_ethyleno).toFixed(2)))}</td>
 
-     <td>${permiso1.ethylene}</td>
+     <td>${transformarValores_eti_2(permiso1.ethylene)}</td>
 
      <td>${validar_1(parseFloat(permiso1.inyeccion_hora).toFixed(2))}</td>
      <td>${validar_1(parseFloat(permiso1.inyeccion_pwm).toFixed(2))}</td>
@@ -797,6 +860,12 @@ async function graficaMadurador(info){
 
     const dataTelemetria =  await axios(config1);
     console.log(dataTelemetria.data.nombre_contenedor);
+
+if(dataTelemetria.data.nombre_contenedor=="UNIT333_ZGRU9999993")
+{
+info.D_ethylene =transformarValores_eti(info.D_ethylene) ;
+
+}
 console.log("olita");
 console.log(dataTelemetria.data);
 
