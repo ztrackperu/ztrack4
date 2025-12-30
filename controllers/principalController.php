@@ -279,10 +279,22 @@ if($document['telemetria_id']==14872 ||$document['telemetria_id']==4584 ||$docum
                 array_push($total['cargo_4_temp'],redondo_ok(faren($document['cargo_4_temp'])));
             }
 }else{
-            array_push($total['setPoint'],$document['set_point']);
-            array_push($total['returnAir'],$document['return_air']);
-            array_push($total['tempSupply'],$document['temp_supply_1']);
-            array_push($total['ambienteAir'],$document['ambient_air']);
+            array_push($total['setPoint'],
+    ($document['set_point'] > 50) ? null : $document['set_point']
+);
+
+array_push($total['returnAir'],
+    ($document['return_air'] > 50) ? null : $document['return_air']
+);
+
+array_push($total['tempSupply'],
+    ($document['temp_supply_1'] > 50) ? null : $document['temp_supply_1']
+);
+
+array_push($total['ambienteAir'],
+    ($document['ambient_air'] > 60) ? null : $document['ambient_air']
+);
+
             if($document['evaporation_coil']>=50.00){
                 array_push($total['evaporationCoil'],null);
             }else{
@@ -1533,3 +1545,4 @@ $minutoGTM = substr($GMT ,3,2);
         # code...
         break;
 }
+
